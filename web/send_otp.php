@@ -1,9 +1,16 @@
-// DO not forget to put your email id and password in line 54 and 55.
+<!-- // DO not forget to put your email id and password in line 54 and 55.
 //
 //$mail->Username = '<Your Email ID>'; // email
-//$mail->Password = '<Your email Password>'; // password
+//$mail->Password = '<Your email Password>'; // password -->
+
+
 
 <?php
+
+define("user_name", "email@gmial.com");
+define("password", "test@1234");
+
+
 
 require_once 'connection.php';
 use PHPMailer\PHPMailer\PHPMailer;
@@ -54,8 +61,8 @@ $mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.c
 $mail->Port = 587; // TLS only
 $mail->SMTPSecure = 'tls'; // ssl is deprecated
 $mail->SMTPAuth = true;
-$mail->Username = '<Your Email ID>'; // email
-$mail->Password = '<Your email Password>'; // password
+$mail->Username = user_name; // email
+$mail->Password = password; // password
 $mail->setFrom('otp@projecttraveluniversity.000webhostapp.com', 'Project Travel System'); // From email and name
 $mail->addAddress($variable['email'], $variable['name']); // to email and name
 $mail->Subject = 'Registration OTP (Do not share!)';
