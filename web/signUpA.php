@@ -1,11 +1,13 @@
 <?php
  
  
-$servername = "<hostname>";
-$user = "<user name>";
-$password = "<password>";
-$database = "<database name>";
-$conn = mysqli_connect($servername,$user,$password,$database);
+// $servername = "<hostname>";
+// $user = "<user name>";
+// $password = "<password>";
+// $database = "<database name>";
+// $conn = mysqli_connect($servername,$user,$password,$database);
+
+require_once 'connection.php';
  
  // Check connection
 if ($conn->connect_error) 
