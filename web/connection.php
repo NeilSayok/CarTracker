@@ -1,5 +1,5 @@
 <?php
-
+//DB on https://www.freemysqlhosting.net/login/?checkemail=registered
 define('servername', 'sql6.freemysqlhosting.net');
 define('user', 'sql6447503');
 define('password', 'Z8mfBdVaII');
@@ -27,7 +27,7 @@ if ($conn->connect_error)
     if(!mysqli_query($conn,$query_create_table_car_location)){
         echo "car_location Table Present"
     }
-    if(mysqli_query($conn,$query_create_table_otp);){
+    if(!mysqli_query($conn,$query_create_table_otp)){
         echo "otp Table Present"
     }
 }
