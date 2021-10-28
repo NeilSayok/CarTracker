@@ -1,34 +1,28 @@
-# Car Locator System
-#### Web and Server Side
+# php-getting-started
 
-##### All the php files contain the lines
+A barebones PHP app that makes use of the [Silex](http://silex.sensiolabs.org/) web framework, which can easily be deployed to Heroku.
+
+This application supports the [Getting Started with PHP on Heroku](https://devcenter.heroku.com/articles/getting-started-with-php) article - check it out.
+
+## Deploying
+
+Install the [Heroku Toolbelt](https://toolbelt.heroku.com/).
+
 ```sh
-$servername = "<hostname>";
-$user = "<user name>";
-$password = "<password>";
-$database = "<database name>";
+$ git clone git@github.com:heroku/php-getting-started.git # or clone your own fork
+$ cd php-getting-started
+$ heroku create
+$ git push heroku main
+$ heroku open
 ```
-**hostname** has to be replaced with the hostname provided by your server.
 
-**user name** has to be replaced with the username of the database provided by your server.
+or
 
-**password** has to be replaced with the database login password provided by your server.
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-**database name** has to be replaced with the database name provided by your server.
+## Documentation
 
-Also remove the <>.
+For more information about using PHP on Heroku, see these Dev Center articles:
 
-
-###### For 000webhost these can be found under website > manage database (password has to be set while creating the database.)
-
-## Database & Tables:
-**Table names**
-![Table names](https://i.pinimg.com/originals/9c/b1/ff/9cb1fffb3ebb7c4168b37f1f6bee8cf9.png)
-**Car Location Table and its columns and datatypes**
-![car_locationtable](https://i.pinimg.com/originals/91/4a/aa/914aaa6e561b511d9f255c8f801d9479.png)
-**OTP Table and its columns and datatypes**
-![otptable](https://i.pinimg.com/originals/77/12/80/771280e962952cf2ad528b7a764f0980.png)
-
-**'id' feild in each table make it auto increment and primary key.**
-
-#### The table names and column names has to be exactly same or you will have to change everything in the php files.
+- [Getting Started with PHP on Heroku](https://devcenter.heroku.com/articles/getting-started-with-php)
+- [PHP on Heroku](https://devcenter.heroku.com/categories/php)
