@@ -24,6 +24,10 @@ if ($conn->connect_error)
 {
     die("Connection failed: " . $conn->connect_error);
 }else{
-    mysqli_query($conn,$query_create_table_car_location);
-    mysqli_query($conn,$query_create_table_otp);
+    if(!mysqli_query($conn,$query_create_table_car_location)){
+        echo "car_location Table Present"
+    }
+    if(mysqli_query($conn,$query_create_table_otp);){
+        echo "otp Table Present"
+    }
 }
