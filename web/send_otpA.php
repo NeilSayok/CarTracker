@@ -3,6 +3,9 @@ require('vendor/autoload.php');
 
 require_once 'credentials.php';
 
+try{
+
+    
 $variable = array();
 $variable['email'] = $_POST['email'];
 $variable['name'] = "";
@@ -58,6 +61,10 @@ $headers = ($message->getHeaders())
 $message->setBody($template);
 $message->addPart('Your OTP is '.$variable['otp'], 'text/plain');
 $mailer->send($message);
+
+}catch(Exception $e){
+    echo 'Message: ' .$e->getMessage();
+}
 
 
 
