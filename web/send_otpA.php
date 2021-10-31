@@ -58,3 +58,71 @@ $headers = ($message->getHeaders())
 $message->setBody($template);
 $message->addPart('Your OTP is '.$variable['otp'], 'text/plain');
 $mailer->send($message);
+
+
+
+
+function getOTP($email)
+{
+    $query = "SELECT otp from OTP where email = '".$email."'";
+    if ($sql = mysqli_query($GLOBALS['conn'], $query)) {
+        $row = mysqli_fetch_array($sql);
+
+        return $row['otp'];
+    }
+
+    return "<br>";
+}
+
+
+function getName($email)
+{
+    $query = "SELECT name from car_location where email = '".$email."'";
+    if ($sql = mysqli_query($GLOBALS['conn'], $query)) {
+        $row = mysqli_fetch_array($sql);
+
+        return $row['name'];
+    }
+
+    return "";
+}
+
+function getVehId($email)
+{
+    $query = "SELECT reg_id from car_location where email = '".$email."'";
+    if ($sql = mysqli_query($GLOBALS['conn'], $query)) {
+        $row = mysqli_fetch_array($sql);
+
+        return $row['reg_id'];
+    }
+
+    return "";
+}
+
+function isEmailPresent($email)
+{
+    $query = "SELECT email FROM OTP where email = '".$email."'";
+    if ($sql =  mysqli_query($GLOBALS['conn'], $query)) {
+        if (mysqli_num_rows($sql) >= 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    return false;
+}
+
+function isOTPPresent($otp)
+{
+    $query = "SELECT otp FROM OTP where otp = '".$otp."'";
+    if ($sql =  mysqli_query($GLOBALS['conn'], $query)) {
+        if (mysqli_num_rows($sql) >= 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    return false;
+}
