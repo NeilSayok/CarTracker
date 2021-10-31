@@ -1,5 +1,5 @@
 vendor/
 .env
 
-connections.php
-credentials.php
+web/connections.php
+web/credentials.php
