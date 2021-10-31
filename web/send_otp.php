@@ -13,6 +13,8 @@ define("password", "test@1234");
 
 
 require_once 'connection.php';
+require_once 'credentials.php'
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
