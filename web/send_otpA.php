@@ -12,27 +12,34 @@ $variable['name'] = "";
 $variable['otp'] = "";
 $variable['reg_id'] = "";
 
+$variable['email'] = "sdmsdm1998@gmail.com  ";
+$variable['name'] = "Neil";
+$variable['otp'] = "123456";
+$variable['reg_id'] = "adsadsad";
 
-if (isEmailPresent($variable['email'])) {
-    $variable['name'] = getName($variable['email']);
-    $variable['otp'] = getOTP($variable['email']);
-    $variable['reg_id'] = getVehId($variable['email']);
-} else {
-    $variable['name'] = getName($variable['email']);
-    $variable['reg_id'] = getVehId($variable['email']);
-    $variable['otp'] = mt_rand(100000, 999999);
-    while (isOTPPresent($variable['otp'])) {
-        $variable['otp'] = mt_rand(100000, 999999);
-    }
 
-    $email = $variable['email'] ;
-    $name =  $variable['name'];
-    $otp = $variable['otp'];
-    $vehid = $variable['reg_id'];
 
-    $query =  "INSERT INTO OTP (email, name, otp, regid) VALUES ('$email' , '$name' , '$otp' , '$vehid')";
-    $res = mysqli_query($conn, $query);
-}
+
+// if (isEmailPresent($variable['email'])) {
+//     $variable['name'] = getName($variable['email']);
+//     $variable['otp'] = getOTP($variable['email']);
+//     $variable['reg_id'] = getVehId($variable['email']);
+// } else {
+//     $variable['name'] = getName($variable['email']);
+//     $variable['reg_id'] = getVehId($variable['email']);
+//     $variable['otp'] = mt_rand(100000, 999999);
+//     while (isOTPPresent($variable['otp'])) {
+//         $variable['otp'] = mt_rand(100000, 999999);
+//     }
+
+//     $email = $variable['email'] ;
+//     $name =  $variable['name'];
+//     $otp = $variable['otp'];
+//     $vehid = $variable['reg_id'];
+
+//     $query =  "INSERT INTO OTP (email, name, otp, regid) VALUES ('$email' , '$name' , '$otp' , '$vehid')";
+//     $res = mysqli_query($conn, $query);
+// }
 
 $template = file_get_contents("email.html");
 
