@@ -39,7 +39,7 @@ else{
 	else
 	{
 		
-	    $sql = "INSERT INTO car_location (name, email, reg_id , password )VALUES ('$inpname' , '$inpemail' , '$inpvehId' , '$inppsw')";
+	    $sql = "INSERT INTO `car_location` (`name`, `email`, `reg_id` , `password` )VALUES ('$inpname' , '$inpemail' , '$inpvehId' , '$inppsw')";
 
 		if (mysqli_query($conn, $sql))
 		{
