@@ -27,9 +27,10 @@ else{
     echo json_encode(array('POST[email]'=>$inpemail));
     echo json_encode(array('POST[inppsw]'=>$inppsw));
     echo json_encode(array('POST[inprpsw]'=>$inprpsw));
-		
 	
-    if($inppsw != $inprpsw)
+    if(is_null($inpname) || is_null($inpvehId)|| is_null($inpemail) || is_null($inppsw) || is_null($inprpsw)){
+        echo json_encode(array('response'=>'Null_Value_Restricted'));
+    }else if($inppsw != $inprpsw)
     {
 	    echo json_encode(array('response'=>'Password_Missmatch'));
     }
