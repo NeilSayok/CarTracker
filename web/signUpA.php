@@ -27,11 +27,7 @@ else{
 	$inppsw = $_POST['psw'];
 	$inprpsw = $_POST['rpsw'];
 
-    echo json_encode(array('POST[inpname]'=>$inpname));
-    echo json_encode(array('POST[inpvehId]'=>$inpvehId));
-    echo json_encode(array('POST[email]'=>$inpemail));
-    echo json_encode(array('POST[inppsw]'=>$inppsw));
-    echo json_encode(array('POST[inprpsw]'=>$inprpsw));
+   
 	
     if(is_null($inpname) || is_null($inpvehId)|| is_null($inpemail) || is_null($inppsw) || is_null($inprpsw)){
         echo json_encode(array('response'=>'Null_Value_Restricted'));
@@ -64,9 +60,7 @@ else{
 }
 
 function isEmailPresent($email){
-    echo json_encode(array('email'=>$email));
     $query = "SELECT email FROM car_location where email = '".$email."'";
-    echo json_encode(array('query'=>$query));
     if ($sql =  mysqli_query($GLOBALS['conn'], $query))
     {
         while($row = mysqli_fetch_array($sql))
