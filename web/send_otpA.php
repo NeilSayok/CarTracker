@@ -109,6 +109,7 @@ function getVehId($email)
 function isEmailPresent($email)
 {
     $query = "SELECT email FROM OTP where email = '".$email."'";
+    echo $query;
     if ($sql =  mysqli_query($GLOBALS['conn'], $query)) {
         if (mysqli_num_rows($sql) >= 1) {
             return true;
