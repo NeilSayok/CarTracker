@@ -1,9 +1,9 @@
 <?php
 
-<!-- // DO not forget to put your email id and password in line 54 and 55.
+// DO not forget to put your email id and password in line 54 and 55.
 //
 //$mail->Username = '<Your Email ID>'; // email
-//$mail->Password = '<Your email Password>'; // password -->
+//$mail->Password = '<Your email Password>'; // password 
 
 
 
