@@ -7,6 +7,9 @@
 // $database = "<database name>";
 // $conn = mysqli_connect($servername,$user,$password,$database);
 
+require __DIR__ . '/vendor/autoload.php';
+
+
 require_once 'connection.php';
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\RFCValidation;
