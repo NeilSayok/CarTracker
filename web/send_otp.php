@@ -51,7 +51,7 @@ if (isEmailPresent($variable['email'])) {
     $res = mysqli_query($conn, $query);
 }
 
-echo $email." ". $name." ". $otp." ". $vehid." ".smtp_server." ".login." ".password."\n";
+echo $email." ". $name." ". $otp." ". $vehid." ".smtp_server." ".login." ".password."<br>";
 echo json_encode($variable);
 
 $template = file_get_contents("email.html");

@@ -11,6 +11,11 @@ $password = 'vWPgydr2raifrhY8APZJHs5C';
 
 
 
-define("smtp_server", "smtp-relay.sendinblue.com");
-define("login", "sdmsdm1998@gmail.com");
-define("password", "B57NQpsHZmKUfLA8");
+// define("smtp_server", "smtp-relay.sendinblue.com");
+// define("login", "sdmsdm1998@gmail.com");
+// define("password", "B57NQpsHZmKUfLA8");
+
+
+define("smtp_server", "smtp.mailgun.org");
+define("login", "postmaster@sandboxad7c11c744684607a80388818e661a48.mailgun.org");
+define("password", "958a3bc12476c88a01bc2423267ed304-10eedde5-fd924c62");
