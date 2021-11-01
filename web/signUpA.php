@@ -54,8 +54,9 @@ else{
 }
 
 function isEmailPresent($email){
+    echo json_encode(array('email'=>$email));
     $query = "SELECT email FROM car_location where email = '".$email."'";
-    
+    echo json_encode(array('query'=>$query));
     if ($sql =  mysqli_query($GLOBALS['conn'], $query))
     {
         while($row = mysqli_fetch_array($sql))
