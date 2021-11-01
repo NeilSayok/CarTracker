@@ -1,5 +1,5 @@
 <?php
-require('vendor/autoload.php');
+require '../vendor/autoload.php';
 
 require_once 'credentials.php';
 
@@ -11,14 +11,6 @@ $variable['email'] = $_POST['email'];
 $variable['name'] = "";
 $variable['otp'] = "";
 $variable['reg_id'] = "";
-
-$variable['email'] = "sdmsdm1998@gmail.com  ";
-$variable['name'] = "Neil";
-$variable['otp'] = "123456";
-$variable['reg_id'] = "adsadsad";
-
-
-
 
 // if (isEmailPresent($variable['email'])) {
 //     $variable['name'] = getName($variable['email']);
