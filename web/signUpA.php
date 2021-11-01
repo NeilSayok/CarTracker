@@ -8,6 +8,8 @@
 // $conn = mysqli_connect($servername,$user,$password,$database);
 
 require_once 'connection.php';
+use Egulias\EmailValidator\EmailValidator;
+use Egulias\EmailValidator\Validation\RFCValidation;
  
  // Check connection
 if ($conn->connect_error) 
@@ -78,7 +80,8 @@ function isEmailPresent($email){
 }
 //Not working properly
 function isValidEmail($email) {
-    return !filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
+    $validator = new EmailValidator();
+    return $validator->isValid("example@example.com", new RFCValidation()); //true 
 }
 
 mysqli_close($conn);
