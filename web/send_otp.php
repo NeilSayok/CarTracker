@@ -78,7 +78,7 @@ $mail->SMTPSecure = 'tls'; // ssl is deprecated
 //$mail->SMTPAuth = true;
 //$mail->Username = login; // email
 //$mail->Password = password; // password
-$mail->setFrom('sdmsdm1998@gmail.com', 'Project Travel System'); // From email and name
+$mail->setFrom('donotreply@car-locator.herokuapp.com', 'Project Travel System'); // From email and name
 $mail->addAddress($variable['email'], $variable['name']); // to email and name
 $mail->Subject = 'Registration OTP (Do not share!)';
 $mail->msgHTML($template); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
