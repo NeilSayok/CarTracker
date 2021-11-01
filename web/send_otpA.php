@@ -68,7 +68,7 @@ $headers = ($message->getHeaders())
 $message->setBody($template);
 $message->addPart('Your OTP is '.$variable['otp'], 'text/plain');
 $mailer->send($message);
-echo "Mail Sent"
+echo "Mail Sent";
 
 }catch(Exception $e){
     echo 'Message: ' .$e->getMessage();
