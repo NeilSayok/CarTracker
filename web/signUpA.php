@@ -63,10 +63,6 @@ function isEmailPresent($email){
     $query = "SELECT email FROM car_location where email = '".$email."'";
     if ($sql =  mysqli_query($GLOBALS['conn'], $query))
     {
-        while($row = mysqli_fetch_array($sql))
-        {
-            print_r($row);
-        }
         if(mysqli_num_rows($sql) >= 1){
             return true;
         }else{
