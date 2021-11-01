@@ -13,7 +13,7 @@ $query_create_table_otp ="CREATE TABLE IF NOT EXISTS car_location(
     id int(10) NOT NULL AUTO_INCREMENT,
     name varchar(1000),email varchar(1000),
     reg_id varchar(20),password varchar(1000),
-    verified tinyint(4),
+    verified tinyint(4) default 0,
     latitude varchar(50) NULL,
     longitude varchar(50) NULL,
     time varchar(50) NULL,
