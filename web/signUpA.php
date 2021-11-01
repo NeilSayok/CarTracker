@@ -84,7 +84,7 @@ function isEmailPresent($email){
 //Not working properly
 function isValidEmail($email) {
     $validator = new EmailValidator();
-    return $validator->isValid("example@example.com", new RFCValidation()); //true 
+    return $validator->isValid($email, new RFCValidation());  
 }
 
 mysqli_close($conn);
