@@ -22,7 +22,11 @@ else{
 	$inppsw = $_POST['psw'];
 	$inprpsw = $_POST['rpsw'];
 
-	
+    echo json_encode(array('POST[inpname]'=>$inpname));
+    echo json_encode(array('POST[inpvehId]'=>$inpvehId));
+    echo json_encode(array('POST[email]'=>$inpemail));
+    echo json_encode(array('POST[inppsw]'=>$inppsw));
+    echo json_encode(array('POST[inprpsw]'=>$inprpsw));
 		
 	
     if($inppsw != $inprpsw)
