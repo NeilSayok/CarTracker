@@ -66,10 +66,10 @@ $mail->isSMTP();
 $mail->SMTPDebug = 2; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
 $mail->Host = "smtp.mailtrap.io"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
 
-$phpmailer->SMTPAuth = true;
-$phpmailer->Port = 2525;
-$phpmailer->Username = '7f99044d99d093';
-$phpmailer->Password = 'ebbf4cd3e7d7b5';
+$mail->SMTPAuth = true;
+$mail->Port = 2525;
+$mail->Username = '7f99044d99d093';
+$mail->Password = 'ebbf4cd3e7d7b5';
 
 //$mail->Port = 587; // TLS only
 $mail->SMTPSecure = 'tls'; // ssl is deprecated
