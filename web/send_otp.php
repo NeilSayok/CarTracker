@@ -19,10 +19,12 @@ require_once 'credentials.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
 
-require $_SERVER['DOCUMENT_ROOT'] . '/mail/Exception.php';
-require $_SERVER['DOCUMENT_ROOT'] . '/mail/PHPMailer.php';
-require $_SERVER['DOCUMENT_ROOT'] . '/mail/SMTP.php';
+
+// require $_SERVER['DOCUMENT_ROOT'] . '/mail/Exception.php';
+// require $_SERVER['DOCUMENT_ROOT'] . '/mail/PHPMailer.php';
+// require $_SERVER['DOCUMENT_ROOT'] . '/mail/SMTP.php';
 
 $variable = array();
 $variable['email'] = $_POST['email'];
