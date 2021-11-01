@@ -7,13 +7,13 @@
 
 <?php
 
-define("user_name", "email@gmial.com");
-define("password", "test@1234");
+// define("user_name", "email@gmial.com");
+// define("password", "test@1234");
 
-
+require '../vendor/autoload.php';
 
 require_once 'connection.php';
-require_once 'credentials.php'
+require_once 'credentials.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -59,11 +59,11 @@ $template = str_replace('##% regid %##', $variable['reg_id'], $template);
 $mail = new PHPMailer;
 $mail->isSMTP();
 $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
-$mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
+$mail->Host = smtp_server; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
 $mail->Port = 587; // TLS only
 $mail->SMTPSecure = 'tls'; // ssl is deprecated
 $mail->SMTPAuth = true;
-$mail->Username = user_name; // email
+$mail->Username = login; // email
 $mail->Password = password; // password
 $mail->setFrom('otp@projecttraveluniversity.000webhostapp.com', 'Project Travel System'); // From email and name
 $mail->addAddress($variable['email'], $variable['name']); // to email and name
