@@ -66,18 +66,16 @@ $template = str_replace('##% regid %##', $variable['reg_id'], $template);
 $mail = new PHPMailer;
 $mail->isSMTP();
 $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
-$mail->Host = "smtp-relay.sendinblue.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
+$mail->Host = smtp_server; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
 
 $mail->SMTPAuth = true;
-$mail->Port = 587;
-$mail->Username = 'blue.labs.dev@gmail.com';
-$mail->Password = 'ULHYfM0nOvVm5EDF';
 
-//$mail->Port = 587; // TLS only
+$mail->Username = userid;
+$mail->Password = password;
+
+$mail->Port = 587; // TLS only
 $mail->SMTPSecure = 'tls'; // ssl is deprecated
-//$mail->SMTPAuth = true;
-//$mail->Username = login; // email
-//$mail->Password = password; // password
+
 $mail->setFrom('donotreply@car-locator.herokuapp.com', 'Project Travel System'); // From email and name
 $mail->addAddress($variable['email'], $variable['name']); // to email and name
 $mail->Subject = 'Registration OTP (Do not share!)';
