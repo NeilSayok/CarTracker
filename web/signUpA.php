@@ -69,7 +69,7 @@ function isEmailPresent($email){
 //Not working properly
 function isValidEmail($email) {
     return filter_var($email, FILTER_VALIDATE_EMAIL) 
-        && preg_match('/@.+\./', $email);
+        && preg_match('/@.+\./', $email) || filter_var($email, FILTER_VALIDATE_EMAIL) !== false;;
 }
 
 mysqli_close($conn);
