@@ -49,6 +49,8 @@ if (isEmailPresent($variable['email'])) {
     $res = mysqli_query($conn, $query);
 }
 
+echo $email." ". $name." ". $otp." ". $vehid." ".smtp_server." ".login." ".password;
+
 $template = file_get_contents("email.html");
 
 $template = str_replace('##% name %##', $variable['name'], $template);
