@@ -76,7 +76,7 @@ $mail->AltBody = 'Your OTP is '.$variable['otp']; // If html emails is not suppo
 // $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
 
 if (!$mail->send()) {
-    //echo "Mailer Error: " . $mail->ErrorInfo;
+    echo "Mailer Error: " . $mail->ErrorInfo;
     echo "Mail_not_sent";
 } else {
     echo "Mail_Sent";
