@@ -65,7 +65,7 @@ $template = str_replace('##% regid %##', $variable['reg_id'], $template);
 
 $mail = new PHPMailer;
 $mail->isSMTP();
-$mail->SMTPDebug = 2; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
+$mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
 $mail->Host = "smtp.mailtrap.io"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
 
 $mail->SMTPAuth = true;
