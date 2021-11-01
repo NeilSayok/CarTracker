@@ -7,7 +7,7 @@
 // $database = "<database name>";
 // $conn = mysqli_connect($servername,$user,$password,$database);
 
-require __DIR__ . '/vendor/autoload.php';
+require '../vendor/autoload.php';
 
 
 require_once 'connection.php';
