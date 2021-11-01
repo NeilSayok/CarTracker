@@ -1,3 +1,5 @@
+<?php
+
 <!-- // DO not forget to put your email id and password in line 54 and 55.
 //
 //$mail->Username = '<Your Email ID>'; // email
@@ -5,7 +7,7 @@
 
 
 
-<?php
+
 
 // define("user_name", "email@gmial.com");
 // define("password", "test@1234");
@@ -61,7 +63,7 @@ $template = str_replace('##% regid %##', $variable['reg_id'], $template);
 
 $mail = new PHPMailer;
 $mail->isSMTP();
-$mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
+$mail->SMTPDebug = 2; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
 $mail->Host = smtp_server; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
 $mail->Port = 587; // TLS only
 $mail->SMTPSecure = 'tls'; // ssl is deprecated
