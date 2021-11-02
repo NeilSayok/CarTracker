@@ -15,7 +15,6 @@ if ($conn->connect_error)
     $inpemail = $_POST['email'];
     $inplogstat = $_POST['stat'];
 
-    
     $sql = "UPDATE car_location SET `log_stat` = '".$inplogstat."' WHERE `email` = '".$inpemail."'";
     
     echo mysqli_query($conn,$sql); 
