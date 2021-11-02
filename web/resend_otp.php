@@ -59,7 +59,7 @@ use PHPMailer\PHPMailer\SMTP;
     // $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
 
     if (!$mail->send()) {
-        //echo "Mailer Error: " . $mail->ErrorInfo;
+        echo "Mailer Error: " . $mail->ErrorInfo;
         echo "Mail_not_sent";
     } else {
         echo "Mail_Sent";
