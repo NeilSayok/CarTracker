@@ -17,13 +17,13 @@ if($result = mysqli_query($conn,$query)){
 
     $row = mysqli_fetch_array($result);
     
-    if(count($row) > 0)
+    if(count($row) > 0){
         if($row['password'] == $inppsw){
             $array = array('name' => $row['name'],'reg_id' => $row['reg_id'],'email' => $row['email'], 'verified' => $row['verified'],'status' => 'OK');
         }else{
             $array = array('status' => 'passMiss','email'=> $inpemail);
         }
-    else{
+    }else{
             $array = array('status' => 'credMiss','email'=> $inpemail);
         } 
         
