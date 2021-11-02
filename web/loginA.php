@@ -8,7 +8,6 @@
 require_once 'connection.php';
 
 
-
 $inpemail = $_POST['email'];
 $inppsw = $_POST['psw'];
 
