@@ -1,9 +1,11 @@
 <?php
 
-require '../vendor/autoload.php';
+
 
 require_once 'connection.php';
 require_once 'credentials.php';
+
+require '../vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
