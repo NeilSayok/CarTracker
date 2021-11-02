@@ -49,24 +49,13 @@ $template = str_replace('##% regid %##', $variable['reg_id'], $template);
 $mail = new PHPMailer;
 $mail->isSMTP();
 $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
-//$mail->Host = "smtp-relay.sendinblue.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
-$mail->Host = $smtp_server;
+$mail->Host = $smtp_server;// use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
 $mail->Username = $login;
 $mail->Password = $password;
-
-echo $mail->Host;
-
-//$mail->Host = "smtp-relay.sendinblue.com";
-
 $mail->SMTPAuth = true;
-
-// $mail->Username = "blue.labs.dev@gmail.com";
-// $mail->Password = "ULHYfM0nOvVm5EDF";
-
 $mail->Port = 587; // TLS only
 $mail->SMTPSecure = 'tls'; // ssl is deprecated
-
-$mail->setFrom('donotreply@car-locator.herokuapp.com', 'Project Travel System'); // From email and name
+$mail->setFrom($sent_from_emial, 'Project Travel System'); // From email and name
 $mail->addAddress($variable['email'], $variable['name']); // to email and name
 $mail->Subject = 'Registration OTP (Do not share!)';
 $mail->msgHTML($template); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
