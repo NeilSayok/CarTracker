@@ -50,8 +50,7 @@ if (isEmailPresent($variable['email'])) {
     $res = mysqli_query($conn, $query);
 }
 
-echo $email." ". $name." ". $otp." ". $vehid." ".smtp_server." ".login." ".password."<br>";
-echo json_encode($variable);
+
 
 $template = file_get_contents("email.html");
 
@@ -63,7 +62,7 @@ $template = str_replace('##% regid %##', $variable['reg_id'], $template);
 $mail = new PHPMailer;
 $mail->isSMTP();
 $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
-$mail->Host = "smtp-relay.sendinblue.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
+$mail->Host = smtp_server; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
 
 $mail->SMTPAuth = true;
 $mail->Port = 587;
