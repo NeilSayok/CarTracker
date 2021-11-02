@@ -20,17 +20,17 @@ if($result = mysqli_query($conn,$query)){
 
     print_r($row);
     
-    if(count($row) > 0)
-        if($row['password'] == $inppsw){
-            $array = array('name' => $row['name'],'reg_id' => $row['reg_id'],'email' => $row['email'], 'verified' => $row['verified'],'status' => 'OK');
-        }else{
-            $array = array('status' => 'passMiss','email'=> $inpemail);
-        }
-    else{
-            $array = array('status' => 'credMiss','email'=> $inpemail);
-        } 
+    // if(count($row) > 0)
+    //     if($row['password'] == $inppsw){
+    //         $array = array('name' => $row['name'],'reg_id' => $row['reg_id'],'email' => $row['email'], 'verified' => $row['verified'],'status' => 'OK');
+    //     }else{
+    //         $array = array('status' => 'passMiss','email'=> $inpemail);
+    //     }
+    // else{
+    //         $array = array('status' => 'credMiss','email'=> $inpemail);
+    //     } 
         
-        echo json_encode($array);
+    //     echo json_encode($array);
 
 }
 
