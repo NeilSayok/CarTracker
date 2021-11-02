@@ -51,6 +51,8 @@ $mail->isSMTP();
 $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
 //$mail->Host = "smtp-relay.sendinblue.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
 $mail->Host = $smtp_server;
+$mail->Username = $login;
+$mail->Password = $password;
 
 echo $mail->Host;
 
@@ -58,8 +60,8 @@ echo $mail->Host;
 
 $mail->SMTPAuth = true;
 
-$mail->Username = "blue.labs.dev@gmail.com";
-$mail->Password = "ULHYfM0nOvVm5EDF";
+// $mail->Username = "blue.labs.dev@gmail.com";
+// $mail->Password = "ULHYfM0nOvVm5EDF";
 
 $mail->Port = 587; // TLS only
 $mail->SMTPSecure = 'tls'; // ssl is deprecated
