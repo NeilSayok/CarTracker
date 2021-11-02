@@ -9,9 +9,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
-
-
-
 $variable = array();
 $variable['email'] = $_POST['email'];
 $variable['name'] = "";
@@ -38,9 +35,6 @@ if (isEmailPresent($variable['email'])) {
     $query =  "INSERT INTO OTP (email, name, otp, regid) VALUES ('$email' , '$name' , '$otp' , '$vehid')";
     $res = mysqli_query($conn, $query);
 }
-
-//echo $email." ". $name." ". $otp." ". $vehid." ".smtp_server." ".login." ".password."<br>";
-echo json_encode($variable);
 
 $template = file_get_contents("email.html");
 
