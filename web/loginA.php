@@ -18,7 +18,7 @@ if($result = mysqli_query($conn,$query)){
 
     $row = mysqli_fetch_array($result);
 
-    print_r($row);
+    echo json_encode($row);
     
     // if(count($row) > 0)
     //     if($row['password'] == $inppsw){
