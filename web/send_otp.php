@@ -22,9 +22,6 @@ use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
 
-// require $_SERVER['DOCUMENT_ROOT'] . '/mail/Exception.php';
-// require $_SERVER['DOCUMENT_ROOT'] . '/mail/PHPMailer.php';
-// require $_SERVER['DOCUMENT_ROOT'] . '/mail/SMTP.php';
 
 $variable = array();
 $variable['email'] = $_POST['email'];
@@ -86,7 +83,6 @@ $mail->AltBody = 'Your OTP is '.$variable['otp']; // If html emails is not suppo
 // $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
 
 if (!$mail->send()) {
-    echo "Mailer Error: " . $mail->ErrorInfo;
     echo "Mail_not_sent";
 } else {
     echo "Mail_Sent";
