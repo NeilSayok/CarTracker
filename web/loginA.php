@@ -13,6 +13,8 @@ $inppsw = $_POST['psw'];
 
 $query = "SELECT * FROM `car_location` WHERE `email` = '".$inpemail."' OR `reg_id` = '".$inpemail."'";
 
+echo $query."\n";
+
 if($result = mysqli_query($conn,$query)){
 
     foreach($result as $row) {
