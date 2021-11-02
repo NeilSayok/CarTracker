@@ -49,8 +49,8 @@ $template = str_replace('##% regid %##', $variable['reg_id'], $template);
 $mail = new PHPMailer;
 $mail->isSMTP();
 $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
-$mail->Host = "smtp-relay.sendinblue.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
-
+//$mail->Host = "smtp-relay.sendinblue.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
+$mail->Host = $smtp_server;
 $mail->SMTPAuth = true;
 
 $mail->Username = "blue.labs.dev@gmail.com";
