@@ -1,17 +1,5 @@
 <?php
 
-// DO not forget to put your email id and password in line 54 and 55.
-//
-//$mail->Username = '<Your Email ID>'; // email
-//$mail->Password = '<Your email Password>'; // password 
-
-
-
-
-
-// define("user_name", "email@gmial.com");
-// define("password", "test@1234");
-
 require '../vendor/autoload.php';
 
 require_once 'connection.php';
@@ -22,9 +10,7 @@ use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
 
-// require $_SERVER['DOCUMENT_ROOT'] . '/mail/Exception.php';
-// require $_SERVER['DOCUMENT_ROOT'] . '/mail/PHPMailer.php';
-// require $_SERVER['DOCUMENT_ROOT'] . '/mail/SMTP.php';
+
 
 $variable = array();
 $variable['email'] = $_POST['email'];
