@@ -1,7 +1,5 @@
 <?php
 
-
-
 require_once 'connection.php';
 require_once 'credentials.php';
 
@@ -55,7 +53,7 @@ $mail->Password = $password;
 $mail->SMTPAuth = true;
 $mail->Port = 587; // TLS only
 $mail->SMTPSecure = 'tls'; // ssl is deprecated
-$mail->setFrom($sent_from_emial, 'Project Travel System'); // From email and name
+$mail->setFrom($sent_from_emial, $sent_from_name); // From email and name
 $mail->addAddress($variable['email'], $variable['name']); // to email and name
 $mail->Subject = 'Registration OTP (Do not share!)';
 $mail->msgHTML($template); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,

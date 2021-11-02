@@ -1,18 +1,13 @@
-// DO not forget to put your email id and password in line 54 and 55.
-//
-//$mail->Username = '<Your Email ID>'; // email
-//$mail->Password = '<Your email Password>'; // password
-
-
 <?php
 
 require_once 'connection.php';
+require_once 'credentials.php';
+
+require '../vendor/autoload.php';
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
-require $_SERVER['DOCUMENT_ROOT'] . '/mail/Exception.php';
-require $_SERVER['DOCUMENT_ROOT'] . '/mail/PHPMailer.php';
-require $_SERVER['DOCUMENT_ROOT'] . '/mail/SMTP.php';
+use PHPMailer\PHPMailer\SMTP;
 
     $variable = array();
     $variable['email'] = $_POST['email'];
@@ -50,13 +45,13 @@ require $_SERVER['DOCUMENT_ROOT'] . '/mail/SMTP.php';
     $mail = new PHPMailer;
     $mail->isSMTP();
     $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
-    $mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
+    $mail->Host = $smtp_server;// use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
+    $mail->Username = $login;
+    $mail->Password = $password;
     $mail->Port = 587; // TLS only
     $mail->SMTPSecure = 'tls'; // ssl is deprecated
     $mail->SMTPAuth = true;
-    $mail->Username = '<Your Email ID>'; // email
-    $mail->Password = '<Your email Password>'; // password
-    $mail->setFrom('otp@projecttraveluniversity.000webhostapp.com', 'Project Travel System'); // From email and name
+    $mail->setFrom($sent_from_emial, $sent_from_name); // From email and name
     $mail->addAddress($variable['email'], $variable['name']); // to email and name
     $mail->Subject = 'Registration OTP (Do not share!)';
     $mail->msgHTML($template); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert referenced images to embedded,
