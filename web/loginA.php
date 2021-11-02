@@ -15,7 +15,10 @@ $inppsw = $_POST['psw'];
 $query = "SELECT * FROM `car_location` WHERE `email` = '".$inpemail."' OR `reg_id` = '".$inpemail."'";
 
 if($result = mysqli_query($conn,$query)){
+
     $row = mysqli_fetch_array($result);
+
+    print_r($row);
     
     if(count($row) > 0)
         if($row['password'] == $inppsw){
