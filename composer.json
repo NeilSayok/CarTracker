@@ -1,6 +1,5 @@
 {
   "require" : {
-    "silex/silex": "^2.0.4",
     "monolog/monolog": "^1.22",
     "egulias/email-validator": "^3.1",
     "phpmailer/phpmailer": "^6.5"
