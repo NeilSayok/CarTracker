@@ -53,7 +53,7 @@ if (isEmailPresent($variable['email'])) {
     $res = mysqli_query($conn, $query);
 }
 
-echo $email." ". $name." ". $otp." ". $vehid." ".smtp_server." ".login." ".password."<br>";
+//echo $email." ". $name." ". $otp." ". $vehid." ".smtp_server." ".login." ".password."<br>";
 echo json_encode($variable);
 
 $template = file_get_contents("email.html");
@@ -69,15 +69,13 @@ $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 
 $mail->Host = "smtp-relay.sendinblue.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
 
 $mail->SMTPAuth = true;
-$mail->Port = 587;
-$mail->Username = 'blue.labs.dev@gmail.com';
-$mail->Password = 'ULHYfM0nOvVm5EDF';
 
-//$mail->Port = 587; // TLS only
+$mail->Username = "blue.labs.dev@gmail.com";
+$mail->Password = "ULHYfM0nOvVm5EDF";
+
+$mail->Port = 587; // TLS only
 $mail->SMTPSecure = 'tls'; // ssl is deprecated
-//$mail->SMTPAuth = true;
-//$mail->Username = login; // email
-//$mail->Password = password; // password
+
 $mail->setFrom('donotreply@car-locator.herokuapp.com', 'Project Travel System'); // From email and name
 $mail->addAddress($variable['email'], $variable['name']); // to email and name
 $mail->Subject = 'Registration OTP (Do not share!)';
@@ -86,6 +84,7 @@ $mail->AltBody = 'Your OTP is '.$variable['otp']; // If html emails is not suppo
 // $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
 
 if (!$mail->send()) {
+    echo "Mailer Error: " . $mail->ErrorInfo;
     echo "Mail_not_sent";
 } else {
     echo "Mail_Sent";
