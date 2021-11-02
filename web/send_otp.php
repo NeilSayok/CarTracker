@@ -54,7 +54,7 @@ $mail->Host = $smtp_server;
 
 echo $mail->Host;
 
-$mail->Host = "smtp-relay.sendinblue.com";
+//$mail->Host = "smtp-relay.sendinblue.com";
 
 $mail->SMTPAuth = true;
 
