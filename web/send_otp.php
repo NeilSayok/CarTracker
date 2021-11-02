@@ -69,7 +69,6 @@ if (!$mail->send()) {
 }
 
 
-
 function getOTP($email)
 {
     $query = "SELECT otp from OTP where email = '".$email."'";
