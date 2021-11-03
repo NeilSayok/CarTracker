@@ -47,7 +47,7 @@ function creatTempHash(){
     $out_arr["present"] = "no";
     $out_arr["hash"] = hash_hmac('sha256',$time, $server_hash);   
     $query = "INSERT INTO temp_hash(hashkey,timestamp) VALUES('".$out_arr["hash"]."','$time')";
-    mysqli_query($conn,$querry);
+    mysqli_query($conn,$query);
 }
 
 
