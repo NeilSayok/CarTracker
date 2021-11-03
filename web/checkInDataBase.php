@@ -45,9 +45,9 @@ echo json_encode($out_arr);
 
 function creatTempHash(){
     $time = time();
-    $out_arr["present"] = "no";
-    $out_arr["hash"] = hash_hmac('sha256',$time,$GLOBALS['server_hash']);   
-    $query = "INSERT INTO temp_hash(hashkey,timestamp) VALUES('".$out_arr["hash"]."','$time')";
+    $GLOBALS['out_arr']["present"] = "no";
+    $GLOBALS['out_arr']["hash"] = hash_hmac('sha256',$time,$GLOBALS['server_hash']);   
+    $query = "INSERT INTO temp_hash(hashkey,timestamp) VALUES('". $GLOBALS['out_arr']["hash"] ."','$time')";
     mysqli_query($GLOBALS['conn'],$query);
 }
 
