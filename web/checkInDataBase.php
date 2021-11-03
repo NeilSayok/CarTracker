@@ -18,10 +18,10 @@ $inpvehid = $_POST['vehid'];
 // echo "inpvehid: ".$inpvehid."<br>";
 creatTempHash();
 
-    $querry = "SELECT `name`,`email`,`reg_id`,`password`,`verified` FROM car_location WHERE `email` = '".$inpemail."' OR `reg_id` = '".$inpvehid."'";
+    $querry = "SELECT count(*) as totalitems ,`name`,`email`,`reg_id`,`password`,`verified` FROM car_location WHERE `email` = '".$inpemail."' OR `reg_id` = '".$inpvehid."'";
     if($result = mysqli_query($conn,$querry)){
         $row = mysqli_fetch_array($result);
-        if(count($row)+0 > 0){
+        if($row['totalitems'] > 0){
             $out_arr["present"] = "yes";
             $out_arr["name"] = $row['name'];
             $out_arr["reg_id"] = $row['reg_id'];
