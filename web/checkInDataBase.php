@@ -18,7 +18,6 @@ $inpvehid = $_POST['vehid'];
 // echo "inpvehid: ".$inpvehid."<br>";
 creatTempHash();
 
-if (!empty($inpemail) || !empty($inpvehid)) {
     $querry = "SELECT `name`,`email`,`reg_id`,`password`,`verified` FROM car_location WHERE `email` = '".$inpemail."' OR `reg_id` = '".$inpvehid."'";
     if($result = mysqli_query($conn,$querry)){
         $row = mysqli_fetch_array($result);
@@ -28,18 +27,12 @@ if (!empty($inpemail) || !empty($inpvehid)) {
             $out_arr["reg_id"] = $row['reg_id'];
             $out_arr["verified"] = $row['verified'];
             $out_arr["hash"] = $row['password'];
-            //$array = array("present" => "yes", "name" => $row['name'], "reg_id" => $row['reg_id'], "password" => $row['password'], "verified"  => $row['verified']);
         }
-        else{
-            creatTempHash();
-        }
-    }else
-        creatTempHash();
+       
+    }
     
         
-}else{
-    creatTempHash();
-}
+
 
 echo json_encode($out_arr);
 
@@ -47,7 +40,7 @@ function creatTempHash(){
     $time = time();
     $GLOBALS['out_arr']["present"] = "no";
     $GLOBALS['out_arr']["hash"] = hash_hmac('sha256',$time,$GLOBALS['server_hash']);   
-    $query = "INSERT INTO temp_hash(hashkey,timestamp) VALUES('". $GLOBALS['out_arr']["hash"] ."','$time')";
+    $query = "INSERT INTO temp_hash(hashkey,timestamp) VALUES('".$out_arr["hash"]."','$time')";
     mysqli_query($GLOBALS['conn'],$query);
 }
 
