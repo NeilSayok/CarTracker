@@ -20,6 +20,8 @@ if ($conn->connect_error)
     
     $querry = "SELECT `name`,`email`,`reg_id`,`password`,`verified` FROM car_location WHERE `email` = '".$inpemail."' OR `reg_id` = '".$inpvehid."'";
     
+    echo $querry;
+
     if($result = mysqli_query($conn,$querry)){
         $row = mysqli_fetch_array($result);
         if(count($row) > 0)
