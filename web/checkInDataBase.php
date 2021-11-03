@@ -35,6 +35,7 @@ creatTempHash();
 
 
 echo json_encode($out_arr);
+echo $_SERVER['REMOTE_ADDR'];
 
 function creatTempHash(){
     $time = time();
