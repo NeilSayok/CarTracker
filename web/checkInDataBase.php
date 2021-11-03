@@ -13,9 +13,9 @@ $out_arr = array("present" => null,
 $inpemail = $_POST['email'];
 $inpvehid = $_POST['vehid'];
 
-//Check if inpemail and inpvehid are not empty
-echo "inpemail: ".$inpemail."<br>";
-echo "inpvehid: ".$inpvehid."<br>";
+// //Check if inpemail and inpvehid are not empty
+// echo "inpemail: ".$inpemail."<br>";
+// echo "inpvehid: ".$inpvehid."<br>";
 
 if (!empty($inpemail) && !empty($inpvehid)) {
     $querry = "SELECT `name`,`email`,`reg_id`,`password`,`verified` FROM car_location WHERE `email` = '".$inpemail."' OR `reg_id` = '".$inpvehid."'";
@@ -40,6 +40,7 @@ if (!empty($inpemail) && !empty($inpvehid)) {
     creatTempHash();
 }
 
+echo json_encode($out_arr);
 
 function creatTempHash(){
     $time = time();
@@ -48,6 +49,7 @@ function creatTempHash(){
     $query = "INSERT INTO temp_hash(hashkey,timestamp) VALUES('".$out_arr["hash"]."','$time')";
     mysqli_query($conn,$querry);
 }
+
 
 
 
