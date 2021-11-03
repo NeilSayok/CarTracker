@@ -10,13 +10,14 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NoConnectionError;
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-private void checkUserInDb(final String email, final String vehid){
+    private void checkUserInDb(final String email, final String vehid){
     StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
         @Override
         public void onResponse(String response) {
@@ -173,7 +174,7 @@ private void checkUserInDb(final String email, final String vehid){
 
     @Override
     public void onRequestPermissionsResult (int requestCode, @NonNull String permissions[],
-                                            @NonNull int[] grantResults){
+                                            @NonNull int[] grantResults) {
         Log.d(TAG, "Permission callback called-------");
         switch (requestCode) {
             case REQUEST_ID_MULTIPLE_PERMISSIONS: {
@@ -231,6 +232,8 @@ private void checkUserInDb(final String email, final String vehid){
                 }
             }
         }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
 
     }
 
@@ -247,7 +250,7 @@ private void checkUserInDb(final String email, final String vehid){
 // Required for permission access
 
     public void showDialog(AppCompatActivity activity, String title, CharSequence message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
 
         if (title != null) builder.setTitle(title);
 
