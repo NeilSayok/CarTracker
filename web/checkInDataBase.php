@@ -4,11 +4,11 @@ require_once 'connection.php';
 require_once 'credentials.php';
 require_once 'response.php';
 
-$out_arr = array("present" => null, 
+$out_arr = array("present" => $user_present_in_db_false, 
 "name" => null, 
 "reg_id" => null,
 "verified"  => null,
-"hash" => null);
+"hash" => generatePasswordHash($time,$GLOBALS['server_hash']));
 
 
 $inpemail = $_POST['email'];
@@ -17,7 +17,7 @@ $inpvehid = $_POST['vehid'];
 // //Check if inpemail and inpvehid are not empty
 // echo "inpemail: ".$inpemail."<br>";
 // echo "inpvehid: ".$inpvehid."<br>";
-creatTempHash();
+// creatTempHash();
 
     $querry = "SELECT count(*) as totalitems ,`name`,`email`,`reg_id`,`password`,`verified` FROM car_location WHERE `email` = '".$inpemail."' OR `reg_id` = '".$inpvehid."'";
     if($result = mysqli_query($conn,$querry)){
@@ -41,10 +41,10 @@ creatTempHash();
 echo json_encode($out_arr);
 
 
-function creatTempHash(){
-    $time = time();
-    $GLOBALS['out_arr']["present"] = $user_present_in_db_false;
-    $GLOBALS['out_arr']["hash"] = generatePasswordHash($time,$GLOBALS['server_hash']);
-}
+// function creatTempHash(){
+//     $time = time();
+//     $GLOBALS['out_arr']["present"] = ;
+//     $GLOBALS['out_arr']["hash"] = ;
+// }
 
 ?>
