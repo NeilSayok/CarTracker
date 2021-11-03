@@ -43,7 +43,7 @@ echo json_encode($out_arr);
 
 function creatTempHash(){
     $time = time();
-    $GLOBALS['out_arr']["present"] = $user_present_in_db_fales;
+    $GLOBALS['out_arr']["present"] = $user_present_in_db_false;
     $GLOBALS['out_arr']["hash"] = generatePasswordHash($time,$GLOBALS['server_hash']);
 }
 
