@@ -4,6 +4,7 @@ require_once 'connection.php';
 require_once 'credentials.php';
 require_once 'response.php';
 
+$time = time();
 $out_arr = array("present" => $user_present_in_db_false, 
 "name" => null, 
 "reg_id" => null,
