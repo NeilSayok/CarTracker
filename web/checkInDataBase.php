@@ -2,8 +2,6 @@
 
 require_once 'connection.php';
 
-
-
 $inpemail = $_POST['email'];
 $inpvehid = $_POST['vehid'];
 
