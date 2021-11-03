@@ -17,7 +17,8 @@ $inpvehid = $_POST['vehid'];
 // echo "inpemail: ".$inpemail."<br>";
 // echo "inpvehid: ".$inpvehid."<br>";
 
-if (!empty($inpemail) && !empty($inpvehid)) {
+
+if (!empty($inpemail) || !empty($inpvehid)) {
     $querry = "SELECT `name`,`email`,`reg_id`,`password`,`verified` FROM car_location WHERE `email` = '".$inpemail."' OR `reg_id` = '".$inpvehid."'";
     if($result = mysqli_query($conn,$querry)){
         $row = mysqli_fetch_array($result);
