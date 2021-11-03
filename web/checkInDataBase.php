@@ -1,8 +1,9 @@
 <?php
 
 require_once 'connection.php';
+require_once 'credentials.php';
 
-$array = array("present" => null, 
+$out_arr = array("present" => null, 
 "name" => null, 
 "reg_id" => null,
 "verified"  => null,
@@ -16,20 +17,39 @@ $inpvehid = $_POST['vehid'];
 echo "inpemail: ".$inpemail."<br>";
 echo "inpvehid: ".$inpvehid."<br>";
 
-$querry = "SELECT `name`,`email`,`reg_id`,`password`,`verified` FROM car_location WHERE `email` = '".$inpemail."' OR `reg_id` = '".$inpvehid."'";
-
-if($result = mysqli_query($conn,$querry)){
-    $row = mysqli_fetch_array($result);
-    if(count($row) > 0){
-        $array = array("present" => "yes", "name" => $row['name'], "reg_id" => $row['reg_id'], "password" => $row['password'], "verified"  => $row['verified']);
-    }
-    else
-            $array = array("present" => "no");
-}else
-    $array = array("present" => "err");
-
-echo json_encode($array);
+if (!empty($inpemail) && !empty($inpvehid)) {
+    $querry = "SELECT `name`,`email`,`reg_id`,`password`,`verified` FROM car_location WHERE `email` = '".$inpemail."' OR `reg_id` = '".$inpvehid."'";
+    if($result = mysqli_query($conn,$querry)){
+        $row = mysqli_fetch_array($result);
+        if(count($row) > 0){
+            $out_arr["present"] = "yes";
+            $out_arr["name"] = $row['name'];
+            $out_arr["reg_id"] = $row['reg_id'];
+            $out_arr["verified"] = $row['verified'];
+            $out_arr["hash"] = $row['password'];
+            //$array = array("present" => "yes", "name" => $row['name'], "reg_id" => $row['reg_id'], "password" => $row['password'], "verified"  => $row['verified']);
+        }
+        else{
+            creatTempHash();
+        }
+    }else
+        creatTempHash();
     
+        
+}else{
+    creatTempHash();
+}
+
+
+function creatTempHash(){
+    $time = time();
+    $out_arr["present"] = "no";
+    $out_arr["hash"] = hash_hmac('sha256',time, server_hash);   
+    $query = "INSERT INTO temp_hash(hashkey,timestamp) VALUES('".$out_arr["hash"]."','$time')";
+    mysqli_query($conn,$querry);
+}
+
+
 
 
 ?>
