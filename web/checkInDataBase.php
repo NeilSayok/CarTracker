@@ -16,7 +16,7 @@ $inpvehid = $_POST['vehid'];
 // //Check if inpemail and inpvehid are not empty
 // echo "inpemail: ".$inpemail."<br>";
 // echo "inpvehid: ".$inpvehid."<br>";
-
+creatTempHash();
 
 if (!empty($inpemail) || !empty($inpvehid)) {
     $querry = "SELECT `name`,`email`,`reg_id`,`password`,`verified` FROM car_location WHERE `email` = '".$inpemail."' OR `reg_id` = '".$inpvehid."'";
