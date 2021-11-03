@@ -38,7 +38,7 @@ if ($conn->connect_error)
 {
     die("Connection failed: " . $conn->connect_error);
 }else{
-    mysqli_query($conn,$query_create_table_car_location);
-    mysqli_query($conn,$query_create_table_otp);
-    mysqli_query($conn,$query_create_table_temp_hash);
+    echo mysqli_query($conn,$query_create_table_car_location);
+    echo mysqli_query($conn,$query_create_table_otp);
+    echo mysqli_query($conn,$query_create_table_temp_hash);
 }
