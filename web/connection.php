@@ -30,7 +30,7 @@ $query_create_table_otp ="CREATE TABLE IF NOT EXISTS car_location(
 
 $query_create_table_temp_hash ="CREATE TABLE IF NOT EXISTS temp_hash(
     id int(10) NOT NULL AUTO_INCREMENT,
-    timestamp varchar(15),
+    timestamp INT
     hashkey varchar(64),
     PRIMARY KEY (id));";
 

@@ -2,6 +2,7 @@
 
 require_once 'connection.php';
 require_once 'credentials.php';
+require_once 'response.php';
 
 $out_arr = array("present" => null, 
 "name" => null, 
@@ -22,11 +23,14 @@ creatTempHash();
     if($result = mysqli_query($conn,$querry)){
         $row = mysqli_fetch_array($result);
         if($row['totalitems'] > 0){
-            $out_arr["present"] = "yes";
+            $out_arr["present"] = $user_present_in_db_true;
             $out_arr["name"] = $row['name'];
             $out_arr["reg_id"] = $row['reg_id'];
             $out_arr["verified"] = $row['verified'];
             $out_arr["hash"] = $row['password'];
+        }else{
+            $query = "INSERT INTO temp_hash(hashkey,timestamp) VALUES('".$out_arr["hash"]."','$time')";
+            mysqli_query($GLOBALS['conn'],$query);
         }
        
     }
@@ -34,19 +38,13 @@ creatTempHash();
         
 
 
-echo json_encode($out_arr);
-echo $_SERVER['REMOTE_ADDR'];
+// echo json_encode($out_arr);
+// echo $_SERVER['REMOTE_ADDR'];
 
 function creatTempHash(){
     $time = time();
-    $GLOBALS['out_arr']["present"] = "no";
-    $GLOBALS['out_arr']["hash"] = hash_hmac('sha256',$time,$GLOBALS['server_hash']);   
-    $query = "INSERT INTO temp_hash(hashkey,timestamp) VALUES('".$out_arr["hash"]."','$time')";
-    mysqli_query($GLOBALS['conn'],$query);
+    $GLOBALS['out_arr']["present"] = $user_present_in_db_fales;
+    $GLOBALS['out_arr']["hash"] = generatePasswordHash($time,$GLOBALS['server_hash']);
 }
-
-
-
-
 
 ?>
