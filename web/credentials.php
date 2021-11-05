@@ -21,7 +21,7 @@ function encrypt_decrypt($string, $secret_key, $action = 'encrypt')
     $encrypt_method = "AES-256-CBC";
     $secret_iv = $GLOBALS['server_hash']; // user define secret key
     $key = hash('sha256', $secret_key);
-    $iv = substr(hash('sha256', $secret_iv), 0, 16); // sha256 is hash_hmac_algo
+    $iv = substr($secret_iv, 0, 16); // sha256 is hash_hmac_algo
     if ($action == 'encrypt') {
         $output = openssl_encrypt($string, $encrypt_method, $key, 0, $iv);
         $output = base64_encode($output);
