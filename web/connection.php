@@ -11,30 +11,30 @@ define('database', 'heroku_272798b743ae862');
 $conn = mysqli_connect(servername, user, password, database) or die("Connection failed: " . $conn->connect_error);
 
 $query_create_table_car_location ="CREATE TABLE IF NOT EXISTS OTP(
-    id int(10) NOT NULL AUTO_INCREMENT,
-    email varchar(1000),
-    name varchar(1000),
-    otp int(6),
+    id int NOT NULL AUTO_INCREMENT,
+    email varchar(350),
+    name varchar(350),
+    otp varchar(6),
     regid varchar(20),
     PRIMARY KEY (id));";
 
 $query_create_table_otp ="CREATE TABLE IF NOT EXISTS car_location(
-    id int(10) NOT NULL AUTO_INCREMENT,
-    name varchar(1000),
-    email varchar(1000),
+    id int NOT NULL AUTO_INCREMENT,
+    name varchar(350),
+    email varchar(350),
     reg_id varchar(20),
-    password varchar(1000),
-    verified tinyint(4) default 0,
+    password varchar(150),
+    verified bit default 0,
     latitude varchar(50) NULL,
     longitude varchar(50) NULL,
-    time varchar(50) NULL,
-    log_stat tinyint(4),
+    time int NULL,
+    log_stat bit default 0,
     PRIMARY KEY (id));";
 
 $query_create_table_temp_hash ="CREATE TABLE IF NOT EXISTS temp_hash(
-    id int(10) NOT NULL AUTO_INCREMENT,
+    id int NOT NULL AUTO_INCREMENT,
     timestamp INT,
-    hashkey varchar(64),
+    hashkey varchar(32),
     PRIMARY KEY (id));";
 
 if ($conn->connect_error)
