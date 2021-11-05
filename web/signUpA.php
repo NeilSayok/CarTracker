@@ -9,54 +9,54 @@
 
 require '../vendor/autoload.php';
 require_once 'connection.php';
+require_once 'credentials.php';
+require_once 'response.php';
 
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\RFCValidation;
  
- // Check connection
-if ($conn->connect_error) 
+
+$inpname = $_POST['name'];
+$inpvehId = $_POST['vehid'];
+$inpemail = $_POST['email'];
+$inppsw = $_POST['psw'];
+$inprpsw = $_POST['rpsw'];
+$inphash = $_POST['hash'];
+
+$out_arr = array("resposnse"=>"",
+"response_str" => "",
+);
+
+
+if(empty($inpname) || empty($inpvehId)|| empty($inpemail) || empty($inppsw) || empty($inprpsw)){
+    echo json_encode(array('response'=>'Null_Value_Restricted'));
+}else if($inppsw != $inprpsw)
 {
-    die("Connection failed: " . $conn->connect_error);
+    echo json_encode(array('response'=>'Password_Missmatch'));
 }
-else{
-	
-	$inpname = $_POST['name'];
-	$inpvehId = $_POST['vehid'];
-	$inpemail = $_POST['email'];
-	$inppsw = $_POST['psw'];
-	$inprpsw = $_POST['rpsw'];
+else if(!isValidEmail($inpemail)){
+    
+    echo json_encode(array('response'=>'Email_format_wrong'));
+    
+}else if (isEmailPresent($inpemail)) {
+        echo json_encode(array('response'=>'Email_Already_Pressent'));	
+}
+else
+{
+    
+    $sql = "INSERT INTO `car_location` (`name`, `email`, `reg_id` , `password` )VALUES ('$inpname' , '$inpemail' , '$inpvehId' , '$inppsw')";
 
-   
-	
-    if(is_null($inpname) || is_null($inpvehId)|| is_null($inpemail) || is_null($inppsw) || is_null($inprpsw)){
-        echo json_encode(array('response'=>'Null_Value_Restricted'));
-    }else if($inppsw != $inprpsw)
+    if (mysqli_query($conn, $sql))
     {
-	    echo json_encode(array('response'=>'Password_Missmatch'));
+        echo json_encode(array('response'=>'Account_Created'));
+            
+    } 
+    else
+    {
+        echo json_encode(array('response'=>'Account_Not_Success'));
     }
-    else if(!isValidEmail($inpemail)){
-        
-        echo json_encode(array('response'=>'Email_format_wrong'));
-        
-    }else if (isEmailPresent($inpemail)) {
-      	  echo json_encode(array('response'=>'Email_Already_Pressent'));	
-    }
-	else
-	{
-		
-	    $sql = "INSERT INTO `car_location` (`name`, `email`, `reg_id` , `password` )VALUES ('$inpname' , '$inpemail' , '$inpvehId' , '$inppsw')";
-
-		if (mysqli_query($conn, $sql))
-		{
-			echo json_encode(array('response'=>'Account_Created'));
-			 
-		} 
-		else
-		{
-		    echo json_encode(array('response'=>'Account_Not_Success'));
-		}
-	}
 }
+
 
 function isEmailPresent($email){
     $query = "SELECT email FROM car_location where email = '".$email."'";
