@@ -9,7 +9,7 @@ $out_arr = array("present" => $user_present_in_db_false,
 "name" => null, 
 "reg_id" => null,
 "verified"  => null,
-"hash" => generatePasswordHash($time,$GLOBALS['server_hash']));
+"hash" => encrypt_decrypt($time,$GLOBALS['server_hash']));
 
 
 $inpemail = $_POST['email'];

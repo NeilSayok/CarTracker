@@ -28,7 +28,7 @@ $out_arr = array("resposnse"=>"",
 );
 
 
-if(empty($inpname) || empty($inpvehId)|| empty($inpemail) || empty($inppsw) || empty($inprpsw)){
+if(empty($inpname) || empty($inpvehId)|| empty($inpemail) || empty($inppsw) || empty($inprpsw) || empty($inphash)){
     echo json_encode(array('response'=>'Null_Value_Restricted'));
 }else if($inppsw != $inprpsw)
 {
@@ -40,20 +40,31 @@ else if(!isValidEmail($inpemail)){
     
 }else if (isEmailPresent($inpemail)) {
         echo json_encode(array('response'=>'Email_Already_Pressent'));	
-}
-else
-{
-    
-    $sql = "INSERT INTO `car_location` (`name`, `email`, `reg_id` , `password` )VALUES ('$inpname' , '$inpemail' , '$inpvehId' , '$inppsw')";
+}else{
 
-    if (mysqli_query($conn, $sql))
-    {
-        echo json_encode(array('response'=>'Account_Created'));
-            
-    } 
-    else
-    {
-        echo json_encode(array('response'=>'Account_Not_Success'));
+    if(hashIsCorrect($inphash)){
+        $inppsw =  encrypt_decrypt($inppsw,$inphash,"decrypt");
+        $sql = "INSERT INTO `car_location` (`name`, `email`, `reg_id` , `password` )VALUES ('$inpname' , '$inpemail' , '$inpvehId' , '$inppsw')";
+        if (mysqli_query($conn, $sql)){
+            echo json_encode(array('response'=>'Account_Created'));      
+        }else{
+            echo json_encode(array('response'=>'Account_Not_Success'));
+        }
+    }else{
+        echo json_encode(array('response'=>'Hash_Mismatch'));	
+    }
+
+
+    
+}
+
+function hashIsCorrect($inphash){
+    $sql = "SELECT EXISTS(SELECT * FROM temp_hash WHERE hashkey = '$inphash')";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result);
+    if($row[0] == 1){
+        return true;
+    return false;
     }
 }
 

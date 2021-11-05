@@ -16,11 +16,10 @@ function generatePasswordHash($password,$salt) {
 }
 
 
-function encrypt_decrypt($string, $action = 'encrypt')
+function encrypt_decrypt($string, $secret_key, $action = 'encrypt')
 {
     $encrypt_method = "AES-256-CBC";
-    $secret_key = 'AA74CDCC2BBRT935136HH7B63C27'; // user define private key
-    $secret_iv = '5fgf5HJ5g27'; // user define secret key
+    $secret_iv = $GLOBALS['server_hash']; // user define secret key
     $key = hash('sha256', $secret_key);
     $iv = substr(hash('sha256', $secret_iv), 0, 16); // sha256 is hash_hmac_algo
     if ($action == 'encrypt') {
@@ -31,3 +30,7 @@ function encrypt_decrypt($string, $action = 'encrypt')
     }
     return $output;
 }
+
+
+echo "Your Encrypted password is = ". $pwd = encrypt_decrypt('Mypassword1#',"sayokdeymajumder1998@gmail.com" ,'encrypt');
+echo " Your Decrypted password is = ". encrypt_decrypt($pwd, "sayokdeymajumder1998@gmail.com", 'decrypt');
