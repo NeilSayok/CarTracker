@@ -53,7 +53,7 @@ else if(!isValidEmail($inpemail)){
         $sql = "INSERT INTO `car_location` (`name`, `email`, `reg_id` , `password` )VALUES ('$inpname' , '$inpemail' , '$inpvehId' , '$inppsw')";
         if (mysqli_query($conn, $sql)){
             $out_arr["response"] = "Account_Created";
-            $out_arr["code"] = 200;
+            $out_arr["code"] = 100;
         }else{
             $out_arr["response"] = "Account_Not_Success";
             $out_arr["code"] = 105;

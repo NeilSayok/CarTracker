@@ -9,6 +9,11 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
+$out_arr = array("resposnse"=>"",
+"code" => "",
+);
+
+
 $variable = array();
 $variable['email'] = $_POST['email'];
 $variable['name'] = "";
@@ -61,10 +66,14 @@ $mail->AltBody = 'Your OTP is '.$variable['otp']; // If html emails is not suppo
 // $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
 
 if (!$mail->send()) {
-    echo "Mail_not_sent";
+    $out_arr["response"] = "Mail_not_sent";
+    $out_arr["code"] = 201;
 } else {
-    echo "Mail_Sent";
+    $out_arr["response"] = "Null_Value_Restricted";
+    $out_arr["code"] = 200;
 }
+
+echo json_encode($out_arr);
 
 
 function getOTP($email)
