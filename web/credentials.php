@@ -32,5 +32,3 @@ function encrypt_decrypt($string, $secret_key, $action = 'encrypt')
 }
 
 
-echo "Your Encrypted password is = ". $pwd = encrypt_decrypt('Mypassword1#',"sayokdeymajumder1998@gmail.com" ,'encrypt');
-echo " Your Decrypted password is = ". encrypt_decrypt($pwd, "sayokdeymajumder1998@gmail.com", 'decrypt');

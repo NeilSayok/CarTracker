@@ -37,15 +37,6 @@ $inpvehid = $_POST['vehid'];
     }
     
         
-
-
 echo json_encode($out_arr);
-
-
-// function creatTempHash(){
-//     $time = time();
-//     $GLOBALS['out_arr']["present"] = ;
-//     $GLOBALS['out_arr']["hash"] = ;
-// }
 
 ?>
