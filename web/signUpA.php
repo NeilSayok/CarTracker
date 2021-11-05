@@ -28,7 +28,7 @@ $out_arr = array("resposnse"=>"",
 );
 
 
-if(empty($inpname) || empty($inpvehId)|| empty($inpemail) || empty($inppsw) || empty($inprpsw) || empty($inphash)){
+if(empty($inpname) || empty($inpvehId)|| empty($inpemail) || empty($inppsw) || empty($inprpsw) ){
     $out_arr["response"] = "Null_Value_Restricted";
     $out_arr["code"] = 101;
     //echo json_encode(array('response'=>'Null_Value_Restricted'));
