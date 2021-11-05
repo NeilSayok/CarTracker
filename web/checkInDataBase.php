@@ -31,7 +31,7 @@ $inpvehid = $_POST['vehid'];
             $out_arr["hash"] = $row['password'];
         }else{
             $query = "INSERT INTO temp_hash(hashkey,timestamp) VALUES('".$out_arr["hash"]."','$time')";
-            mysqli_query($GLOBALS['conn'],$query);
+            //mysqli_query($GLOBALS['conn'],$query);
         }
        
     }

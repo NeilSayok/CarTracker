@@ -24,39 +24,52 @@ $inprpsw = $_POST['rpsw'];
 $inphash = $_POST['hash'];
 
 $out_arr = array("resposnse"=>"",
-"response_str" => "",
+"code" => "",
 );
 
 
 if(empty($inpname) || empty($inpvehId)|| empty($inpemail) || empty($inppsw) || empty($inprpsw) || empty($inphash)){
-    echo json_encode(array('response'=>'Null_Value_Restricted'));
+    $out_arr["response"] = "Null_Value_Restricted";
+    $out_arr["code"] = 101;
+    //echo json_encode(array('response'=>'Null_Value_Restricted'));
 }else if($inppsw != $inprpsw)
 {
-    echo json_encode(array('response'=>'Password_Missmatch'));
+    $out_arr["response"] = "Password_Missmatch";
+    $out_arr["code"] = 102;
+    //echo json_encode(array('response'=>'Password_Missmatch'));
 }
 else if(!isValidEmail($inpemail)){
-    
-    echo json_encode(array('response'=>'Email_format_wrong'));
+    $out_arr["response"] = "Email_format_wrong";
+    $out_arr["code"] = 103;
+    //echo json_encode(array('response'=>'Email_format_wrong'));
     
 }else if (isEmailPresent($inpemail)) {
-        echo json_encode(array('response'=>'Email_Already_Pressent'));	
+        $out_arr["response"] = "Email_Already_Pressent";
+        $out_arr["code"] = 104;
+        //echo json_encode(array('response'=>'Email_Already_Pressent'));	
 }else{
 
-    if(hashIsCorrect($inphash)){
-        $inppsw =  encrypt_decrypt($inppsw,$inphash,"decrypt");
+    //$inppsw =  encrypt_decrypt($inppsw,$inphash,"decrypt");
         $sql = "INSERT INTO `car_location` (`name`, `email`, `reg_id` , `password` )VALUES ('$inpname' , '$inpemail' , '$inpvehId' , '$inppsw')";
         if (mysqli_query($conn, $sql)){
-            echo json_encode(array('response'=>'Account_Created'));      
+            $out_arr["response"] = "Account_Created";
+            $out_arr["code"] = 200;
         }else{
-            echo json_encode(array('response'=>'Account_Not_Success'));
+            $out_arr["response"] = "Account_Not_Success";
+            $out_arr["code"] = 105;
+            //echo json_encode(array('response'=>'Account_Not_Success'));
         }
-    }else{
-        echo json_encode(array('response'=>'Hash_Mismatch'));	
-    }
+    // if(hashIsCorrect($inphash)){
+        
+    // }else{
+    //     echo json_encode(array('response'=>'Hash_Mismatch'));	
+    // }
 
 
     
 }
+
+echo json_encode($out_arr);
 
 function hashIsCorrect($inphash){
     $sql = "SELECT EXISTS(SELECT * FROM temp_hash WHERE hashkey = '$inphash')";
