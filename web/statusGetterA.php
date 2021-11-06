@@ -13,10 +13,14 @@ require_once 'response.php';
 
     
 $inpEmailList = $_POST['emails'];
-//$inpEmailList = "priyom1499@gmail.com#!!#sdmsdm1998@gmail.com#!!#sayokdeymajumder1998@gmail.com#!!#sadsad";
 
 $emailarr = explode('#!!#',$inpEmailList);
 
+$inp_arr = json_decode($inpEmailList,true);
+
+foreach($inp_arr as $email){
+    echo $email;
+}
 
 // $query = "SELECT `email`,`log_stat` FROM car_location WHERE `email` = '".$inpEmailList."'";
 
@@ -30,6 +34,7 @@ $out_arr = array("resposnse"=>null,
 "code" => null,
 "data"=>null,
 );
+
 
 
 foreach($emailarr as $email){

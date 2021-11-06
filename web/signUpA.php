@@ -29,34 +29,34 @@ $out_arr = array("resposnse"=>null,
 
 
 if(empty($inpname) || empty($inpvehId)|| empty($inpemail) || empty($inppsw) || empty($inprpsw) ){
-    $out_arr["response"] = "Null_Value_Restricted";
-    $out_arr["code"] = 101;
+    $out_arr["response"] = $null_value_restricted[0];
+    $out_arr["code"] = $null_value_restricted[1];
     //echo json_encode(array('response'=>'Null_Value_Restricted'));
 }else if($inppsw != $inprpsw)
 {
-    $out_arr["response"] = "Password_Missmatch";
-    $out_arr["code"] = 102;
+    $out_arr["response"] =$password_missmatch[0];
+    $out_arr["code"] = $password_missmatch[1];
     //echo json_encode(array('response'=>'Password_Missmatch'));
 }
 else if(!isValidEmail($inpemail)){
-    $out_arr["response"] = "Email_format_wrong";
-    $out_arr["code"] = 103;
+    $out_arr["response"] =$email_format_wrong[0];
+    $out_arr["code"] = $email_format_wrong[1];
     //echo json_encode(array('response'=>'Email_format_wrong'));
     
 }else if (isEmailPresent($inpemail)) {
-        $out_arr["response"] = "Email_Already_Pressent";
-        $out_arr["code"] = 104;
+        $out_arr["response"] = $email_already_pressent[0];
+        $out_arr["code"] = $email_already_pressent[1];
         //echo json_encode(array('response'=>'Email_Already_Pressent'));	
 }else{
 
     //$inppsw =  encrypt_decrypt($inppsw,$inphash,"decrypt");
         $sql = "INSERT INTO `car_location` (`name`, `email`, `reg_id` , `password` )VALUES ('$inpname' , '$inpemail' , '$inpvehId' , '$inppsw')";
         if (mysqli_query($conn, $sql)){
-            $out_arr["response"] = "Account_Created";
-            $out_arr["code"] = 100;
+            $out_arr["response"] = $account_created[0];
+            $out_arr["code"] = $account_created[1];
         }else{
-            $out_arr["response"] = "Account_Not_Success";
-            $out_arr["code"] = 105;
+            $out_arr["response"] = $account_not_success[0];
+            $out_arr["code"] = $account_not_success[1];
             //echo json_encode(array('response'=>'Account_Not_Success'));
         }
     // if(hashIsCorrect($inphash)){

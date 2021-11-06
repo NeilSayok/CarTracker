@@ -64,11 +64,11 @@ $mail->AltBody = 'Your OTP is '.$variable['otp']; // If html emails is not suppo
 // $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
 
 if (!$mail->send()) {
-    $out_arr["response"] = "Mail_not_sent";
-    $out_arr["code"] = 301;
+    $out_arr["response"] = $re_mail_not_sent[0];
+    $out_arr["code"] = $re_mail_not_sent[1];
 } else {
-    $out_arr["response"] = "Mail_sent";
-    $out_arr["code"] = 300;
+    $out_arr["response"] = $re_mail_sent[0];
+    $out_arr["code"] = $re_mail_sent[1];
 }
 
 echo json_encode($out_arr);
