@@ -1,12 +1,10 @@
 <?php
 
-// $servername = "<hostname>";
-// $user = "<user name>";
-// $password = "<password>";
-// $database = "<database name>";
-// $conn = mysqli_connect($servername,$user,$password,$database);
-
+require '../vendor/autoload.php';
 require_once 'connection.php';
+require_once 'credentials.php';
+require_once 'response.php';
+
 
 if ($conn->connect_error)
 {

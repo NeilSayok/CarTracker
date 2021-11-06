@@ -1,17 +1,17 @@
 <?php
 
+require '../vendor/autoload.php';
 require_once 'connection.php';
 require_once 'credentials.php';
-
-require '../vendor/autoload.php';
+require_once 'response.php';
 
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
-$out_arr = array("response"=>"",
-"code" => "",
+$out_arr = array("response"=>null,
+"code" => null,
 );
 
 $variable = array();
