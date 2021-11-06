@@ -19,9 +19,14 @@ echo $inpEmailList;
 
 // $inp_arr = json_decode($inpEmailList,true);
 
+$query = "SELECT * FROM car_location WHERE `email` in (";
+
 foreach($inpEmailList as $email){
-    echo $email;
+    $query .= "'$email',";
 }
+$query = rtrim($query,',');
+$query .= ")";
+echo $query;
 
 // $query = "SELECT `email`,`log_stat` FROM car_location WHERE `email` = '".$inpEmailList."'";
 
