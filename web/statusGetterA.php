@@ -31,9 +31,10 @@ $query .= ")";
 $sql =  mysqli_query($conn, $query);
 $row = mysqli_fetch_array($sql);
 
-foreach($row as $key => $value){
-   echo $key.": ".$value."<br>";
-}
+
+// foreach($row as $key => $value){
+//    echo $key.": ".$value."<br>";
+// }
 
 
 // echo $row['log_stat'];
@@ -41,23 +42,22 @@ foreach($row as $key => $value){
 // $emailarr = explode('#!!#',$inpEmailList);
 
 
-// $arr = array();
+$arr = array();
 
 $out_arr = array("resposnse"=>"stat_online",
 "code" => 500,
-"data"=>json_encode($row),
+"data"=>null,
 );
 
 
 
-// foreach($emailarr as $email){
-//     $query = "SELECT `log_stat` FROM car_location WHERE `email` = '".$email."'";
-//     $sql =  mysqli_query($conn, $query);
-//     $row = mysqli_fetch_array($sql);
+foreach($row as $r){
     
-//     array_push($arr,$row['log_stat']);
+    array_push($arr,$r);
     
-// }
+}
+
+$out_arr["data"] = $arr;
 
 echo json_encode($out_arr);
     
