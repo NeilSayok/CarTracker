@@ -29,7 +29,9 @@ $query .= ")";
 
 
 $sql =  mysqli_query($conn, $query);
-$row = mysqli_fetch_array($sql);
+while($row = mysqli_fetch_array($sql)){
+    echo json_encode($row);
+}
 
 
 // foreach($row as $key => $value){
@@ -51,11 +53,11 @@ $out_arr = array("resposnse"=>"stat_online",
 
 
 
-foreach($row as $r){
-    echo json_encode($r);
-    array_push($arr,$r);
+// foreach($row as $r){
+//     echo json_encode($r);
+//     array_push($arr,$r);
     
-}
+// }
 
 $out_arr["data"] = $arr;
 
