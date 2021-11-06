@@ -14,7 +14,6 @@ require_once 'response.php';
     
 $inpEmailList = $_POST['emails'];
 
-$emailarr = explode('#!!#',$inpEmailList);
 
 $inp_arr = json_decode($inpEmailList,true);
 
@@ -27,6 +26,9 @@ foreach($inp_arr as $email){
 /*$sql =  mysqli_query($conn, $query);
 $row = mysqli_fetch_array($sql);
 echo $row['log_stat'];*/
+/*
+$emailarr = explode('#!!#',$inpEmailList);
+
 
 $arr = array();
 
@@ -47,7 +49,7 @@ foreach($emailarr as $email){
 }
 
 echo json_encode($arr);
-    
+    */
     
     
     
