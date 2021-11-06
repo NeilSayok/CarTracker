@@ -67,10 +67,10 @@ $mail->AltBody = 'Your OTP is '.$variable['otp']; // If html emails is not suppo
 
 if (!$mail->send()) {
     $out_arr["response"] = "Mail_not_sent";
-    $out_arr["code"] = 201;
+    $out_arr["code"] = 200;
 } else {
     $out_arr["response"] = "Null_Value_Restricted";
-    $out_arr["code"] = 200;
+    $out_arr["code"] = 201;
 }
 
 echo json_encode($out_arr);
