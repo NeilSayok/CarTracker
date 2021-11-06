@@ -71,6 +71,8 @@ if (!$mail->send()) {
     $out_arr["code"] = 300;
 }
 
+echo json_encode($out_arr);
+
 
 
 function getOTP($email)
