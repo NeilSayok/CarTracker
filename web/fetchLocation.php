@@ -11,33 +11,29 @@ require_once 'connection.php';
 require_once 'credentials.php';
 require_once 'response.php';
 
-if ($conn->connect_error)
-{
-    die("Connection failed: " . $conn->connect_error);
-}else{
+
     
-    $inpEmail = $_POST['email'];
-    $inpPass = $_POST['password'];
-    
-    if (isEmailPresent($inpEmail)){
-        if (doesPasswordMatch($inpEmail,$inpPass)){
-            $query = "SELECT `latitude`,`longitude`,`time` FROM car_location WHERE `email` = '".$inpEmail."'";
-            $sqli =  mysqli_query($conn, $query);
-            $row = mysqli_fetch_array($sqli);
-            
-            echo json_encode(array('lat' => $row['latitude'], 'longi' => $row['longitude'], 'time' => $row['time']));
-            
-        }
-        else{
-            echo json_encode(array('lat' => "passMiss"));
-        }
+$inpEmail = $_POST['email'];
+$inpPass = $_POST['password'];
+
+if (isEmailPresent($inpEmail)){
+    if (doesPasswordMatch($inpEmail,$inpPass)){
+        $query = "SELECT `latitude`,`longitude`,`time` FROM car_location WHERE `email` = '".$inpEmail."'";
+        $sqli =  mysqli_query($conn, $query);
+        $row = mysqli_fetch_array($sqli);
         
-    }else{
-        echo json_encode(array('lat' => "credMiss"));
+        echo json_encode(array('lat' => $row['latitude'], 'longi' => $row['longitude'], 'time' => $row['time']));
+        
+    }
+    else{
+        echo json_encode(array('lat' => "passMiss"));
     }
     
-    
+}else{
+    echo json_encode(array('lat' => "credMiss"));
 }
+    
+    
 
 
 function isEmailPresent($email){
