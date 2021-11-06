@@ -9,7 +9,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
-$out_arr = array("resposnse"=>"",
+$out_arr = array("response"=>"",
 "code" => "",
 );
 
@@ -69,7 +69,7 @@ if (!$mail->send()) {
     $out_arr["response"] = "Mail_not_sent";
     $out_arr["code"] = 200;
 } else {
-    $out_arr["response"] = "Null_Value_Restricted";
+    $out_arr["response"] = "Mail_sent";
     $out_arr["code"] = 201;
 }
 
