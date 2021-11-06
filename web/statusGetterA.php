@@ -30,6 +30,12 @@ $query .= ")";
 
 $sql =  mysqli_query($conn, $query);
 $row = mysqli_fetch_array($sql);
+
+foreach($row as $key => $value){
+   echo $key.": ".$value."<br>";
+}
+
+
 // echo $row['log_stat'];
 
 // $emailarr = explode('#!!#',$inpEmailList);
