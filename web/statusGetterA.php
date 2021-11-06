@@ -53,7 +53,7 @@ $out_arr = array("resposnse"=>"stat_online",
     
 // }
 
-echo json_encode($arr);
+echo json_encode($out_arr);
     
     
     
