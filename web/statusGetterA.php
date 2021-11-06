@@ -19,9 +19,9 @@ echo $inpEmailList;
 
 // $inp_arr = json_decode($inpEmailList,true);
 
-// foreach($inp_arr as $email){
-//     echo $email;
-// }
+foreach($inpEmailList as $email){
+    echo $email;
+}
 
 // $query = "SELECT `email`,`log_stat` FROM car_location WHERE `email` = '".$inpEmailList."'";
 
