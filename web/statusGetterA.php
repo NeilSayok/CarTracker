@@ -52,14 +52,14 @@ $out_arr = array("resposnse"=>"stat_online",
 
 
 foreach($row as $r){
-    
+    echo json_encode($r);
     array_push($arr,$r);
     
 }
 
 $out_arr["data"] = $arr;
 
-echo json_encode($out_arr);
+//echo json_encode($out_arr);
     
     
     
