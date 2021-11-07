@@ -29,8 +29,8 @@ $out_arr = array("response"=>"stat_online",
 $sql =  mysqli_query($conn, $query);
 
 if(empty($sql)){
-    $out_arr["response"] = "stat_offline";
-    $out_arr["code"] = 501;
+    $out_arr["response"] = $stat_offline[0];
+    $out_arr["code"] = $stat_offline[1];
     $out_arr["data"] = null;
 }
 else{
@@ -38,8 +38,8 @@ else{
     while($r = mysqli_fetch_assoc($sql)) {
         $rows[] = $r;
     }
-    $out_arr["response"] = "stat_online";
-    $out_arr["code"] = 500;
+    $out_arr["response"] = $stat_online[0];
+    $out_arr["code"] = $stat_online[1];
     $out_arr["data"] = $rows;
 }
 
