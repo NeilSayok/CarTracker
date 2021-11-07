@@ -21,22 +21,28 @@ foreach($inpEmailList as $email){
 $query = rtrim($query,',');
 $query .= ")";
 
-$sql =  mysqli_query($conn, $query);
-
-$rows = array();
-while($r = mysqli_fetch_assoc($sql)) {
-  $rows[] = $r;
-}
-// echo json_encode($rows);
-
-$arr = array();
-
 $out_arr = array("resposnse"=>"stat_online",
 "code" => 500,
-"data"=>$rows,
+"data"=>null,
 );
 
-// $out_arr["data"] = $rows;
+$sql =  mysqli_query($conn, $query);
+
+if(empty($sql)){
+    $out_arr["response"] = "stat_offline";
+    $out_arr["code"] = 501;
+    $out_arr["data"] = null;
+}
+else{
+    $rows = array();
+    while($r = mysqli_fetch_assoc($sql)) {
+        $rows[] = $r;
+    }
+    $out_arr["response"] = "stat_online";
+    $out_arr["code"] = 500;
+    $out_arr["data"] = json_encode($rows);
+}
+
 
 echo json_encode($out_arr);
 
