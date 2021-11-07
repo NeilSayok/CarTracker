@@ -40,7 +40,7 @@ else{
     }
     $out_arr["response"] = "stat_online";
     $out_arr["code"] = 500;
-    $out_arr["data"] = json_encode($rows);
+    $out_arr["data"] = $rows;
 }
 
 
