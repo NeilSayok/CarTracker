@@ -27,16 +27,16 @@ $rows = array();
 while($r = mysqli_fetch_assoc($sql)) {
   $rows[] = $r;
 }
-echo json_encode($rows);
+// echo json_encode($rows);
 
 $arr = array();
 
 $out_arr = array("resposnse"=>"stat_online",
 "code" => 500,
-"data"=>null,
+"data"=>$rows,
 );
 
-$out_arr["data"] = $rows;
+// $out_arr["data"] = $rows;
 
 echo json_encode($out_arr);
 
