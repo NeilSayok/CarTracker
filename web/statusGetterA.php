@@ -29,9 +29,11 @@ $query .= ")";
 
 
 $sql =  mysqli_query($conn, $query);
-while($row = mysqli_fetch_array($sql)){
-    echo json_encode($row);
+$rows = array();
+while($r  = mysqli_fetch_array($sql)){
+    $rows[] = $r;
 }
+echo json_encode($row);
 
 
 // foreach($row as $key => $value){
