@@ -23,7 +23,7 @@ $inppsw = $_POST['psw'];
 $inprpsw = $_POST['rpsw'];
 $inphash = $_POST['hash'];
 
-$out_arr = array("resposnse"=>null,
+$out_arr = array("response"=>null,
 "code" => null,
 );
 

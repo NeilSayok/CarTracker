@@ -21,7 +21,7 @@ foreach($inpEmailList as $email){
 $query = rtrim($query,',');
 $query .= ")";
 
-$out_arr = array("resposnse"=>"stat_online",
+$out_arr = array("response"=>"stat_online",
 "code" => 500,
 "data"=>null,
 );

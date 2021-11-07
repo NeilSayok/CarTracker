@@ -26,7 +26,7 @@ echo $row['log_stat'];*/
 
 $arr = array();
 
-$out_arr = array("resposnse"=>null,
+$out_arr = array("response"=>null,
 "code" => null,
 "data"=>null,
 );
