@@ -11,10 +11,7 @@ require_once 'credentials.php';
 require_once 'response.php';
 
 
-    
 $inpEmailList = $_POST['emails'];
-
-// $inp_arr = json_decode($inpEmailList,true);
 
 $query = "SELECT * FROM car_location WHERE `email` in (";
 
@@ -24,34 +21,13 @@ foreach($inpEmailList as $email){
 $query = rtrim($query,',');
 $query .= ")";
 
-
-// $query = "SELECT `email`,`log_stat` FROM car_location WHERE `email` = '".$inpEmailList."'";
-
-
 $sql =  mysqli_query($conn, $query);
-
-// $rows = array();
-// while($r  = mysqli_fetch_array($sql)){
-//     $rows[] = $r;
-// }
-// echo json_encode($row);
 
 $rows = array();
 while($r = mysqli_fetch_assoc($sql)) {
   $rows[] = $r;
 }
 echo json_encode($rows);
-
-
-// foreach($row as $key => $value){
-//    echo $key.": ".$value."<br>";
-// }
-
-
-// echo $row['log_stat'];
-
-// $emailarr = explode('#!!#',$inpEmailList);
-
 
 $arr = array();
 
@@ -60,17 +36,10 @@ $out_arr = array("resposnse"=>"stat_online",
 "data"=>null,
 );
 
+$out_arr["data"] = $rows;
 
+echo json_encode($out_arr);
 
-// foreach($row as $r){
-//     echo json_encode($r);
-//     array_push($arr,$r);
-    
-// }
-
-$out_arr["data"] = $arr;
-
-//echo json_encode($out_arr);
     
     
     
