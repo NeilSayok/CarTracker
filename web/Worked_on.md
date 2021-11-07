@@ -1,0 +1,25 @@
+### Worked Files
+
+- [ ] writelogstat.php
+- [ ] Worked_on.md
+- [ ] verify_otp.php
+- [ ] updatelocation.php
+- [ ] test.php
+- [x] statusGetterA.php
+- [-] statusGetter.php
+- [x] signUpA.php
+- [x] send_otp.php
+- [ ] response.php
+- [x] resend_otp.php
+- [ ] Readme.md
+- [x] loginA.php
+- [ ] fetchLocation.php
+- [ ] email.html
+- [ ] deluserfromdb.php
+- [ ] credentials.php
+- [ ] connection.php
+- [ ] connection_template.php
+- [ ] company_logo.png
+- [ ] clean_hashtable.php
+- [ ] checklogstat.php
+- [ ] checkInDataBase.php
