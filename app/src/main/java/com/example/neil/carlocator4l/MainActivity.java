@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //TODO: 1.Migrate to easypermissions
         askForPermissionsCall();
 
         activity = MainActivity.this;
@@ -62,7 +63,9 @@ public class MainActivity extends AppCompatActivity {
         vhe_id = sp.getString("veh_id","");
 
         if(email.equals("") && vhe_id.equals("")){
+            //Todo Below Line Not Required
             checkUserInDb(email,vhe_id);
+            //i = new Intent(this,SignInActivity.class);
             startActivity(i);
             finish();
         }else{
