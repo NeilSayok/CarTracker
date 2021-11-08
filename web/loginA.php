@@ -21,6 +21,13 @@ $out_arr = array("response"=>null,
 $inpemail = $_POST['email'];
 $inppsw = $_POST['psw'];
 
+if(empty($inpemail) || empty($inppsw)){
+    $out_arr['code'] = $null_value_not_allowed[1];
+    $out_arr['response'] = $null_value_not_allowed[0];
+    echo json_encode($out_arr);
+    exit();
+}
+
 $query = "SELECT * FROM `car_location` WHERE `email` = '".$inpemail."' OR `reg_id` = '".$inpemail."'";
 
 if($result = mysqli_query($conn,$query)){

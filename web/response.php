@@ -38,6 +38,7 @@ $re_mail_not_sent = ["Mail_not_sent",301];
 $success = ["success", 400];
 $passMiss = ["passMiss",401];
 $credMiss = ["credMiss",402];
+$null_value_not_allowed = ["Null_Value_Not_Allowed",403];
 //---------------------------------------------------------//
 
 //----------------------statusGetterA----------------------------//
