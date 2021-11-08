@@ -13,7 +13,7 @@ require_once 'response.php';
 
 $inpEmailList = $_POST['emails'];
 
-$out_arr["inpEmailList"] = $inpEmailList;
+
 
 $query = "SELECT * FROM car_location WHERE `email` in (";
 
@@ -26,6 +26,7 @@ $query .= ")";
 $out_arr = array("response"=>"stat_online",
 "code" => 500,
 "data"=>null,
+"inpEmailList" => $inpEmailList,
 );
 
 $sql =  mysqli_query($conn, $query);
