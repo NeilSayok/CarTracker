@@ -1,9 +1,6 @@
 package com.example.neil.carlocator4l.API.Retrofit
 
-import com.example.neil.carlocator4l.API.Data.CheckInDbData
-import com.example.neil.carlocator4l.API.Data.CreateAccountData
-import com.example.neil.carlocator4l.API.Data.LoginData
-import com.example.neil.carlocator4l.API.Data.StatusData
+import com.example.neil.carlocator4l.API.Data.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -30,8 +27,16 @@ public interface RetrofitAPI {
 
     @FormUrlEncoded
     @POST("loginA.php")
-    fun login(@Field("emails") email:String? = null,
+    fun login(@Field("email") email:String? = null,
               @Field("psw") password:String? = null,): Call<LoginData>
+
+    @FormUrlEncoded
+    @POST("send_otp.php")
+    fun send_otp(@Field("email") email:String? = null): Call<OTPData>
+
+    @FormUrlEncoded
+    @POST("resend_otp.php")
+    fun resend_otp(@Field("email") email:String? = null): Call<OTPData>
 
 
 }
