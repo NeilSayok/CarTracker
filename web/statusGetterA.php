@@ -26,7 +26,6 @@ $query .= ")";
 $out_arr = array("response"=>"stat_online",
 "code" => 500,
 "data"=>null,
-"inpEmailList" => $inpEmailList,
 );
 
 $sql =  mysqli_query($conn, $query);
