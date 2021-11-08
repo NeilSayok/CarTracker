@@ -13,6 +13,8 @@ require_once 'response.php';
 
 $inpEmailList = $_POST['emails'];
 
+echo $inpEmailList;
+
 $query = "SELECT * FROM car_location WHERE `email` in (";
 
 foreach($inpEmailList as $email){
