@@ -13,7 +13,7 @@ require_once 'response.php';
 
 $inpEmailList = $_POST['emails'];
 
-echo $inpEmailList;
+$out_arr["inpEmailList"] = $inpEmailList;
 
 $query = "SELECT * FROM car_location WHERE `email` in (";
 
@@ -44,6 +44,7 @@ else{
     $out_arr["code"] = $stat_online[1];
     $out_arr["data"] = $rows;
 }
+
 
 
 echo json_encode($out_arr);
