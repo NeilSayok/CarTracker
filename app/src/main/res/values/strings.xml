@@ -56,4 +56,14 @@
     <string name="enter_email_address">Enter Email Address</string>
     <string name="type_password">Type Password</string>
     <string name="retype_password">Retype Password</string>
+    <string name="rationale_coarse_location">This app needs access to your location to know where you are.</string>
+    <string name="rationale_internet_location">This app needs access to Internet.</string>
+    <string name="rationale_vibrate_location">This app needs access to Vibration to perform properly.</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="returned_from_app_settings_to_activity">Returned from app settings to MainActivity with the following permissions:
+        \n\nCamera: %s
+        \nLocation: %s
+        \nSMS: %s
+        \nContacts: %s</string>
 </resources>
