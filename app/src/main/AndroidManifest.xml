@@ -2,10 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.neil.carlocator4l">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <application
         android:name=".App"
@@ -15,34 +16,37 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+
+        <activity
+            android:name=".DefaultActivity"
             android:theme="@style/Noactionbar"
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".SignInActivity"
+        <activity
+            android:name=".SignInActivity"
             android:theme="@style/Noactionbar"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".signUp"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".signUp"
             android:theme="@style/Noactionbar"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".TrackActivity" />
-
-        <activity android:name=".OTP_activity"
+        <activity
+            android:name=".OTP_activity"
             android:theme="@style/Noactionbar"
-            android:windowSoftInputMode="stateAlwaysHidden|stateHidden|stateUnchanged"/>
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden|stateUnchanged" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-
-        <service android:name=".GPS_service"/>
+        <service android:name=".GPS_service" />
     </application>
 
 </manifest>

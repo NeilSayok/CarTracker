@@ -1,40 +1,48 @@
-package com.example.neil.carlocator4l
+package com.example.neil.carlocator4l.Fragments
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
+import android.location.LocationManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
 import com.example.neil.carlocator4l.PermissionHandler.EasyPermissionsHasPermissions
+import com.example.neil.carlocator4l.R
 import pub.devrel.easypermissions.EasyPermissions
 
-
-class SplashActivity: AppCompatActivity(), EasyPermissions.PermissionCallbacks{
+class SplashFragment: Fragment() , EasyPermissions.PermissionCallbacks{
 
     private val RC_LOC_PERM: Int = 101
-
-    private lateinit var vGroup: ViewGroup
-
+    private var vGroup: ViewGroup? = null
     private lateinit var easyPermHandler: EasyPermissionsHasPermissions
+    private lateinit var v: View
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        vGroup = container
+        v = inflater.inflate(R.layout.activity_splash, container, false)
+        return v
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
-        easyPermHandler = EasyPermissionsHasPermissions(applicationContext)
-        vGroup = findViewById(R.id.root)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        easyPermHandler = EasyPermissionsHasPermissions(requireContext())
         requesrtPermissions()
 
     }
-
 
     fun requesrtPermissions(){
         if (easyPermHandler.hasLocationPermission())
@@ -67,22 +75,22 @@ class SplashActivity: AppCompatActivity(), EasyPermissions.PermissionCallbacks{
     override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
         if (EasyPermissions.somePermissionPermanentlyDenied(this,perms)){
             //Log.d("Dialog:","Displayed Form Here")
-            val builder = AlertDialog.Builder(this)
-            val dialogView = LayoutInflater.from(applicationContext).inflate(R.layout.dialog_request_location_permission,vGroup,false)
+            val builder = AlertDialog.Builder(requireContext())
+            val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_request_location_permission,vGroup,false)
             val openSettingsBtn = dialogView.findViewById<Button>(R.id.give_perm_btn)
             builder.setView(dialogView)
             val dialog = builder.create()
 
             openSettingsBtn.setOnClickListener {
                 val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                val uri: Uri = Uri.fromParts("package", applicationContext.packageName, null)
+                val uri: Uri = Uri.fromParts("package", requireContext().packageName, null)
                 intent.data = uri
                 startActivity(intent)
                 dialog.dismiss()
             }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
                 try {
-                    val backgroundLocationPermissionApproved = ActivityCompat.checkSelfPermission(applicationContext,
+                    val backgroundLocationPermissionApproved = ActivityCompat.checkSelfPermission(requireContext(),
                         Manifest.permission.ACCESS_BACKGROUND_LOCATION) > -1
                     //Log.d("TestPErm",backgroundLocationPermissionApproved.toString())
                     if (!backgroundLocationPermissionApproved){
@@ -106,7 +114,6 @@ class SplashActivity: AppCompatActivity(), EasyPermissions.PermissionCallbacks{
         EasyPermissions.onRequestPermissionsResult(requestCode,permissions,grantResults,this)
 
     }
-
 
 
 }
