@@ -34,7 +34,7 @@ if($result = mysqli_query($conn,$query)){
 
     $row = mysqli_fetch_array($result);
     
-    if(count($row) > 0){
+    if(is_array($row) && count($row) > 0){
         if($row['password'] == $inppsw){
             $out_arr['response'] = $success[0];
             $out_arr['code'] = $success[1];
