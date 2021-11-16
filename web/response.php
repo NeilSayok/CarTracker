@@ -47,3 +47,11 @@ $null_value_not_allowed = ["Null_Value_Not_Allowed",403];
 $stat_offline = ["id_stat_offline", 501];
 $stat_online = ["id_stat_online",500];
 //---------------------------------------------------------//
+
+//----------------------verify_otp----------------------------//
+//--------------------Code Grp:600--------------------------//
+
+$stat_otp_verified = ["verified", 500];
+$stat_otp_not_verified = ["not_verified",501];
+$stat_otp_error = ["server_error",502];
+//---------------------------------------------------------//
