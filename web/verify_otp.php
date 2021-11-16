@@ -37,6 +37,8 @@ if ($sql =  mysqli_query($conn, $query)){
     $out_arr["code"] = $$stat_otp_error[1];
 }
 
+echo json_encode($out_arr);
+
 
 mysqli_close($conn);
 ?>
