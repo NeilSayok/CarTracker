@@ -20,6 +20,8 @@ $variable['name'] = "";
 $variable['otp'] = "";
 $variable['reg_id'] = "";
 
+print_r($variable['email']);
+
 $variable['name'] = getName($variable['email']);
 $variable['reg_id'] = getVehId($variable['email']);
 $variable['otp'] = mt_rand(100000, 999999);
