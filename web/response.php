@@ -55,3 +55,11 @@ $stat_otp_verified = ["verified", 600];
 $stat_otp_not_verified = ["not_verified",601];
 $stat_otp_error = ["server_error",602];
 //---------------------------------------------------------//
+
+//----------------------writelogstat----------------------------//
+//--------------------Code Grp:700--------------------------//
+
+$log_stat_write_success = ["Success", 700];
+$log_stat_write_error = ["Error",701];
+$log_stat_mail_not_present = ["mail_not_present",702];
+//---------------------------------------------------------//
