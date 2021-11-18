@@ -27,6 +27,7 @@ import com.example.neil.carlocator4l.R
 import com.example.neil.carlocator4l.Utils.PasswordStrength
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
+import neilsayok.github.carlocatorapi.API.Data.SimpleResponseData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -178,7 +179,7 @@ class SignupFragment: Fragment() {
         progressLayout.visibility = View.VISIBLE
         val api = neilsayok.github.carlocatorapi.API.Retrofit.RetrofitBuilder().retrofit.create(
             neilsayok.github.carlocatorapi.API.Retrofit.RetrofitAPI::class.java)
-        val call: Call<neilsayok.github.carlocatorapi.API.Data.CreateAccountData> = api.signup(nameET.text.toString(),
+        val call: Call<SimpleResponseData> = api.signup(nameET.text.toString(),
             vehIDET.text.toString(),
             mailET.text.toString(),
             passET.text.toString(),
@@ -186,10 +187,10 @@ class SignupFragment: Fragment() {
         )
 
         val resCodes = neilsayok.github.carlocatorapi.API.ResponseCodes().responses
-        call.enqueue(object: Callback<neilsayok.github.carlocatorapi.API.Data.CreateAccountData>{
+        call.enqueue(object: Callback<SimpleResponseData>{
             override fun onResponse(
-                call: Call<neilsayok.github.carlocatorapi.API.Data.CreateAccountData>,
-                response: Response<neilsayok.github.carlocatorapi.API.Data.CreateAccountData>
+                call: Call<SimpleResponseData>,
+                response: Response<SimpleResponseData>
             ) {
                 Log.d("Signup Call success", response.body().toString())
 
@@ -202,10 +203,10 @@ class SignupFragment: Fragment() {
                         sp.edit().putString("email", mailET.text.toString()).apply()
 
 
-                        api.send_otp(mailET.text.toString()).enqueue(object :Callback<neilsayok.github.carlocatorapi.API.Data.OTPData>{
+                        api.send_otp(mailET.text.toString()).enqueue(object :Callback<SimpleResponseData>{
                             override fun onResponse(
-                                call: Call<neilsayok.github.carlocatorapi.API.Data.OTPData>,
-                                response: Response<neilsayok.github.carlocatorapi.API.Data.OTPData>
+                                call: Call<SimpleResponseData>,
+                                response: Response<SimpleResponseData>
                             ) {
                                 Log.d("OTP Mail Call success", response.body().toString())
                                 Log.d("OTP codes", "${response.body()!!.code} -> ${resCodes["Mail_sent"]}")
@@ -226,7 +227,7 @@ class SignupFragment: Fragment() {
                                 }
                             }
 
-                            override fun onFailure(call: Call<neilsayok.github.carlocatorapi.API.Data.OTPData>, t: Throwable) {
+                            override fun onFailure(call: Call<SimpleResponseData>, t: Throwable) {
                                 progressLayout.visibility = View.GONE
                                 Log.d("OTP Mail Call Fail", t.message.toString())
 
@@ -262,7 +263,7 @@ class SignupFragment: Fragment() {
 
             }
 
-            override fun onFailure(call: Call<neilsayok.github.carlocatorapi.API.Data.CreateAccountData>, t: Throwable) {
+            override fun onFailure(call: Call<SimpleResponseData>, t: Throwable) {
                 progressLayout.visibility = View.GONE
                 Log.d("Signup Call Fail", t.message.toString())
             }

@@ -31,7 +31,7 @@ import com.example.neil.carlocator4l.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
-import neilsayok.github.carlocatorapi.API.Data.VerifyOTPData
+import neilsayok.github.carlocatorapi.API.Data.SimpleResponseData
 import neilsayok.github.carlocatorapi.API.ResponseCodes
 import retrofit2.Call
 import retrofit2.Callback
@@ -225,11 +225,11 @@ class OTPFragment: Fragment() {
                 Snackbar.make(v,"No Email is present.",Snackbar.LENGTH_LONG).show()
                 relogin()
             }else{
-                val call: Call<VerifyOTPData> = api.verify_otp(otp,email)
-                call.enqueue(object: Callback<VerifyOTPData>{
+                val call: Call<SimpleResponseData> = api.verify_otp(otp,email)
+                call.enqueue(object: Callback<SimpleResponseData>{
                     override fun onResponse(
-                        call: Call<VerifyOTPData>,
-                        response: Response<VerifyOTPData>
+                        call: Call<SimpleResponseData>,
+                        response: Response<SimpleResponseData>
                     ) {
                         val res = response.body()
                         when(res!!.code){
@@ -254,7 +254,7 @@ class OTPFragment: Fragment() {
 
                     }
 
-                    override fun onFailure(call: Call<VerifyOTPData>, t: Throwable) {
+                    override fun onFailure(call: Call<SimpleResponseData>, t: Throwable) {
                         Snackbar.make(v,"Something went wrong. Please try again", Snackbar.LENGTH_LONG).
                         setAction("Try Again", View.OnClickListener {
                             verifyOtp(otp)
@@ -276,10 +276,10 @@ class OTPFragment: Fragment() {
             if (email.isNullOrBlank()){
 
             }else{
-                api.send_otp(email).enqueue(object :Callback<neilsayok.github.carlocatorapi.API.Data.OTPData>{
+                api.send_otp(email).enqueue(object :Callback<SimpleResponseData>{
                     override fun onResponse(
-                        call: Call<neilsayok.github.carlocatorapi.API.Data.OTPData>,
-                        response: Response<neilsayok.github.carlocatorapi.API.Data.OTPData>
+                        call: Call<SimpleResponseData>,
+                        response: Response<SimpleResponseData>
                     ) {
                         Log.d("OTP Mail Call success", response.body().toString())
                         Log.d("OTP codes", "${response.body()!!.code} -> ${resCodes["Mail_sent"]}")
@@ -312,7 +312,7 @@ class OTPFragment: Fragment() {
                         }
                     }
 
-                    override fun onFailure(call: Call<neilsayok.github.carlocatorapi.API.Data.OTPData>, t: Throwable) {
+                    override fun onFailure(call: Call<SimpleResponseData>, t: Throwable) {
                         progressLayout.visibility = View.GONE
                         Log.d("OTP Mail Call Fail", t.message.toString())
 

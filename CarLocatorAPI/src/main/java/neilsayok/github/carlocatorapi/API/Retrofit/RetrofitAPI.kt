@@ -23,7 +23,7 @@ public interface RetrofitAPI {
                @Field("vehid") vehid:String? = null,
                @Field("email") email:String? = null,
                @Field("psw") psw:String? = null,
-               @Field("rpsw") rpsw:String? = null,): Call<CreateAccountData>
+               @Field("rpsw") rpsw:String? = null,): Call<SimpleResponseData>
 
     @FormUrlEncoded
     @POST("loginA.php")
@@ -32,21 +32,21 @@ public interface RetrofitAPI {
 
     @FormUrlEncoded
     @POST("send_otp.php")
-    fun send_otp(@Field("email") email:String? = null): Call<OTPData>
+    fun send_otp(@Field("email") email:String? = null): Call<SimpleResponseData>
 
     @FormUrlEncoded
     @POST("resend_otp.php")
-    fun resend_otp(@Field("email") email:String? = null): Call<OTPData>
+    fun resend_otp(@Field("email") email:String? = null): Call<SimpleResponseData>
 
     @FormUrlEncoded
     @POST("verify_otp.php")
     fun verify_otp(@Field("otp_conf") otp:String? = null,
-                   @Field("email") email:String? = null): Call<VerifyOTPData>
+                   @Field("email") email:String? = null): Call<SimpleResponseData>
 
     @FormUrlEncoded
     @POST("writelogstat.php")
     fun write_log_stat(@Field("email") email:String? = null,
-                   @Field("stat") stat:Int = 0): Call<WriteLogStatData>
+                   @Field("stat") stat:Int = 0): Call<SimpleResponseData>
 
 
 
