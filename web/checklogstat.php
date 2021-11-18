@@ -19,6 +19,21 @@ while($row=mysqli_fetch_array($result))
     echo $row['log_stat'];
 }
 
+function isEmailPresent($email){
+    $query = "SELECT email FROM car_location where email = '".$email."'";
+    if ($sql =  mysqli_query($GLOBALS['conn'], $query))
+    {
+        if(mysqli_num_rows($sql) >= 1){
+            
+            return true;
+        }else{
+           
+            return false;
+        }
+    }
+   
+    return false;
+}
 
 
 ?>

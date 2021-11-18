@@ -23,7 +23,21 @@ $sql =  "DELETE FROM `OTP` WHERE `OTP`.`email` = '".$inpemail."'";
 
 $result = mysqli_query($conn,$sql);
 
-
+function isEmailPresent($email){
+    $query = "SELECT email FROM car_location where email = '".$email."'";
+    if ($sql =  mysqli_query($GLOBALS['conn'], $query))
+    {
+        if(mysqli_num_rows($sql) >= 1){
+            
+            return true;
+        }else{
+           
+            return false;
+        }
+    }
+   
+    return false;
+}
     
     
     
