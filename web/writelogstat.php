@@ -11,11 +11,8 @@ $out_arr = array("response"=>null,
 $inpemail = $_POST['email'];
 $inplogstat = $_POST['stat'];
 
-$sql = "UPDATE car_location SET `log_stat` = '".$inplogstat."' WHERE `email` = '".$inpemail."'";
-
-
 if (isEmailPresent($inpemail)){
-    $sql = "UPDATE car_location SET `log_stat` = '".$inplogstat."' WHERE `email` = '".$inpemail."'";
+    $sql = "UPDATE car_location SET `log_stat` = ".$inplogstat." WHERE `email` = '".$inpemail."'";
     if(mysqli_query($conn,$sql)){
         $out_arr["response"] = $log_stat_write_success[0];
         $out_arr["code"] = $log_stat_write_success[1];
