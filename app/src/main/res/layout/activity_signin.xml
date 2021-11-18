@@ -14,38 +14,33 @@
         android:scrollbars="vertical">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
+
             <RelativeLayout
                 android:id="@+id/progressRelLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:visibility="gone">
-                <ImageView
-                    android:id="@+id/company_logo_progress"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:layout_centerHorizontal="true"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="@string/company_logo"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/company_logo" />
+                android:visibility="gone"
+                android:background="#6AFFFFFF">
+
                 <ProgressBar
                     android:id="@+id/progressBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/company_logo_progress"
-                    android:layout_marginTop="5dp"
                     android:layout_centerHorizontal="true"
-                    android:theme="@style/WhiteAccent"/>
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="5dp"
+                    android:theme="@style/WhiteAccent" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/progressBar"
+                    android:layout_centerHorizontal="true"
                     android:text="@string/loading"
                     android:textColor="@color/white"
-                    android:textSize="17sp"
-                    android:layout_centerHorizontal="true"/>
+                    android:textSize="17sp" />
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/baseRelLayout"
@@ -93,13 +88,14 @@
                             android:text="@string/email_vehicle_id"
                             android:textColor="@color/white"
                             android:textSize="18sp" />
+
                         <EditText
                             android:id="@+id/userNameET"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
                             android:layout_below="@+id/userNameTV"
-                            android:layout_marginEnd="5dp"
                             android:layout_marginTop="5dp"
+                            android:layout_marginEnd="5dp"
                             android:background="@drawable/et_box"
                             android:inputType="textEmailAddress"
                             android:paddingLeft="15dp"
@@ -115,6 +111,7 @@
                             android:text="@string/password"
                             android:textColor="@color/white"
                             android:textSize="18sp" />
+
                         <EditText
                             android:id="@+id/passwordET"
                             android:layout_width="match_parent"
@@ -126,15 +123,16 @@
                             android:paddingEnd="35dp"
                             android:textColor="@color/white"
                             android:textCursorDrawable="@null" />
+
                         <ImageButton
                             android:id="@+id/viewPass"
                             android:layout_width="wrap_content"
                             android:layout_height="45dp"
-                            android:src="@drawable/ic_baseline_visibility_off_24px"
-                            android:background="@android:color/transparent"
                             android:layout_below="@+id/passwordTV"
                             android:layout_alignParentEnd="true"
-                            android:paddingEnd="8dp"/>
+                            android:background="@android:color/transparent"
+                            android:paddingEnd="8dp"
+                            android:src="@drawable/ic_baseline_visibility_off_24px" />
                     </RelativeLayout>
                     <RelativeLayout
                         android:id="@+id/buttonRelLayout"
@@ -142,18 +140,18 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:layout_below="@+id/inptRelLayout">
+
                         <Button
                             android:id="@+id/LogInBT"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
                             android:layout_marginTop="2dp"
+                            android:layout_marginRight="10dp"
                             android:background="@drawable/rounded_bt"
                             android:elevation="10dp"
                             android:text="@string/sign_in"
                             android:textAllCaps="false"
-                            android:onClick="signinClick"
                             android:textColor="@color/white"
                             android:textSize="17sp" />
                         <TextView
@@ -165,18 +163,18 @@
                             android:layout_marginTop="6dp"
                             android:text="@string/or"
                             android:textColor="@color/white" />
+
                         <Button
                             android:id="@+id/SignUpBT"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/or"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
                             android:layout_marginTop="6dp"
+                            android:layout_marginRight="10dp"
                             android:background="@drawable/rounded_bt_green"
                             android:elevation="10dp"
                             android:text="@string/sign_up"
-                            android:onClick="openSignUp"
                             android:textAllCaps="false"
                             android:textColor="@color/white"
                             android:textSize="17sp" />

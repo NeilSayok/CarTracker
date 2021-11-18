@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.neil.carlocator4l.R
 
-class SigninFragment: Fragment() {
+class TrackFragment : Fragment() {
 
     private lateinit var v: View
 
@@ -16,7 +16,7 @@ class SigninFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        v = inflater.inflate(R.layout.sign_up, container, false)
+        v = inflater.inflate(R.layout.activity_tracking, container, false)
         return v
     }
 

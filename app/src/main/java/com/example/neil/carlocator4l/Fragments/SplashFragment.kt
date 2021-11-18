@@ -3,11 +3,12 @@ package com.example.neil.carlocator4l.Fragments
 import android.Manifest
 import android.content.Context
 import android.content.Intent
-import android.location.LocationManager
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,9 +17,22 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
+import com.example.neil.carlocator4l.API.Data.CheckInDbData
+import com.example.neil.carlocator4l.API.Retrofit.RetrofitAPI
+import com.example.neil.carlocator4l.API.Retrofit.RetrofitBuilder
 import com.example.neil.carlocator4l.PermissionHandler.EasyPermissionsHasPermissions
 import com.example.neil.carlocator4l.R
+import kotlinx.coroutines.launch
 import pub.devrel.easypermissions.EasyPermissions
+import retrofit2.Call
+import retrofit2.Callback
+import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
+import retrofit2.Response
+
 
 class SplashFragment: Fragment() , EasyPermissions.PermissionCallbacks{
 
@@ -26,13 +40,25 @@ class SplashFragment: Fragment() , EasyPermissions.PermissionCallbacks{
     private var vGroup: ViewGroup? = null
     private lateinit var easyPermHandler: EasyPermissionsHasPermissions
     private lateinit var v: View
+    private lateinit var sp: SharedPreferences
+    private var email: String? = null
+    private var vhe_id: String? = null
+    private lateinit var navController: NavController
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        sp = requireContext().getSharedPreferences("LOGIN", Context.MODE_PRIVATE)
+        email = sp.getString("email", "")
+        vhe_id = sp.getString("veh_id", "")
+
+        navController = findNavController()
+
         vGroup = container
+
         v = inflater.inflate(R.layout.activity_splash, container, false)
         return v
     }
@@ -42,6 +68,59 @@ class SplashFragment: Fragment() , EasyPermissions.PermissionCallbacks{
         easyPermHandler = EasyPermissionsHasPermissions(requireContext())
         requesrtPermissions()
 
+        if(email.isNullOrBlank() && vhe_id.isNullOrEmpty()){
+            navController.navigate(R.id.action_splashFragment_to_signinFragment)
+        }else{
+            lifecycleScope.launch {
+                checkinDB()
+            }
+
+        }
+    }
+
+    fun checkinDB(){
+        val api = RetrofitBuilder().retrofit.create(RetrofitAPI::class.java)
+
+        val call: Call<CheckInDbData> = api.checkUserinDB(email,vhe_id)
+
+        call.enqueue(object : Callback<CheckInDbData?> {
+            override fun onResponse(
+                call: Call<CheckInDbData?>,
+                response: Response<CheckInDbData?>
+            ) {
+                val res = response.body()
+                Log.d("Response", res.toString())
+                if (res!!.present) {
+                    sp.edit().putBoolean("verified", res.verified != "0").apply()
+                    sp.edit().putString("name", res.name).apply()
+                    sp.edit().putString("reg_id", res.regId).apply()
+                    sp.edit().putString("email", res.email).apply()
+
+                    if (res.verified == "0"){
+                        navController.navigate(R.id.action_splashFragment_to_OTPFragment)
+                    }else{
+                        navController.navigate(R.id.action_splashFragment_to_trackFragment)
+                    }
+
+
+
+                }
+                else{
+                    sp.edit().remove("email").apply()
+                    sp.edit().remove("name").apply()
+                    sp.edit().remove("reg_id").apply()
+                    sp.edit().remove("verified").apply()
+                    navController.navigate(R.id.action_splashFragment_to_signinFragment)
+
+                }
+
+            }
+
+            override fun onFailure(call: Call<CheckInDbData?>, t: Throwable) {
+                Snackbar.make(v,"Please check your internet connection",Snackbar.LENGTH_SHORT).show()
+            }
+
+        })
     }
 
     fun requesrtPermissions(){

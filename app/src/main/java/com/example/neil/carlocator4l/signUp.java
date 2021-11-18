@@ -84,7 +84,7 @@ public class signUp extends AppCompatActivity {
         pass = findViewById(R.id.passET);
         rePass = findViewById(R.id.repassET);
         pass_strength = findViewById(R.id.passStrength);
-        repass_strength = findViewById(R.id.passStrength2);
+        repass_strength = findViewById(R.id.repassStrength);
         signUp = findViewById(R.id.SignUpBT);
         visibilityPass = findViewById(R.id.viewPass);
         visibilityRePass = findViewById(R.id.viewRePass);
@@ -421,6 +421,7 @@ public class signUp extends AppCompatActivity {
 
         }
     };
+
 
 
     TextWatcher passTextWatcher = new TextWatcher() {

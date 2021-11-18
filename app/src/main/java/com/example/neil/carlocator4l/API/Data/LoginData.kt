@@ -9,11 +9,11 @@ data class LoginData(
     @SerializedName("code")
     val code: Int? = null,
     @SerializedName("name")
-    val name: Any? = null,
+    val name: String? = null,
     @SerializedName("reg_id")
-    val regId: Any? = null,
+    val regId: String? = null,
     @SerializedName("email")
-    val email: Any? = null,
+    val email: String? = null,
     @SerializedName("verified")
-    val verified: Any? = null
+    val verified: String? = null
 )

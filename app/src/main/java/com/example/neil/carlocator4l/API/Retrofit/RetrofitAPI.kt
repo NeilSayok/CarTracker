@@ -38,5 +38,17 @@ public interface RetrofitAPI {
     @POST("resend_otp.php")
     fun resend_otp(@Field("email") email:String? = null): Call<OTPData>
 
+    @FormUrlEncoded
+    @POST("verify_otp.php")
+    fun verify_otp(@Field("otp_conf") otp:String? = null,
+                   @Field("email") email:String? = null): Call<VerifyOTPData>
+
+    @FormUrlEncoded
+    @POST("writelogstat.php")
+    fun write_log_stat(@Field("email") email:String? = null,
+                   @Field("stat") stat:Int = 0): Call<WriteLogStatData>
+
+
+
 
 }

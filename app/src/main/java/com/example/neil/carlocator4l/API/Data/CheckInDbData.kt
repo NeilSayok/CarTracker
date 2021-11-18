@@ -12,6 +12,8 @@ data class CheckInDbData(
     val present: Boolean = false,
     @SerializedName("reg_id")
     val regId: String?,
+    @SerializedName("email")
+    val email: String?,
     @SerializedName("verified")
     val verified: String?
 )
