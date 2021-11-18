@@ -13,7 +13,6 @@ $inplogstat = $_POST['stat'];
 
 $sql = "UPDATE car_location SET `log_stat` = '".$inplogstat."' WHERE `email` = '".$inpemail."'";
 
-echo mysqli_query($conn,$sql); 
 
 if (isEmailPresent($inpemail)){
     $sql = "UPDATE car_location SET `log_stat` = '".$inplogstat."' WHERE `email` = '".$inpemail."'";
@@ -29,6 +28,8 @@ if (isEmailPresent($inpemail)){
     $out_arr["response"] = $log_stat_mail_not_present[0];
     $out_arr["code"] = $log_stat_mail_not_present[1];
 }
+
+echo json_encode($out_arr);
     
    
 function isEmailPresent($email){
