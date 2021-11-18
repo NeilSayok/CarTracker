@@ -20,17 +20,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.example.neil.carlocator4l.API.Data.CheckInDbData
-import com.example.neil.carlocator4l.API.Retrofit.RetrofitAPI
-import com.example.neil.carlocator4l.API.Retrofit.RetrofitBuilder
 import com.example.neil.carlocator4l.PermissionHandler.EasyPermissionsHasPermissions
 import com.example.neil.carlocator4l.R
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
+import neilsayok.github.carlocatorapi.API.Retrofit.RetrofitAPI
+import neilsayok.github.carlocatorapi.API.Retrofit.RetrofitBuilder
 import pub.devrel.easypermissions.EasyPermissions
 import retrofit2.Call
 import retrofit2.Callback
-import android.widget.Toast
-import com.google.android.material.snackbar.Snackbar
 import retrofit2.Response
 
 
@@ -79,14 +77,15 @@ class SplashFragment: Fragment() , EasyPermissions.PermissionCallbacks{
     }
 
     fun checkinDB(){
-        val api = RetrofitBuilder().retrofit.create(RetrofitAPI::class.java)
+        val api = RetrofitBuilder().retrofit.create(
+            RetrofitAPI::class.java)
 
-        val call: Call<CheckInDbData> = api.checkUserinDB(email,vhe_id)
+        val call: Call<neilsayok.github.carlocatorapi.API.Data.CheckInDbData> = api.checkUserinDB(email,vhe_id)
 
-        call.enqueue(object : Callback<CheckInDbData?> {
+        call.enqueue(object : Callback<neilsayok.github.carlocatorapi.API.Data.CheckInDbData?> {
             override fun onResponse(
-                call: Call<CheckInDbData?>,
-                response: Response<CheckInDbData?>
+                call: Call<neilsayok.github.carlocatorapi.API.Data.CheckInDbData?>,
+                response: Response<neilsayok.github.carlocatorapi.API.Data.CheckInDbData?>
             ) {
                 val res = response.body()
                 Log.d("Response", res.toString())
@@ -116,7 +115,7 @@ class SplashFragment: Fragment() , EasyPermissions.PermissionCallbacks{
 
             }
 
-            override fun onFailure(call: Call<CheckInDbData?>, t: Throwable) {
+            override fun onFailure(call: Call<neilsayok.github.carlocatorapi.API.Data.CheckInDbData?>, t: Throwable) {
                 Snackbar.make(v,"Please check your internet connection",Snackbar.LENGTH_SHORT).show()
             }
 

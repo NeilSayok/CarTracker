@@ -2,7 +2,7 @@ package com.example.neil.carlocator4l.API.Retrofit
 
 
 import android.util.Log
-import com.example.neil.carlocator4l.API.Data.StatusData
+import neilsayok.github.carlocatorapi.API.Data.StatusData
 import com.github.javafaker.Faker
 import com.google.common.truth.Truth.assertThat
 import com.google.gson.Gson
@@ -14,11 +14,12 @@ import retrofit2.Response
 
 class RetrofitBuilderTest {
 
-    private lateinit var api: RetrofitAPI
+    private lateinit var api: neilsayok.github.carlocatorapi.API.Retrofit.RetrofitAPI
     private lateinit var faker: Faker
     @Before
     fun setUp() {
-        api = RetrofitBuilder().retrofit.create(RetrofitAPI::class.java)
+        api = neilsayok.github.carlocatorapi.API.Retrofit.RetrofitBuilder().retrofit.create(
+            neilsayok.github.carlocatorapi.API.Retrofit.RetrofitAPI::class.java)
         faker = Faker()
     }
 
@@ -40,8 +41,8 @@ class RetrofitBuilderTest {
     fun `StatusGetter with correct emails`(){
         val arr = arrayListOf("cloud.iot98@gmail.com","sdmsdm1998@gmail.com")
         val gson = Gson()
-        val res: Response<StatusData> = api.statusGetter(gson.toJson(arr)).execute()
-        val r: StatusData? = res.body()
+        val res: Response<neilsayok.github.carlocatorapi.API.Data.StatusData> = api.statusGetter(gson.toJson(arr)).execute()
+        val r: neilsayok.github.carlocatorapi.API.Data.StatusData? = res.body()
         assertThat(r!!.data!!.size).isEqualTo(2)
     }
 
@@ -49,15 +50,15 @@ class RetrofitBuilderTest {
     fun `StatusGetter with empty emails arr`(){
         val arr = arrayListOf("")
         val gson = Gson()
-        val res: Response<StatusData> = api.statusGetter(gson.toJson(arr)).execute()
-        val r: StatusData? = res.body()
+        val res: Response<neilsayok.github.carlocatorapi.API.Data.StatusData> = api.statusGetter(gson.toJson(arr)).execute()
+        val r: neilsayok.github.carlocatorapi.API.Data.StatusData? = res.body()
         assertThat(r!!.data!!.size).isEqualTo(0)
     }
 
     @Test
     fun `StatusGetter with null emails`(){
-        val res: Response<StatusData> = api.statusGetter(null).execute()
-        val r: StatusData? = res.body()
+        val res: Response<neilsayok.github.carlocatorapi.API.Data.StatusData> = api.statusGetter(null).execute()
+        val r: neilsayok.github.carlocatorapi.API.Data.StatusData? = res.body()
         assertThat(r!!.data).isNull()
     }
 

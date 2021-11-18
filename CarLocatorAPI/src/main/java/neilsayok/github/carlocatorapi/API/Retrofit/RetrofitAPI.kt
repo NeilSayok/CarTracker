@@ -1,6 +1,6 @@
-package com.example.neil.carlocator4l.API.Retrofit
+package neilsayok.github.carlocatorapi.API.Retrofit
 
-import com.example.neil.carlocator4l.API.Data.*
+import neilsayok.github.carlocatorapi.API.Data.*
 import retrofit2.Call
 import retrofit2.http.*
 

@@ -2,31 +2,27 @@ package com.example.neil.carlocator4l.Fragments
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.opengl.Visibility
 import android.os.Bundle
+import android.text.InputType
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.RelativeLayout
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.neil.carlocator4l.R
-import android.text.InputType
-import android.util.Log
-import android.view.animation.AnimationUtils
-import android.widget.RelativeLayout
-import androidx.lifecycle.lifecycleScope
-import com.example.neil.carlocator4l.API.Data.CheckInDbData
-import com.example.neil.carlocator4l.API.Data.LoginData
-import com.example.neil.carlocator4l.API.Retrofit.RetrofitAPI
-import com.example.neil.carlocator4l.API.Retrofit.RetrofitBuilder
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
+import neilsayok.github.carlocatorapi.API.Retrofit.RetrofitAPI
+import neilsayok.github.carlocatorapi.API.Retrofit.RetrofitBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -141,10 +137,10 @@ class LoginFragment: Fragment() {
     fun login(email: String, password: String){
         val api = RetrofitBuilder().retrofit.create(RetrofitAPI::class.java)
 
-        val call: Call<LoginData> = api.login(email,password)
+        val call: Call<neilsayok.github.carlocatorapi.API.Data.LoginData> = api.login(email,password)
 
-        call.enqueue(object : Callback<LoginData>{
-            override fun onResponse(call: Call<LoginData>, response: Response<LoginData>) {
+        call.enqueue(object : Callback<neilsayok.github.carlocatorapi.API.Data.LoginData>{
+            override fun onResponse(call: Call<neilsayok.github.carlocatorapi.API.Data.LoginData>, response: Response<neilsayok.github.carlocatorapi.API.Data.LoginData>) {
                 val res = response.body()
                 loadingLayout.visibility = View.GONE
                 Log.d("Respose", res.toString())
@@ -165,7 +161,7 @@ class LoginFragment: Fragment() {
 
             }
 
-            override fun onFailure(call: Call<LoginData>, t: Throwable) {
+            override fun onFailure(call: Call<neilsayok.github.carlocatorapi.API.Data.LoginData>, t: Throwable) {
                 loadingLayout.visibility = View.GONE
             }
 

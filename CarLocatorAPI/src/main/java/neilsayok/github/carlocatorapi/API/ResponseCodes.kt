@@ -1,4 +1,4 @@
-package com.example.neil.carlocator4l.API
+package neilsayok.github.carlocatorapi.API
 
 data class ResponseCodes(
 

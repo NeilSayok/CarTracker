@@ -1,4 +1,4 @@
-package com.example.neil.carlocator4l.API.Data
+package neilsayok.github.carlocatorapi.API.Data
 
 
 import com.google.gson.annotations.SerializedName

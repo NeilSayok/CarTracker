@@ -1,6 +1,5 @@
 package com.example.neil.carlocator4l.Fragments
 
-import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
@@ -20,32 +19,23 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat.getDrawable
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.chaos.view.PinView
-import com.example.neil.carlocator4l.API.Data.LoginData
-import com.example.neil.carlocator4l.API.Data.OTPData
-import com.example.neil.carlocator4l.API.Data.VerifyOTPData
-import com.example.neil.carlocator4l.API.ResponseCodes
-import com.example.neil.carlocator4l.API.Retrofit.RetrofitAPI
-import com.example.neil.carlocator4l.API.Retrofit.RetrofitBuilder
 import com.example.neil.carlocator4l.DefaultActivity
-import com.example.neil.carlocator4l.MainActivity
 import com.example.neil.carlocator4l.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
+import neilsayok.github.carlocatorapi.API.Data.VerifyOTPData
+import neilsayok.github.carlocatorapi.API.ResponseCodes
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.Exception
-import android.widget.Toast
-
-
 
 
 class OTPFragment: Fragment() {
@@ -72,7 +62,7 @@ class OTPFragment: Fragment() {
     private lateinit var anim: Animation
     private lateinit var vibrator: Vibrator
     private lateinit var sp: SharedPreferences
-    private lateinit var api: RetrofitAPI
+    private lateinit var api: neilsayok.github.carlocatorapi.API.Retrofit.RetrofitAPI
     private lateinit var navController: NavController
 
 
@@ -90,7 +80,8 @@ class OTPFragment: Fragment() {
         anim = AnimationUtils.loadAnimation(requireContext(), R.anim.shake)
         vibrator = requireContext().getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         sp = requireContext().getSharedPreferences("LOGIN", Context.MODE_PRIVATE)
-        api = RetrofitBuilder().retrofit.create(RetrofitAPI::class.java)
+        api = neilsayok.github.carlocatorapi.API.Retrofit.RetrofitBuilder().retrofit.create(
+            neilsayok.github.carlocatorapi.API.Retrofit.RetrofitAPI::class.java)
 
         sentTo = v.findViewById(R.id.sentTo)
 
@@ -285,10 +276,10 @@ class OTPFragment: Fragment() {
             if (email.isNullOrBlank()){
 
             }else{
-                api.send_otp(email).enqueue(object :Callback<OTPData>{
+                api.send_otp(email).enqueue(object :Callback<neilsayok.github.carlocatorapi.API.Data.OTPData>{
                     override fun onResponse(
-                        call: Call<OTPData>,
-                        response: Response<OTPData>
+                        call: Call<neilsayok.github.carlocatorapi.API.Data.OTPData>,
+                        response: Response<neilsayok.github.carlocatorapi.API.Data.OTPData>
                     ) {
                         Log.d("OTP Mail Call success", response.body().toString())
                         Log.d("OTP codes", "${response.body()!!.code} -> ${resCodes["Mail_sent"]}")
@@ -321,7 +312,7 @@ class OTPFragment: Fragment() {
                         }
                     }
 
-                    override fun onFailure(call: Call<OTPData>, t: Throwable) {
+                    override fun onFailure(call: Call<neilsayok.github.carlocatorapi.API.Data.OTPData>, t: Throwable) {
                         progressLayout.visibility = View.GONE
                         Log.d("OTP Mail Call Fail", t.message.toString())
 

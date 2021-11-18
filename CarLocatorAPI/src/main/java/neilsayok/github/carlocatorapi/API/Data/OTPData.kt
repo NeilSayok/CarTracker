@@ -1,9 +1,9 @@
-package com.example.neil.carlocator4l.API.Data
+package neilsayok.github.carlocatorapi.API.Data
 
 
 import com.google.gson.annotations.SerializedName
 
-data class VerifyOTPData(
+data class OTPData(
     @SerializedName("response")
     val response: String? = null,
     @SerializedName("code")
