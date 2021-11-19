@@ -5,9 +5,19 @@ require_once 'connection.php';
 require_once 'credentials.php';
 require_once 'response.php';
 
+$out_arr = array("response"=>null,
+"code" => null,
+);
+
 
 
 $inpemail = $_POST['email'];
+
+if (!isEmailPresent($inpemail)){
+    echo "email_not_present";
+}else{
+    
+}
 
 $sql = "SELECT `log_stat` FROM car_location WHERE `email` = '".$inpemail."'";
 
@@ -18,6 +28,9 @@ while($row=mysqli_fetch_array($result))
 {
     echo $row['log_stat'];
 }
+
+echo json_encode($out_arr);
+
 
 function isEmailPresent($email){
     $query = "SELECT email FROM car_location where email = '".$email."'";

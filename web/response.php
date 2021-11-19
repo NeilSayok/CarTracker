@@ -59,7 +59,25 @@ $stat_otp_error = ["server_error",602];
 //----------------------writelogstat----------------------------//
 //--------------------Code Grp:700--------------------------//
 
-$log_stat_write_success = ["Success", 700];
-$log_stat_write_error = ["Error",701];
+$log_stat_write_success = ["success", 700];
+$log_stat_write_error = ["error",701];
 $log_stat_mail_not_present = ["mail_not_present",702];
+//---------------------------------------------------------//
+
+//----------------------updatelocation----------------------------//
+//--------------------Code Grp:800--------------------------//
+
+$update_location_success = ["updated", 800];
+$update_location_error = ["Error",801];
+$update_location_email_not_present = ["mail_not_present",802];
+//---------------------------------------------------------//
+
+//----------------------deleteuserfromdb----------------------------//
+//--------------------Code Grp:900--------------------------//
+
+$delete_user_from_db_success = ["success", 900];
+$delete_user_from_db_error = ["error_user_not_removed",902];
+$delete_user_from_db_email_not_present = ["mail_not_present",903];
+$delete_user_from_db_otp_not_removed = ["error_otp_not_removed", 904];
+
 //---------------------------------------------------------//
