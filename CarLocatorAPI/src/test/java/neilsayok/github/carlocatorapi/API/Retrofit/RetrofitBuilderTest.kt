@@ -1,4 +1,4 @@
-package com.example.neil.carlocator4l.API.Retrofit
+package neilsayok.github.carlocatorapi.API.Retrofit
 
 
 import android.util.Log
