@@ -59,5 +59,24 @@ data class ResponseCodes(
         "log_stat_write_error" to 701,
         "log_stat_mail_not_present" to 702,
         //---------------------------------------------------------//
+
+
+        //----------------------updatelocation----------------------------//
+        //--------------------Code Grp:800--------------------------//
+        
+        "update_location_success" to  800,
+        "update_location_error" to 801,
+        "update_location_email_not_present" to 802,
+        //---------------------------------------------------------//
+        
+        //----------------------deleteuserfromdb----------------------------//
+        //--------------------Code Grp:900--------------------------//
+        
+        "delete_user_from_db_success" to  900,
+        "delete_user_from_db_error" to 902,
+        "delete_user_from_db_email_not_present" to 903,
+        "delete_user_from_db_otp_not_removed" to  904,
+        
+        //---------------------------------------------------------//
 )
 )
