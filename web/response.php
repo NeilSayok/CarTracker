@@ -70,6 +70,7 @@ $log_stat_mail_not_present = ["mail_not_present",702];
 $update_location_success = ["updated", 800];
 $update_location_error = ["Error",801];
 $update_location_email_not_present = ["mail_not_present",802];
+$update_location_empty_param = ["empty_param",803];
 //---------------------------------------------------------//
 
 //----------------------deleteuserfromdb----------------------------//
