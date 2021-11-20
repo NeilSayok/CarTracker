@@ -18,15 +18,15 @@ $out_arr = array("response"=>null,
 
 
 if (!isEmailPresent($inpemail)){
-    $out_arr["response"] = $update_location_success[0];
-    $out_arr["code"] = $update_location_success[1];
+    $out_arr["response"] = $update_location_email_not_present[0];
+    $out_arr["code"] = $update_location_email_not_present[1];
 
 }else{
     $sql = "UPDATE car_location SET `latitude` = '".$inplat."', `longitude`= '".$inplong."', `time`= '".$inptime."' WHERE `email` = '".$inpemail."'";
     
     if(mysqli_query($conn,$sql)){
-        $out_arr["response"] = $update_location_email_not_present[0];
-        $out_arr["code"] = $update_location_email_not_present[1];
+        $out_arr["response"] = $update_location_success[0];
+        $out_arr["code"] = $update_location_success[1];
     }else{
         $out_arr["response"] = $update_location_error[0];
         $out_arr["code"] = $update_location_error[1];
