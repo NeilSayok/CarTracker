@@ -24,6 +24,7 @@ if (!isEmailPresent($inpemail)){
 }else if(empty($inplat) || empty($inplong) || empty($inptime)){
     $out_arr["response"] = $update_location_empty_param[0];
     $out_arr["code"] = $update_location_empty_param[1];
+}
 else{
     $sql = "UPDATE car_location SET `latitude` = '".$inplat."', `longitude`= '".$inplong."', `time`= '".$inptime."' WHERE `email` = '".$inpemail."'";
     
