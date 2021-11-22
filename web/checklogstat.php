@@ -17,7 +17,7 @@ $inpemail = $_POST['email'];
 if(empty($inpemail)){
     $out_arr["response"] = "null_value_passed";
     $out_arr["code"] = 1001;
-    
+   
 }else if (!isEmailPresent($inpemail)){
     $out_arr["response"] = "email_not_present";
     $out_arr["code"] = 1002;
