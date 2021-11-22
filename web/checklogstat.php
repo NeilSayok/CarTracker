@@ -7,21 +7,35 @@ require_once 'response.php';
 
 $out_arr = array("response"=>null,
 "code" => null,
+"stat" => null,
 );
 
 
 
 $inpemail = $_POST['email'];
 
-if (!isEmailPresent($inpemail)){
-    echo "email_not_present";
+if(empty($inpemail)){
+    $out_arr["response"] = "null_value_passed";
+    $out_arr["code"] = 1001;
+    
+}else if (!isEmailPresent($inpemail)){
+    $out_arr["response"] = "email_not_present";
+    $out_arr["code"] = 1002;
+    
 }else{
+    $sql = "SELECT `log_stat` FROM car_location WHERE `email` = '".$inpemail."'";
+    if ($result = mysqli_query($conn, $sql)) {
+        $row = mysqli_fetch_assoc($result);
+        $out_arr["stat"] = $row["log_stat"];
+        $out_arr["code"] = 1000;
+    }else{
+        $out_arr["response"] = "error_in_query";
+        $out_arr["code"] = 1003;
+    }
     
 }
 
-$sql = "SELECT `log_stat` FROM car_location WHERE `email` = '".$inpemail."'";
 
-$result = mysqli_query($conn,$sql); 
 
 
 while($row=mysqli_fetch_array($result))
