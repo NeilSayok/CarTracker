@@ -16,7 +16,7 @@ $out_arr = array("response"=>null,
 "code" => null,
 );
 
-if(empty($inplat) || empty($inplong) || empty($inptime)){
+if(empty($inplat) || empty($inplong) || empty($inptime) || empty($inpemail)){
     $out_arr["response"] = $update_location_empty_param[0];
     $out_arr["code"] = $update_location_empty_param[1];
 }else if (!isEmailPresent($inpemail)){

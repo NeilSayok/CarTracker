@@ -10,8 +10,6 @@ $out_arr = array("response"=>null,
 "stat" => null,
 );
 
-
-
 $inpemail = $_POST['email'];
 
 if(empty($inpemail)){
