@@ -24,7 +24,7 @@ if(empty($inpemail)){
     $sql = "SELECT `log_stat` FROM car_location WHERE `email` = '".$inpemail."'";
     if ($result = mysqli_query($conn, $sql)) {
         $row = mysqli_fetch_assoc($result);
-        $out_arr["stat"] = $row["log_stat"];
+        $out_arr["stat"] = (int) $row["log_stat"];
         $out_arr["code"] = 1000;
     }else{
         $out_arr["response"] = "error_in_query";
