@@ -13,23 +13,23 @@ $out_arr = array("response"=>null,
 $inpemail = $_POST['email'];
 
 if(empty($inpemail)){
-    $out_arr["response"] = "null_value_passed";
-    $out_arr["code"] = 1001;
+    $out_arr["response"] = $check_log_stat_null_value_passed[0];
+    $out_arr["code"] = $check_log_stat_null_value_passed[1];
    
 }else if (!isEmailPresent($inpemail)){
-    $out_arr["response"] = "email_not_present";
-    $out_arr["code"] = 1002;
+    $out_arr["response"] = $check_log_stat_email_not_present[0];
+    $out_arr["code"] = $check_log_stat_email_not_present[1];
     
 }else{
     $sql = "SELECT `log_stat` FROM car_location WHERE `email` = '".$inpemail."'";
     if ($result = mysqli_query($conn, $sql)) {
         $row = mysqli_fetch_assoc($result);
-        $out_arr["response"] = "success";
+        $out_arr["response"] = $check_log_stat_success[0];
         $out_arr["stat"] = (int) $row["log_stat"];
-        $out_arr["code"] = 1000;
+        $out_arr["code"] = $check_log_stat_success[1];
     }else{
-        $out_arr["response"] = "error_in_query";
-        $out_arr["code"] = 1003;
+        $out_arr["response"] = $check_log_stat_error_in_query[0];
+        $out_arr["code"] = $check_log_stat_error_in_query[1];
     }
     
 }

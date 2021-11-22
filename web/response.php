@@ -77,8 +77,18 @@ $update_location_empty_param = ["empty_param",803];
 //--------------------Code Grp:900--------------------------//
 
 $delete_user_from_db_success = ["success", 900];
-$delete_user_from_db_error = ["error_user_not_removed",902];
-$delete_user_from_db_email_not_present = ["mail_not_present",903];
-$delete_user_from_db_otp_not_removed = ["error_otp_not_removed", 904];
+$delete_user_from_db_error = ["error_user_not_removed",901];
+$delete_user_from_db_email_not_present = ["mail_not_present",902];
+$delete_user_from_db_otp_not_removed = ["error_otp_not_removed", 903];
+
+//---------------------------------------------------------//
+
+//----------------------checklogstat----------------------------//
+//--------------------Code Grp:1000--------------------------//
+
+$check_log_stat_success = ["success", 1000];
+$check_log_stat_null_value_passed = ["null_value_passed",1001];
+$check_log_stat_email_not_present = ["email_not_present",1002];
+$check_log_stat_error_in_query = ["error_in_query", 1003];
 
 //---------------------------------------------------------//
