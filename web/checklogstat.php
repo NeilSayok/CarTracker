@@ -36,10 +36,10 @@ if(empty($inpemail)){
 
 
 
-while($row=mysqli_fetch_array($result))
-{
-    echo $row['log_stat'];
-}
+// while($row=mysqli_fetch_array($result))
+// {
+//     echo $row['log_stat'];
+// }
 
 echo json_encode($out_arr);
 
