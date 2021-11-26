@@ -16,6 +16,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
@@ -23,11 +24,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.example.neil.carlocator4l.DefaultActivity
 import com.example.neil.carlocator4l.R
 import com.example.neil.carlocator4l.Utils.PasswordStrength
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import neilsayok.github.carlocatorapi.API.Data.SimpleResponseData
+import neilsayok.github.carlocatorapi.API.ResponseCodes
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -137,7 +140,7 @@ class SignupFragment: Fragment() {
                 isRepassVisible = setPasswordVisibility(repassET,viewRePass,isRepassVisible)
             }
             R.id.SignUpBT->{
-
+                hideKeyBoard()
                 if (nameET.text.isNullOrBlank()){
                     nameET.requestFocus()
                     nameET.startAnimation(anim)
@@ -177,16 +180,15 @@ class SignupFragment: Fragment() {
 
     fun callServer(){
         progressLayout.visibility = View.VISIBLE
-        val api = neilsayok.github.carlocatorapi.API.Retrofit.RetrofitBuilder().retrofit.create(
-            neilsayok.github.carlocatorapi.API.Retrofit.RetrofitAPI::class.java)
-        val call: Call<SimpleResponseData> = api.signup(nameET.text.toString(),
+        //val api = RetrofitBuilder().retrofit.create(RetrofitAPI::class.java)
+        val call: Call<SimpleResponseData> = DefaultActivity.api.signup(nameET.text.toString(),
             vehIDET.text.toString(),
             mailET.text.toString(),
             passET.text.toString(),
             repassET.text.toString(),
         )
 
-        val resCodes = neilsayok.github.carlocatorapi.API.ResponseCodes().responses
+        val resCodes = ResponseCodes().responses
         call.enqueue(object: Callback<SimpleResponseData>{
             override fun onResponse(
                 call: Call<SimpleResponseData>,
@@ -203,7 +205,7 @@ class SignupFragment: Fragment() {
                         sp.edit().putString("email", mailET.text.toString()).apply()
 
 
-                        api.send_otp(mailET.text.toString()).enqueue(object :Callback<SimpleResponseData>{
+                        DefaultActivity.api.send_otp(mailET.text.toString()).enqueue(object :Callback<SimpleResponseData>{
                             override fun onResponse(
                                 call: Call<SimpleResponseData>,
                                 response: Response<SimpleResponseData>
@@ -269,6 +271,11 @@ class SignupFragment: Fragment() {
             }
 
         })
+    }
+
+    private fun hideKeyBoard(){
+        val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+        imm?.hideSoftInputFromWindow(v.windowToken, 0)
     }
 
     fun setPasswordVisibility(editText: EditText, imageButton: ImageButton,isVisible: Boolean): Boolean{

@@ -1,6 +1,7 @@
 package com.example.neil.carlocator4l.Fragments
 
 import android.Manifest
+import android.annotation.TargetApi
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -20,12 +21,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.example.neil.carlocator4l.DefaultActivity
 import com.example.neil.carlocator4l.PermissionHandler.EasyPermissionsHasPermissions
 import com.example.neil.carlocator4l.R
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
-import neilsayok.github.carlocatorapi.API.Retrofit.RetrofitAPI
-import neilsayok.github.carlocatorapi.API.Retrofit.RetrofitBuilder
+import neilsayok.github.carlocatorapi.API.Data.CheckInDbData
 import pub.devrel.easypermissions.EasyPermissions
 import retrofit2.Call
 import retrofit2.Callback
@@ -77,15 +78,14 @@ class SplashFragment: Fragment() , EasyPermissions.PermissionCallbacks{
     }
 
     fun checkinDB(){
-        val api = RetrofitBuilder().retrofit.create(
-            RetrofitAPI::class.java)
+        //val api = RetrofitBuilder().retrofit.create(RetrofitAPI::class.java)
 
-        val call: Call<neilsayok.github.carlocatorapi.API.Data.CheckInDbData> = api.checkUserinDB(email,vhe_id)
+        val call: Call<CheckInDbData> = DefaultActivity.api.checkUserinDB(email,vhe_id)
 
-        call.enqueue(object : Callback<neilsayok.github.carlocatorapi.API.Data.CheckInDbData?> {
+        call.enqueue(object : Callback<CheckInDbData?> {
             override fun onResponse(
-                call: Call<neilsayok.github.carlocatorapi.API.Data.CheckInDbData?>,
-                response: Response<neilsayok.github.carlocatorapi.API.Data.CheckInDbData?>
+                call: Call<CheckInDbData?>,
+                response: Response<CheckInDbData?>
             ) {
                 val res = response.body()
                 Log.d("Response", res.toString())
@@ -115,7 +115,7 @@ class SplashFragment: Fragment() , EasyPermissions.PermissionCallbacks{
 
             }
 
-            override fun onFailure(call: Call<neilsayok.github.carlocatorapi.API.Data.CheckInDbData?>, t: Throwable) {
+            override fun onFailure(call: Call<CheckInDbData?>, t: Throwable) {
                 Snackbar.make(v,"Please check your internet connection",Snackbar.LENGTH_SHORT).show()
             }
 
@@ -123,7 +123,8 @@ class SplashFragment: Fragment() , EasyPermissions.PermissionCallbacks{
     }
 
     fun requesrtPermissions(){
-        if (easyPermHandler.hasLocationPermission())
+
+        if (easyPermHandler.hasLocationPermission() || easyPermHandler.hasForeGroundServicePermission())
             return
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q){
             EasyPermissions.requestPermissions(
@@ -131,7 +132,9 @@ class SplashFragment: Fragment() , EasyPermissions.PermissionCallbacks{
                 "You need to accept permission to use this app",
                 RC_LOC_PERM,
                 Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.WAKE_LOCK
+
             )
         }else{
             EasyPermissions.requestPermissions(
@@ -140,7 +143,9 @@ class SplashFragment: Fragment() , EasyPermissions.PermissionCallbacks{
                 RC_LOC_PERM,
                 Manifest.permission.ACCESS_COARSE_LOCATION,
                 Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_BACKGROUND_LOCATION
+                Manifest.permission.ACCESS_BACKGROUND_LOCATION ,
+                Manifest.permission.FOREGROUND_SERVICE,
+                Manifest.permission.WAKE_LOCK
             )
 
 

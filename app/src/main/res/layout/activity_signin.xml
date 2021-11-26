@@ -7,47 +7,24 @@
     tools:context=".SignInActivity"
     android:isScrollContainer="true"
     android:scrollbars="vertical">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
         android:scrollbars="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <RelativeLayout
-                android:id="@+id/progressRelLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:visibility="gone"
-                android:background="#6AFFFFFF">
-
-                <ProgressBar
-                    android:id="@+id/progressBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="5dp"
-                    android:theme="@style/WhiteAccent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/progressBar"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/loading"
-                    android:textColor="@color/white"
-                    android:textSize="17sp" />
-            </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/baseRelLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:visibility="visible">
+
                 <ImageView
                     android:id="@+id/company_logo"
                     android:layout_width="200dp"
@@ -57,12 +34,14 @@
                     android:contentDescription="@string/company_logo"
                     android:scaleType="fitCenter"
                     android:src="@drawable/company_logo" />
+
                 <RelativeLayout
                     android:id="@+id/LoginTextRelLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/company_logo"
                     android:layout_centerInParent="true">
+
                     <TextView
                         android:id="@+id/LoginTV"
                         android:layout_width="wrap_content"
@@ -74,12 +53,14 @@
                         android:textColor="@color/white"
                         android:textSize="30sp"
                         android:textStyle="bold" />
+
                     <RelativeLayout
                         android:id="@+id/inptRelLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/LoginTV"
                         android:paddingStart="10dp">
+
                         <TextView
                             android:id="@+id/userNameTV"
                             android:layout_width="wrap_content"
@@ -102,6 +83,7 @@
                             android:paddingRight="15dp"
                             android:textColor="@color/white"
                             android:textCursorDrawable="@null" />
+
                         <TextView
                             android:id="@+id/passwordTV"
                             android:layout_width="wrap_content"
@@ -134,12 +116,13 @@
                             android:paddingEnd="8dp"
                             android:src="@drawable/ic_baseline_visibility_off_24px" />
                     </RelativeLayout>
+
                     <RelativeLayout
                         android:id="@+id/buttonRelLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:layout_below="@+id/inptRelLayout">
+                        android:layout_below="@+id/inptRelLayout"
+                        android:layout_marginTop="15dp">
 
                         <Button
                             android:id="@+id/LogInBT"
@@ -154,6 +137,7 @@
                             android:textAllCaps="false"
                             android:textColor="@color/white"
                             android:textSize="17sp" />
+
                         <TextView
                             android:id="@+id/or"
                             android:layout_width="wrap_content"
@@ -183,4 +167,12 @@
             </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
+
+    <include
+        android:id="@+id/progressRelLayout"
+        layout="@layout/layout_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
 </RelativeLayout>

@@ -3,6 +3,7 @@ package com.example.neil.carlocator4l.PermissionHandler
 import android.Manifest
 import android.content.Context
 import android.os.Build
+import androidx.annotation.RequiresApi
 import pub.devrel.easypermissions.EasyPermissions
 
 class EasyPermissionsHasPermissions(val mctx: Context) {
@@ -27,5 +28,18 @@ class EasyPermissionsHasPermissions(val mctx: Context) {
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_BACKGROUND_LOCATION
             )
+        }
+
+    fun hasForeGroundServicePermission() =
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            EasyPermissions.hasPermissions(
+                mctx,
+                Manifest.permission.FOREGROUND_SERVICE,
+                Manifest.permission.WAKE_LOCK
+            )
+        }else{
+                EasyPermissions.hasPermissions(
+                    mctx,
+                    Manifest.permission.WAKE_LOCK)
         }
 }

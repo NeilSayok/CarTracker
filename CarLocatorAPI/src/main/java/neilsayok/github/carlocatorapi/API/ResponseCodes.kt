@@ -2,10 +2,13 @@ package neilsayok.github.carlocatorapi.API
 
 data class ResponseCodes(
 
-//-----------------------SignupA-----------------------------//
-//--------------------Code Grp:100--------------------------//
 
-    val responses: Map<String, Int> = mapOf("Account_Created" to 100,
+
+    val responses: Map<String, Int> = mapOf(
+        //-----------------------SignupA-----------------------------//
+        //--------------------Code Grp:100--------------------------//
+
+        "Account_Created" to 100,
         "Null_Value_Restricted" to 101,
         "Password_Missmatch" to 102,
         "Email_format_wrong" to 103,
@@ -67,15 +70,27 @@ data class ResponseCodes(
         "update_location_success" to  800,
         "update_location_error" to 801,
         "update_location_email_not_present" to 802,
+        "update_location_empty_param" to 803,
+
         //---------------------------------------------------------//
         
         //----------------------deleteuserfromdb----------------------------//
         //--------------------Code Grp:900--------------------------//
         
         "delete_user_from_db_success" to  900,
-        "delete_user_from_db_error" to 902,
-        "delete_user_from_db_email_not_present" to 903,
-        "delete_user_from_db_otp_not_removed" to  904,
+        "delete_user_from_db_error" to 901,
+        "delete_user_from_db_email_not_present" to 902,
+        "delete_user_from_db_otp_not_removed" to  903,
+        
+        //---------------------------------------------------------//
+
+        //----------------------checklogstat----------------------------//
+        //--------------------Code Grp:1000--------------------------//
+        
+        "check_log_stat_success" to 1000,
+        "check_log_stat_null_value_passed" to 1001,
+        "check_log_stat_email_not_present" to 1002,
+        "check_log_stat_error_in_query" to  1003,
         
         //---------------------------------------------------------//
 )

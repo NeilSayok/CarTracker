@@ -1,4 +1,4 @@
-package com.example.neil.carlocator4l
+package com.example.neil.carlocator4l.Services
 
 import android.Manifest
 import android.app.Notification
@@ -16,9 +16,15 @@ import android.provider.Settings
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
-import com.android.volley.AuthFailureError
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
+import com.example.neil.carlocator4l.App
+import com.example.neil.carlocator4l.DefaultActivity
+import com.example.neil.carlocator4l.R
+
+import neilsayok.github.carlocatorapi.API.Data.SimpleResponseData
+import neilsayok.github.carlocatorapi.API.Retrofit.RetrofitAPI
+import neilsayok.github.carlocatorapi.API.Retrofit.RetrofitBuilder
+import retrofit2.Call
+import retrofit2.Callback
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -32,34 +38,43 @@ class GPSService : Service(){
     private lateinit var pendingIntent: PendingIntent
     private lateinit var notification: Notification
     private lateinit var hms: String
-    private lateinit var writeStatURL:kotlin.String
+
+    private lateinit var api: RetrofitAPI
+
+
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        writeStatURL = getString(R.string.write_log_url)
+
+        Log.d("Serice","Started.")
         sp = getSharedPreferences("LOGIN", MODE_PRIVATE)
 
-        val sr: StringRequest = object : StringRequest(
-            Method.POST, writeStatURL,
-            Response.Listener { },
-            Response.ErrorListener { }) {
-            @Throws(AuthFailureError::class)
-            override fun getParams(): Map<String, String>? {
-                val params: MutableMap<String, String> = HashMap()
-                params["email"] = sp.getString("email", "")!!
-                params["stat"] = "1"
-                return params
-            }
-        }
+        api = RetrofitBuilder().retrofit.create(RetrofitAPI::class.java)
 
 
-        VolleySingleton.getmInstance(applicationContext).addToRequestQue(sr)
 
 
-        notificationIntent = Intent(this, MainActivity::class.java)
+        val call = api.write_log_stat(
+            sp.getString("email", ""),
+            1
+        )
+
+        //call.execute()
+        call.enqueue(object : Callback<SimpleResponseData>{
+            override fun onResponse(
+                call: Call<SimpleResponseData>,
+                response: retrofit2.Response<SimpleResponseData>
+            ) {}
+            override fun onFailure(call: Call<SimpleResponseData>, t: Throwable) {}})
+
+
+
+
+
+        notificationIntent = Intent(this, DefaultActivity::class.java)
         pendingIntent = PendingIntent.getActivity(
             this,
             0, notificationIntent, 0
@@ -83,23 +98,21 @@ class GPSService : Service(){
                 i.putExtra("longitude", location.longitude)
                 i.putExtra("time", hms)
 
-                val stringRequest: StringRequest = object : StringRequest(
-                    Method.POST,
-                    "https://car-locator-javalab-proj.000webhostapp.com/updatelocation.php",
-                    Response.Listener { },
-                    Response.ErrorListener { }) {
-                    @Throws(AuthFailureError::class)
-                    override fun getParams(): Map<String, String>? {
-                        val params: MutableMap<String, String> = HashMap()
-                        params["email"] = sp.getString("email", "")!!
-                        params["lat"] = java.lang.Double.toString(location.latitude)
-                        params["time"] = hms
-                        params["longi"] = java.lang.Double.toString(location.longitude)
-                        return params
-                    }
-                }
+                //TODO Change to Retrofit
+                val call = api.update_location(
+                    sp.getString("email", ""),
+                    location.latitude,
+                    location.longitude,
+                    location.time
+                    )
 
-                VolleySingleton.getmInstance(applicationContext).addToRequestQue(stringRequest)
+//                call.execute()
+                call.enqueue(object : Callback<SimpleResponseData>{
+                    override fun onResponse(
+                        call: Call<SimpleResponseData>,
+                        response: retrofit2.Response<SimpleResponseData>
+                    ) {Log.d("Location Update",response.body().toString())}
+                    override fun onFailure(call: Call<SimpleResponseData>, t: Throwable) {}})
 
                 Log.d(
                     "lat/long/time", java.lang.Double.toString(location.latitude) +
@@ -141,24 +154,23 @@ class GPSService : Service(){
     override fun onDestroy() {
         super.onDestroy()
         if (locationManager != null) {
-            locationManager!!.removeUpdates(listener!!)
+            locationManager!!.removeUpdates(listener)
         }
         Log.d("Service", "stopped")
         sp.edit().putBoolean("serviceStat", false).apply()
 
-        val sr: StringRequest = object : StringRequest(
-            Method.POST, writeStatURL,
-            Response.Listener { },
-            Response.ErrorListener { }) {
-            @Throws(AuthFailureError::class)
-            override fun getParams(): Map<String, String>? {
-                val params: MutableMap<String, String> = HashMap()
-                params["email"] = sp!!.getString("email", "")!!
-                params["stat"] = "0"
-                return params
-            }
-        }
-        VolleySingleton.getmInstance(applicationContext).addToRequestQue(sr)
+        val call = api.write_log_stat(
+            sp.getString("email", ""),
+            0
+        )
+
+        //call.execute()
+        call.enqueue(object : Callback<SimpleResponseData>{
+            override fun onResponse(
+                call: Call<SimpleResponseData>,
+                response: retrofit2.Response<SimpleResponseData>
+            ) {}
+            override fun onFailure(call: Call<SimpleResponseData>, t: Throwable) {}})
     }
     
     

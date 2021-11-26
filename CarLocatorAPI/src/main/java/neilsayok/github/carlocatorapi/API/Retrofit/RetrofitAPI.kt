@@ -51,13 +51,17 @@ public interface RetrofitAPI {
     @FormUrlEncoded
     @POST("updatelocation.php")
     fun update_location(@Field("email") email:String? = null,
-                        @Field("lat") latitude:Long? = null,
-                        @Field("longi") longitude:Long? = null,
-                        @Field("time") time:Long? = null): Call<SimpleResponseData>
+                        @Field("lat") latitude: Double? = null,
+                        @Field("longi") longitude: Double? = null,
+                        @Field("time") time: Long? = null): Call<SimpleResponseData>
 
     @FormUrlEncoded
     @POST("deluserfromdb.php")
     fun del_user_from_db(@Field("email") email:String? = null,): Call<SimpleResponseData>
+
+    @FormUrlEncoded
+    @POST("checklogstat.php")
+    fun check_log_stat(@Field("email") email:String? = null,): Call<CheckLogStatData>
 
 
 }

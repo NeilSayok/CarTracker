@@ -1,6 +1,6 @@
-package com.example.neil.carlocator4l;
+package com.example.neil.carlocator4l.Services;
 
-import static com.example.neil.carlocator4l.App.CHANNEL_ID;
+
 
 import android.Manifest;
 import android.app.Notification;
@@ -26,6 +26,9 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.neil.carlocator4l.MainActivity;
+import com.example.neil.carlocator4l.R;
+import com.example.neil.carlocator4l.VolleySingleton;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -77,12 +80,12 @@ public class GPS_service extends Service {
 
         VolleySingleton.getmInstance(getApplicationContext()).addToRequestQue(sr);
 
-        notificationIntent = new Intent(this,MainActivity.class);
+        notificationIntent = new Intent(this, MainActivity.class);
 
         pendingIntent = PendingIntent.getActivity(this,
                 0,notificationIntent,0);
 
-        notification = new NotificationCompat.Builder(this,CHANNEL_ID)
+        notification = new NotificationCompat.Builder(this,"TestChannel")
                 .setContentTitle("Car Locator")
                 .setContentText("Tracking Your Car : " + sp.getString("reg_id",""))
                 .setSmallIcon(R.drawable.ic_location_on_black_24dp)

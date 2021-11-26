@@ -9,20 +9,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.RelativeLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.example.neil.carlocator4l.DefaultActivity
 import com.example.neil.carlocator4l.R
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
-import neilsayok.github.carlocatorapi.API.Retrofit.RetrofitAPI
-import neilsayok.github.carlocatorapi.API.Retrofit.RetrofitBuilder
+import neilsayok.github.carlocatorapi.API.Data.LoginData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,7 +39,7 @@ class LoginFragment: Fragment() {
     private lateinit var idET: EditText
     private lateinit var passwordET: EditText
 
-    private lateinit var loadingLayout: RelativeLayout
+    private lateinit var loadingLayout: ViewGroup
 
     private lateinit var passwordVisisbilityIB: ImageButton
 
@@ -90,10 +90,16 @@ class LoginFragment: Fragment() {
 
     }
 
+    private fun hideKeyBoard(){
+        val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+        imm?.hideSoftInputFromWindow(v.windowToken, 0)
+    }
+
 
     private val clickListener = View.OnClickListener{
         when(it.id){
             R.id.LogInBT->{
+                hideKeyBoard()
                 val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.shake)
                 if (idET.text.isNullOrBlank()){
                     Snackbar.make(v, "Please Input an email", Snackbar.LENGTH_SHORT).show()
@@ -111,6 +117,7 @@ class LoginFragment: Fragment() {
 
             }
             R.id.SignUpBT->{
+                hideKeyBoard()
                 navController.navigate(R.id.action_signinFragment_to_signupFragment)
             }
             R.id.viewPass->{
@@ -135,12 +142,12 @@ class LoginFragment: Fragment() {
     }
 
     fun login(email: String, password: String){
-        val api = RetrofitBuilder().retrofit.create(RetrofitAPI::class.java)
+        //val api = RetrofitBuilder().retrofit.create(RetrofitAPI::class.java)
 
-        val call: Call<neilsayok.github.carlocatorapi.API.Data.LoginData> = api.login(email,password)
+        val call: Call<LoginData> = DefaultActivity.api.login(email,password)
 
-        call.enqueue(object : Callback<neilsayok.github.carlocatorapi.API.Data.LoginData>{
-            override fun onResponse(call: Call<neilsayok.github.carlocatorapi.API.Data.LoginData>, response: Response<neilsayok.github.carlocatorapi.API.Data.LoginData>) {
+        call.enqueue(object : Callback<LoginData>{
+            override fun onResponse(call: Call<LoginData>, response: Response<LoginData>) {
                 val res = response.body()
                 loadingLayout.visibility = View.GONE
                 Log.d("Respose", res.toString())
@@ -161,7 +168,7 @@ class LoginFragment: Fragment() {
 
             }
 
-            override fun onFailure(call: Call<neilsayok.github.carlocatorapi.API.Data.LoginData>, t: Throwable) {
+            override fun onFailure(call: Call<LoginData>, t: Throwable) {
                 loadingLayout.visibility = View.GONE
             }
 

@@ -62,7 +62,7 @@ class OTPFragment: Fragment() {
     private lateinit var anim: Animation
     private lateinit var vibrator: Vibrator
     private lateinit var sp: SharedPreferences
-    private lateinit var api: neilsayok.github.carlocatorapi.API.Retrofit.RetrofitAPI
+    //private lateinit var api: RetrofitAPI
     private lateinit var navController: NavController
 
 
@@ -80,8 +80,7 @@ class OTPFragment: Fragment() {
         anim = AnimationUtils.loadAnimation(requireContext(), R.anim.shake)
         vibrator = requireContext().getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         sp = requireContext().getSharedPreferences("LOGIN", Context.MODE_PRIVATE)
-        api = neilsayok.github.carlocatorapi.API.Retrofit.RetrofitBuilder().retrofit.create(
-            neilsayok.github.carlocatorapi.API.Retrofit.RetrofitAPI::class.java)
+        //api = RetrofitBuilder().retrofit.create(RetrofitAPI::class.java)
 
         sentTo = v.findViewById(R.id.sentTo)
 
@@ -160,7 +159,7 @@ class OTPFragment: Fragment() {
                 if (otp.length != 6) {
                     otpView.startAnimation(anim)
                 } else {
-                    // TODO call verify otp function
+                    // call verify otp function
                     Log.d("Done", otp)
                     verifyOtp(otp)
                 }
@@ -225,7 +224,7 @@ class OTPFragment: Fragment() {
                 Snackbar.make(v,"No Email is present.",Snackbar.LENGTH_LONG).show()
                 relogin()
             }else{
-                val call: Call<SimpleResponseData> = api.verify_otp(otp,email)
+                val call: Call<SimpleResponseData> = DefaultActivity.api.verify_otp(otp,email)
                 call.enqueue(object: Callback<SimpleResponseData>{
                     override fun onResponse(
                         call: Call<SimpleResponseData>,
@@ -276,7 +275,7 @@ class OTPFragment: Fragment() {
             if (email.isNullOrBlank()){
 
             }else{
-                api.send_otp(email).enqueue(object :Callback<SimpleResponseData>{
+                DefaultActivity.api.send_otp(email).enqueue(object :Callback<SimpleResponseData>{
                     override fun onResponse(
                         call: Call<SimpleResponseData>,
                         response: Response<SimpleResponseData>

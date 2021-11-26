@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.neil.carlocator4l.Services.GPS_service;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.HashMap;
@@ -81,7 +83,7 @@ public class TrackActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             if (v.getId() == R.id.startstopTrackingService) {
-                final RelativeLayout rel = findViewById(R.id.trackStartLoaderRel);
+                final ViewGroup rel = findViewById(R.id.progressLayout);
                 rel.setVisibility(View.VISIBLE);
                 if (!sp.getBoolean("serviceStat", false)) {
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, checkstatURL,
