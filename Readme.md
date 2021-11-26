@@ -1,4 +1,4 @@
-# Car Locator App
+# User App
 
 This app checks the location of the car and shows its location and last update time on a map.
 
