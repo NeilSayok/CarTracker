@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.FragmentActivity;
 
+import com.example.neil.carlocatoruserside1m.Services.getLocationService;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -71,7 +72,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void locaionServiceHandler() {
         i = getIntent();
-        locationServiceIntent = new Intent(getApplicationContext(),getLocationService.class);
+        locationServiceIntent = new Intent(getApplicationContext(), getLocationService.class);
         locationServiceIntent.putExtra("email",i.getStringExtra("email"));
         locationServiceIntent.putExtra("password",i.getStringExtra("password"));
         startService(locationServiceIntent);

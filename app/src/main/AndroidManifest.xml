@@ -24,7 +24,7 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <service android:name=".statService" />
+        <service android:name=".Services.statService" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
@@ -34,7 +34,7 @@
             android:label="@string/title_activity_maps" />
 
         <service
-            android:name=".getLocationService"
+            android:name=".Services.getLocationService"
             android:enabled="true"
             android:exported="true"/>
     </application>

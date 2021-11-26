@@ -1,1 +1,3 @@
 include ':app'
+include ':CarLocatorAPI'
+project(':CarLocatorAPI').projectDir = new File('F:\\Misc\\GPS-Car-Locator-System\\CarLocator4L\\CarLocatorAPI')

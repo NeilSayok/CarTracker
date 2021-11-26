@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.neil.carlocatoruserside1m.Services.statService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         adduser = findViewById(R.id.adduserBTN);
         emptyTxt = findViewById(R.id.emptyTXT);
         sp = getSharedPreferences("spdb",MODE_PRIVATE);
-        startService(new Intent(MainActivity.this,statService.class));
+        startService(new Intent(MainActivity.this, statService.class));
         setRecView();
         adduser.setOnClickListener(new View.OnClickListener() {
             @Override
