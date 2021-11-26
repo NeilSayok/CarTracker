@@ -30,28 +30,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".SignInActivity"
-            android:theme="@style/Noactionbar"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".signUp"
-            android:theme="@style/Noactionbar"
-            android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".TrackActivity" />
-        <activity
-            android:name=".OTP_activity"
-            android:theme="@style/Noactionbar"
-            android:windowSoftInputMode="stateAlwaysHidden|stateHidden|stateUnchanged" />
+
+        <service android:name=".Services.LocationService" />
+
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
-        <service android:name=".Services.GPS_service" />
-        <service android:name=".Services.GPSService" />
-        <service android:name=".Services.LocationService" />
-
 
     </application>
 

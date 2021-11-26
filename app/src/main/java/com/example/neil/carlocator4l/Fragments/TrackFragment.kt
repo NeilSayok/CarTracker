@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.fragment.app.Fragment
 import com.example.neil.carlocator4l.DefaultActivity
-import com.example.neil.carlocator4l.Services.GPSService
 import com.example.neil.carlocator4l.R
 import com.example.neil.carlocator4l.Services.LocationService
 import com.google.android.material.snackbar.Snackbar
