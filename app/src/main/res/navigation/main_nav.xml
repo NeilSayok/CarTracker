@@ -11,16 +11,24 @@
         android:label="SplashFragment"
         tools:layout="@layout/activity_splash">
         <action
-            android:id="@+id/action_splashFragment_to_addUserFragment"
-            app:destination="@id/addUserFragment" />
+            android:id="@+id/action_splashFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/addUserFragment"
         android:name="com.example.neil.carlocatoruserside1m.Fragments.AddUserFragment"
         android:label="AddUserFragment"
-        tools:layout="@layout/activity_adduser">
+        tools:layout="@layout/activity_adduser"/>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.neil.carlocatoruserside1m.Fragments.MainFragment"
+        android:label="MainFragment"
+        tools:layout="@layout/activity_main">
         <action
-            android:id="@+id/action_addUserFragment_to_mapsFragment"
+            android:id="@+id/action_mainFragment_to_addUserFragment"
+            app:destination="@id/addUserFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_mapsFragment"
             app:destination="@id/mapsFragment" />
     </fragment>
     <fragment

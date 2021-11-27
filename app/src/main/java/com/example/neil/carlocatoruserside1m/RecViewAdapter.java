@@ -2,6 +2,7 @@ package com.example.neil.carlocatoruserside1m;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,6 +22,8 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.apache.commons.lang3.ArrayUtils;
+
+import java.util.List;
 
 
 public class RecViewAdapter extends RecyclerView.Adapter<RecViewAdapter.RecViewViewHolder> {
@@ -47,8 +50,10 @@ public class RecViewAdapter extends RecyclerView.Adapter<RecViewAdapter.RecViewV
         return item;
     }
 
+
+
     @Override
-    public void onBindViewHolder(@NonNull RecViewViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull RecViewViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.user_name.setText(name[position]);
         holder.user_email.setText(email[position]);
         holder.user_regid.setText(regid[position]);

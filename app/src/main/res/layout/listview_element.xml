@@ -41,6 +41,7 @@
             android:text="WB-16G-0643"
             android:textSize="18sp"
             android:textStyle="bold" />
+
         <ImageButton
             android:id="@+id/delBtN"
             android:layout_width="32dp"
@@ -66,6 +67,7 @@
                 android:text="Status"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="17sp" />
+
             <ImageView
                 android:id="@+id/statusIV"
                 android:layout_width="15dp"

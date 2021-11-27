@@ -33,6 +33,8 @@ android {
 }
 
 dependencies {
+    def room_version = "2.3.0"
+
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(path: ':CarLocatorAPI')
 
@@ -40,6 +42,10 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.google.android.material:material:1.4.0'
+
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
 
     implementation 'com.google.android.gms:play-services-maps:18.0.0'
 
