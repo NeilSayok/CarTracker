@@ -13,7 +13,6 @@ require_once 'response.php';
 
 $inpEmailList = explode(',', $_POST['emails']) ;
 
-echo "inpEmailList: ".$inpEmailList;
 
 $query = "SELECT * FROM car_location WHERE `email` in (";
 
@@ -23,7 +22,6 @@ foreach($inpEmailList as $email){
 $query = rtrim($query,',');
 $query .= ")";
 
-echo "query: ".$query;
 
 $out_arr = array("response"=>"stat_online",
 "code" => 500,
