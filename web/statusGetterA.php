@@ -23,6 +23,8 @@ foreach($inpEmailList as $email){
 $query = rtrim($query,',');
 $query .= ")";
 
+echo "query: ".$query;
+
 $out_arr = array("response"=>"stat_online",
 "code" => 500,
 "data"=>null,
