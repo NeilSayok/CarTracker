@@ -11,7 +11,7 @@ require_once 'credentials.php';
 require_once 'response.php';
 
 
-$inpEmailList = json_decode($_POST['emails']);
+$inpEmailList = $_POST['emails'];
 
 echo "inpEmailList: ".$inpEmailList;
 
