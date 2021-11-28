@@ -27,7 +27,7 @@ $query_create_table_otp ="CREATE TABLE IF NOT EXISTS car_location(
     verified bit default 0,
     latitude varchar(50) NULL,
     longitude varchar(50) NULL,
-    time bigint NULL,
+    time varchar(50) NULL,
     log_stat bit default 0,
     PRIMARY KEY (id));";
 

@@ -13,7 +13,7 @@ require_once 'response.php';
 
 $inpEmailList = json_decode($_POST['emails']);
 
-
+echo "inpEmailList: ".$inpEmailList;
 
 $query = "SELECT * FROM car_location WHERE `email` in (";
 
