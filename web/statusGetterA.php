@@ -11,14 +11,14 @@ require_once 'credentials.php';
 require_once 'response.php';
 
 
-$inpEmailList = json_encode($_POST['emails']);
+$inpEmailList = explode(',', $_POST['emails']) ;
 
 echo "inpEmailList: ".$inpEmailList;
 
 $query = "SELECT * FROM car_location WHERE `email` in (";
 
 foreach($inpEmailList as $email){
-    $query .= "'$email',";
+    $query .= "'".trim($email)."',";
 }
 $query = rtrim($query,',');
 $query .= ")";
