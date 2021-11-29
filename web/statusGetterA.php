@@ -18,13 +18,15 @@ $out_arr = array("response"=>"stat_online",
 "data"=>null,
 );
 
+
 if(empty($inpEmailList) || count($inpEmailList) == 0){
     $out_arr["response"] = $stat_mail_missing[0];
     $out_arr["code"] = $stat_mail_missing[1];
     $out_arr["data"] = null;
 }else{
 
-    $query = "SELECT * FROM car_location WHERE `email` in (";
+    $query = "SELECT `id`,`name`,`email`,`reg_id`,`verified`,`latitude`,`longitude`,`time`,`log_stat`
+    FROM car_location WHERE `email` in (";
 
     foreach($inpEmailList as $email){
         $query .= "'".trim($email)."',";
