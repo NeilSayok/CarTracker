@@ -18,7 +18,6 @@ $out_arr = array("response"=>"stat_online",
 "data"=>null,
 );
 
-echo count($inpEmailList);
 
 if(empty($inp) || count($inpEmailList) == 0){
     $out_arr["response"] = $stat_mail_missing[0];
@@ -34,8 +33,6 @@ if(empty($inp) || count($inpEmailList) == 0){
     }
     $query = rtrim($query,',');
     $query .= ")";
-
-    echo $query;
 
     $sql =  mysqli_query($conn, $query);
 
