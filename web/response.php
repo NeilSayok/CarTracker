@@ -47,6 +47,7 @@ $null_value_not_allowed = ["Null_Value_Not_Allowed",403];
 $stat_online = ["id_stat_online",500];
 $stat_offline = ["id_stat_offline", 501];
 $stat_mail_missing = ["email_empty", 502];
+$stat_no_matching_email = ["stat_no_matching_email", 503];
 
 //---------------------------------------------------------//
 

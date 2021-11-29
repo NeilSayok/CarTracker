@@ -46,10 +46,16 @@ if(empty($inp) || count($inpEmailList) == 0){
         while($r = mysqli_fetch_assoc($sql)) {
             $rows[] = $r;
         }
-        echo count($rows);
-        $out_arr["response"] = $stat_online[0];
-        $out_arr["code"] = $stat_online[1];
-        $out_arr["data"] = $rows;
+        if(count($rows)>0){
+            $out_arr["response"] = $stat_online[0];
+            $out_arr["code"] = $stat_online[1];
+            $out_arr["data"] = $rows;
+        }else{
+            $out_arr["response"] = $stat_no_matching_email[0];
+            $out_arr["code"] = $stat_no_matching_email[1];
+            $out_arr["data"] = null;
+        }
+        
     }
 
 }
