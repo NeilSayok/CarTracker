@@ -10,8 +10,8 @@ require_once 'connection.php';
 require_once 'credentials.php';
 require_once 'response.php';
 
-
-$inpEmailList = explode(',', $_POST['emails']) ;
+$inp = $_POST['emails'];
+$inpEmailList = explode(',', $inp);
 
 $out_arr = array("response"=>"stat_online",
 "code" => 500,
@@ -20,7 +20,7 @@ $out_arr = array("response"=>"stat_online",
 
 echo count($inpEmailList);
 
-if(empty($inpEmailList) || count($inpEmailList) == 0){
+if(empty($inp) || count($inpEmailList) == 0){
     $out_arr["response"] = $stat_mail_missing[0];
     $out_arr["code"] = $stat_mail_missing[1];
     $out_arr["data"] = null;
