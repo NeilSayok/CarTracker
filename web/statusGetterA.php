@@ -13,37 +13,52 @@ require_once 'response.php';
 
 $inpEmailList = explode(',', $_POST['emails']) ;
 
-
-$query = "SELECT * FROM car_location WHERE `email` in (";
-
-foreach($inpEmailList as $email){
-    $query .= "'".trim($email)."',";
-}
-$query = rtrim($query,',');
-$query .= ")";
-
-
 $out_arr = array("response"=>"stat_online",
 "code" => 500,
 "data"=>null,
 );
 
-$sql =  mysqli_query($conn, $query);
-
-if(empty($sql)){
-    $out_arr["response"] = $stat_offline[0];
-    $out_arr["code"] = $stat_offline[1];
+if(empty($inpEmailList)){
+    $out_arr["response"] = $stat_mail_missing[0];
+    $out_arr["code"] = $stat_mail_missing[1];
     $out_arr["data"] = null;
-}
-else{
-    $rows = array();
-    while($r = mysqli_fetch_assoc($sql)) {
-        $rows[] = $r;
+}else{
+
+    $query = "SELECT * FROM car_location WHERE `email` in (";
+
+    foreach($inpEmailList as $email){
+        $query .= "'".trim($email)."',";
     }
-    $out_arr["response"] = $stat_online[0];
-    $out_arr["code"] = $stat_online[1];
-    $out_arr["data"] = $rows;
+    $query = rtrim($query,',');
+    $query .= ")";
+
+    $sql =  mysqli_query($conn, $query);
+
+    if(empty($sql)){
+        $out_arr["response"] = $stat_offline[0];
+        $out_arr["code"] = $stat_offline[1];
+        $out_arr["data"] = null;
+    }
+    else{
+        $rows = array();
+        while($r = mysqli_fetch_assoc($sql)) {
+            $rows[] = $r;
+        }
+        $out_arr["response"] = $stat_online[0];
+        $out_arr["code"] = $stat_online[1];
+        $out_arr["data"] = $rows;
+    }
+
 }
+
+
+
+
+
+
+
+
+
 
 
 
