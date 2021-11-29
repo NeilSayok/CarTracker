@@ -18,7 +18,7 @@ $out_arr = array("response"=>"stat_online",
 "data"=>null,
 );
 
-if(empty($inpEmailList)){
+if(empty($inpEmailList) || count($inpEmailList) == 0){
     $out_arr["response"] = $stat_mail_missing[0];
     $out_arr["code"] = $stat_mail_missing[1];
     $out_arr["data"] = null;
