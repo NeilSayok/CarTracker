@@ -34,6 +34,8 @@ if(empty($inpEmailList) || count($inpEmailList) == 0){
     $query = rtrim($query,',');
     $query .= ")";
 
+    echo $query;
+
     $sql =  mysqli_query($conn, $query);
 
     if(empty($sql)){
