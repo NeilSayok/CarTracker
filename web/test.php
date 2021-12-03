@@ -1,9 +1,10 @@
 <?php
 
-$str = explode(',', "neil@1234, neil@1234");
+$array = array("name"=> "John", "age"=>"35", "pass"=>"123", "city"=>"New York", "country"=>"USA");
 
-foreach($str as $email){
-  echo trim($email)."\n";
-}
+unset($array['age']);
+
+echo json_encode($array);
+
 
 

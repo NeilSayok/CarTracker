@@ -16,6 +16,7 @@ $out_arr = array("response"=>null,
 'reg_id' => null,
 'email' => null,
 'verified' => null,
+'data' => null,
 );
 
 $inpemail = $_POST['email'];
@@ -42,6 +43,8 @@ if($result = mysqli_query($conn,$query)){
             $out_arr['reg_id'] = $row['reg_id'];
             $out_arr['email'] = $row['email'];
             $out_arr['verified'] = $row['verified'];
+            unset($array['password']);
+            $out_arr['data'] = $row;
 
             //$array = array('name' => $row['name'],'reg_id' => $row['reg_id'],'email' => $row['email'], 'verified' => $row['verified'],'status' => 'OK');
         }else{
