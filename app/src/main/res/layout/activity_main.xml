@@ -27,6 +27,7 @@
         android:layout_centerHorizontal="true"
         android:textSize="20sp"
         android:visibility="gone"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mainRecView"
         android:layout_width="match_parent"

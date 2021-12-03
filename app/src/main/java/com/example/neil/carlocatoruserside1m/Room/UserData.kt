@@ -3,29 +3,44 @@ package com.example.neil.carlocatoruserside1m.Room
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import neilsayok.github.carlocatorapi.API.Data.Data
 
-@Entity
+@Entity(tableName = "user_details")
 data class UserData(
     @PrimaryKey
-    val id: Int,
+    var id: Int,
 
     @ColumnInfo(name = "name")
-    val name: String? = null,
+    var name: String? = null,
     @ColumnInfo(name = "email")
-    val email: String? = null,
+    var email: String? = null,
     @ColumnInfo(name = "reg_id")
-    val regId: String? = null,
+    var regId: String? = null,
     @ColumnInfo(name = "password")
-    val password: String? = null,
+    var password: String? = null,
     @ColumnInfo(name = "verified")
-    val verified: Boolean? = null,
+    var verified: Boolean? = null,
     @ColumnInfo(name = "latitude")
-    val latitude: Any? = null,
+    var latitude: Double? = null,
     @ColumnInfo(name = "longitude")
-    val longitude: Any? = null,
+    var longitude: Double? = null,
     @ColumnInfo(name = "time")
-    val time: Long? = null,
+    var time: Long? = null,
     @ColumnInfo(name = "log_stat")
-    val logStat: Boolean = false
+    var logStat: Boolean = false
 
-)
+){
+    fun UserData.fromRetrofitToRoom(data: Data){
+        this.id = data.id!!
+        this.name = data.name
+        this.email = data.email
+        this.regId = data.regId
+        this.password = data.password
+        this.verified = data.verified
+        this.latitude = data.latitude as Double
+        this.longitude = data.longitude as Double
+        this.time = data.time
+        this.logStat = data.logStat
+
+    }
+}
