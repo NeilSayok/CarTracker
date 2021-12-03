@@ -41,11 +41,12 @@ if($result = mysqli_query($conn,$query)){
         if($row['password'] == $inppsw){
             $out_arr['response'] = $success[0];
             $out_arr['code'] = $success[1];
+            
             $out_arr['name'] = $row['name'];
             $out_arr['reg_id'] = $row['reg_id'];
             $out_arr['email'] = $row['email'];
             $out_arr['verified'] = $row['verified'];
-            $out_arr['id'] = $rows["id"];
+            $out_arr['id'] = $row["id"];
 
             //$array = array('name' => $row['name'],'reg_id' => $row['reg_id'],'email' => $row['email'], 'verified' => $row['verified'],'status' => 'OK');
         }else{
