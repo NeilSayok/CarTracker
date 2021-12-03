@@ -49,11 +49,7 @@ if($result = mysqli_query($conn,$query)){
             $out_arr['email'] = $row['email'];
             $out_arr['verified'] = $row['verified'];
             unset($array['password']);
-            $out_rows = array();
-            foreach ($row as $r){
-                $out_rows[] = $r;
-            }
-            $out_arr['data'] = $out_rows;
+            $out_arr['data'] = $rows;
 
             //$array = array('name' => $row['name'],'reg_id' => $row['reg_id'],'email' => $row['email'], 'verified' => $row['verified'],'status' => 'OK');
         }else{
