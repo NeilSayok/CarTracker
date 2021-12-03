@@ -33,7 +33,7 @@ $query = "SELECT * FROM `car_location` WHERE `email` = '".$inpemail."' OR `reg_i
 
 if($result = mysqli_query($conn,$query)){
 
-    //$row = mysqli_fetch_array($result);
+    $row = mysqli_fetch_array($result);
 
     
     
