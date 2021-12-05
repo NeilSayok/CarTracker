@@ -21,7 +21,7 @@ interface UserDAO {
     fun getAllEmails():  LiveData<List<String>>
 
     @Query("SELECT * FROM user_details WHERE id = :userId LIMIT 1")
-    fun getUser(userId: Int): UserData
+    fun getUser(userId: Int): LiveData<UserData>
 
 
     @Delete

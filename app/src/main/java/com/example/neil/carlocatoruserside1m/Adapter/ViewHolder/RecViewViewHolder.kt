@@ -10,16 +10,16 @@ import com.example.neil.carlocatoruserside1m.R
 class RecViewViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 
-    lateinit var user_name: TextView
-    lateinit var user_email: TextView
-    lateinit var user_regid: TextView
-    lateinit var statTV: TextView
-    lateinit var justTxt: TextView
-    lateinit var delBtn: ImageButton
-    lateinit var statIV: ImageView
+     var user_name: TextView
+     var user_email: TextView
+     var user_regid: TextView
+     var statTV: TextView
+     var justTxt: TextView
+     var delBtn: ImageButton
+     var statIV: ImageView
 
 
-    fun RecViewViewHolder(itemView: View) {
+    init {
         user_name = itemView.findViewById(R.id.name)
         user_email = itemView.findViewById<TextView>(R.id.email)
         user_regid = itemView.findViewById<TextView>(R.id.vehid)

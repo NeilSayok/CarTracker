@@ -1,11 +1,12 @@
 package com.example.neil.carlocatoruserside1m.Room
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 
 class UserDataRepo(private val userDao : UserDAO) {
 
     val getAllUser: LiveData<List<UserData>> = userDao.getAllUsers()
-    fun getUser(id: Int): UserData = userDao.getUser(id)
+    fun getUser(id: Int): LiveData<UserData> = userDao.getUser(id)
     val getAllEmail:  LiveData<List<String>> = userDao.getAllEmails()
 
 

@@ -45,12 +45,12 @@ public class AddUser extends AppCompatActivity {
         sp = getSharedPreferences("spdb",MODE_PRIVATE);
         loginURL = getString(R.string.login_php_url);
         //Layout Initialization
-        r1 = findViewById(R.id.LoginTextRelLayout);
-        r2 = findViewById(R.id.inptRelLayout);
-        r3 = findViewById(R.id.buttonRelLayout);
-        uid = findViewById(R.id.userNameET);
-        pass = findViewById(R.id.passwordET);
-        visibilityPass = findViewById(R.id.viewPass);
+        r1 = new RelativeLayout(this);
+        r2 = new RelativeLayout(this);
+        r3 = new RelativeLayout(this);
+        uid =new EditText(this);
+        pass = new EditText(this);
+        visibilityPass = new ImageButton(this);
         visibilityPass.setOnTouchListener(onTouchListener);
         //Animation
         anim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_in);
@@ -59,8 +59,8 @@ public class AddUser extends AppCompatActivity {
         r2.startAnimation(anim);
         r3.startAnimation(anim);
         //Reusing Layout and animation for future use
-        r1 = findViewById(R.id.progressRelLayout);
-        r2 = findViewById(R.id.baseRelLayout);
+        r1 = findViewById(R.id.progressLayout);
+        r2 = new RelativeLayout(this);
         anim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.shake);
     }
 
@@ -179,7 +179,7 @@ public class AddUser extends AppCompatActivity {
         @Override
         public boolean onTouch(View v, MotionEvent motionEvent) {
             switch (v.getId()){
-                case R.id.viewPass:
+                case R.id.accelerate:
                     switch ( motionEvent.getAction() ) {
                         case MotionEvent.ACTION_DOWN:
                             visibilityPass.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_visibility_24px));

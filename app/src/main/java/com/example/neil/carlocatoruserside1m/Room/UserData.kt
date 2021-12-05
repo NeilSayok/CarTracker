@@ -29,18 +29,4 @@ data class UserData(
     @ColumnInfo(name = "log_stat")
     var logStat: Boolean = false
 
-){
-    fun UserData.fromRetrofitToRoom(data: Data){
-        this.id = data.id!!
-        this.name = data.name
-        this.email = data.email
-        this.regId = data.regId
-        this.password = data.password
-        this.verified = data.verified
-        this.latitude = data.latitude as Double
-        this.longitude = data.longitude as Double
-        this.time = data.time
-        this.logStat = data.logStat
-
-    }
-}
+)

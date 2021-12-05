@@ -16,10 +16,9 @@ class UserDataViewModel(application: Application): AndroidViewModel(application)
 
     val userData : LiveData<List<UserData>>
     val emails: LiveData<List<String>>
-    private val repo: UserDataRepo
+    private val repo: UserDataRepo = UserDataRepo(DefaultActivity.userDAO)
 
     init{
-        repo = UserDataRepo(DefaultActivity.userDAO)
         userData = repo.getAllUser
         emails = repo.getAllEmail
         Log.d("Work","From INIT viewModel")
@@ -40,6 +39,12 @@ class UserDataViewModel(application: Application): AndroidViewModel(application)
     fun deleteAll(){
         viewModelScope.launch(Dispatchers.IO){
             repo.deleteAllData()
+        }
+    }
+
+    fun deleteUser(vararg userData: UserData){
+        viewModelScope.launch(Dispatchers.IO) {
+            repo.deleteUser(*userData)
         }
     }
 

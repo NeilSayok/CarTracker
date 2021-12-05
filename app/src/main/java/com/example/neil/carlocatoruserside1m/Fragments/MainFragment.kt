@@ -1,6 +1,7 @@
 package com.example.neil.carlocatoruserside1m.Fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,15 +11,18 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.neil.carlocatoruserside1m.DefaultActivity
+import com.example.neil.carlocatoruserside1m.Adapter.RecViewAdapter
 import com.example.neil.carlocatoruserside1m.R
 import com.example.neil.carlocatoruserside1m.Room.UserData
 import com.example.neil.carlocatoruserside1m.ViewModels.UserDataViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import androidx.recyclerview.widget.DividerItemDecoration
+
+
+
+
 
 class MainFragment: Fragment() {
 
@@ -30,6 +34,8 @@ class MainFragment: Fragment() {
 
     private lateinit var viewModel : UserDataViewModel
     private lateinit var navController: NavController
+
+    private lateinit var adapter: RecViewAdapter
 
 
 
@@ -51,13 +57,29 @@ class MainFragment: Fragment() {
 
         viewModel = ViewModelProvider(this)[UserDataViewModel::class.java]
         navController = findNavController()
+        adapter = RecViewAdapter( mutableListOf<UserData>(),viewModel,navController)
+
+        mainRecView.adapter = adapter
+
+        val layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+
+        mainRecView.layoutManager = layoutManager
+
+        val dividerItemDecoration = DividerItemDecoration(
+            mainRecView.context,
+            layoutManager.orientation
+        )
+
+        mainRecView.addItemDecoration(dividerItemDecoration)
 
 
-        viewModel.userData.observe(this, Observer {
+
+        viewModel.userData.observe(viewLifecycleOwner, Observer {
             if (it.isEmpty()){
                 nothingToShowTV.visibility = View.VISIBLE
             }else{
                 nothingToShowTV.visibility = View.GONE
+                adapter.updateList(it)
             }
         })
 
