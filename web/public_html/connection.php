@@ -3,10 +3,16 @@
 
 //mysql://b456e143358879:bb2dd12d@us-cdbr-east-04.cleardb.com/heroku_272798b743ae862?reconnect=true
 
-define('servername', 'us-cdbr-east-04.cleardb.com');
-define('user', 'b456e143358879');
-define('password', 'bb2dd12d');
-define('database', 'heroku_272798b743ae862');
+//Heroku + Clear DB
+// define('servername', 'us-cdbr-east-04.cleardb.com');
+// define('user', 'b456e143358879');
+// define('password', 'bb2dd12d');
+// define('database', 'heroku_272798b743ae862');
+
+define('servername', 'localhost');
+define('user', 'id18072583_admin');
+define('password', 'Mypassword1#');
+define('database', 'id18072583_carlocator');
 
 $conn = mysqli_connect(servername, user, password, database) or die("Connection failed: " . $conn->connect_error);
 
