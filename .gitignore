@@ -1,5 +1,8 @@
 vendor/
 .env
 .ftpconfig
+/web/connection.php
+/web/credentials.php
+
 
 
