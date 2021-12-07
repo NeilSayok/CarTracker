@@ -5,8 +5,8 @@ $server_hash = generatePasswordHash($_SERVER['HTTP_HOST'],'3c990de67d9ab60b451c7
 
 
 $smtp_server= "smtp-relay.sendinblue.com";
-$login= "blue.labs.dev@gmail.com";
-$password= "ULHYfM0nOvVm5EDF";
+$login= "<user_name>";
+$password= "_<password>_";
 $sent_from_emial = "donotreply@car-locator.herokuapp.com";
 $sent_from_name = "Project Travel System";
 
