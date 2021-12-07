@@ -34,7 +34,7 @@ class DefaultActivity : AppCompatActivity() {
     //Static Objects
     companion object{
         var broadcastReceiver: BroadcastReceiver? = null
-        val api: RetrofitAPI = RetrofitBuilder().retrofit.create(RetrofitAPI::class.java)
+        val api: RetrofitAPI by lazy { RetrofitBuilder().retrofit.create(RetrofitAPI::class.java) }
     }
 
 

@@ -163,6 +163,7 @@ class LoginFragment: Fragment() {
                         navController.navigate(R.id.action_signinFragment_to_trackFragment)
                     }
                 }else{
+
                     Snackbar.make(v, "Please Enter a Valid ID and Password", Snackbar.LENGTH_SHORT).show()
                 }
 

@@ -67,14 +67,7 @@ class SplashFragment: Fragment() , EasyPermissions.PermissionCallbacks{
         easyPermHandler = EasyPermissionsHasPermissions(requireContext())
         requesrtPermissions()
 
-        if(email.isNullOrBlank() && vhe_id.isNullOrEmpty()){
-            navController.navigate(R.id.action_splashFragment_to_signinFragment)
-        }else{
-            lifecycleScope.launch {
-                checkinDB()
-            }
 
-        }
     }
 
     fun checkinDB(){
@@ -124,9 +117,14 @@ class SplashFragment: Fragment() , EasyPermissions.PermissionCallbacks{
 
     fun requesrtPermissions(){
 
-        if (easyPermHandler.hasLocationPermission() || easyPermHandler.hasForeGroundServicePermission())
+        if (easyPermHandler.hasLocationPermission() && easyPermHandler.hasForeGroundServicePermission()) {
+            Log.d("Request", "Permissions present")
+
             return
+        }
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q){
+            Log.d("Request", "Permissions Q")
+
             EasyPermissions.requestPermissions(
                 this,
                 "You need to accept permission to use this app",
@@ -137,6 +135,8 @@ class SplashFragment: Fragment() , EasyPermissions.PermissionCallbacks{
 
             )
         }else{
+            Log.d("Request", "Permissions")
+
             EasyPermissions.requestPermissions(
                 this,
                 "You need to accept permission to use this app",
@@ -153,7 +153,25 @@ class SplashFragment: Fragment() , EasyPermissions.PermissionCallbacks{
         }
     }
 
-    override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {}
+    override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
+        Log.d("Perms", perms.toString())
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q){
+
+        }else{
+
+        }
+
+        if(email.isNullOrBlank() && vhe_id.isNullOrEmpty()){
+            navController.navigate(R.id.action_splashFragment_to_signinFragment)
+        }else{
+            lifecycleScope.launch {
+                checkinDB()
+            }
+
+        }
+
+    }
 
     override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
         if (EasyPermissions.somePermissionPermanentlyDenied(this,perms)){

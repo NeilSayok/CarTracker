@@ -15,13 +15,13 @@ data class Data(
     @SerializedName("password")
     val password: String? = null,
     @SerializedName("verified")
-    val verified: Boolean? = null,
+    val verified: Int = 0,
     @SerializedName("latitude")
-    val latitude: Any? = null,
+    val latitude: String? = null,
     @SerializedName("longitude")
-    val longitude: Any? = null,
+    val longitude: String? = null,
     @SerializedName("time")
     val time: Long? = null,
     @SerializedName("log_stat")
-    val logStat: Boolean = false
+    val logStat: Int = 0
 )

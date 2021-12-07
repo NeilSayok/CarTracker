@@ -8,6 +8,8 @@ data class LoginData(
     val response: String? = null,
     @SerializedName("code")
     val code: Int? = null,
+    @SerializedName("id")
+    val id: Int? = null,
     @SerializedName("name")
     val name: String? = null,
     @SerializedName("reg_id")

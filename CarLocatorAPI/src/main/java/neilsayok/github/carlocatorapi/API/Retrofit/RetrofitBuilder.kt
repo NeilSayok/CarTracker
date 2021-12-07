@@ -18,6 +18,7 @@ class RetrofitBuilder {
         logging.level = Level.BODY
 
         val baseUrl = "https://vehicle-locator.herokuapp.com/"
+        //val baseUrl = "https://car-locator.000webhostapp.com/"
 
         val client = OkHttpClient.Builder()
             .addInterceptor(logging)

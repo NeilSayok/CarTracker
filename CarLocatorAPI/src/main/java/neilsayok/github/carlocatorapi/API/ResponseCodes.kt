@@ -43,8 +43,11 @@ data class ResponseCodes(
 
         //----------------------statusGetterA----------------------------//
         //--------------------Code Grp:500--------------------------//
-        "id_stat_offline" to  501,
         "id_stat_online" to 500,
+        "id_stat_offline" to  501,
+        "id_statemail_empty" to 502,
+        "id_statstat_no_matching_email" to 503,
+
         //---------------------------------------------------------//
 
         //----------------------verify_otp----------------------------//
