@@ -78,6 +78,7 @@ class MainFragment: Fragment() {
             if (it.isEmpty()){
                 nothingToShowTV.visibility = View.VISIBLE
             }else{
+                Log.d("List", it.toString())
                 nothingToShowTV.visibility = View.GONE
                 adapter.updateList(it)
             }

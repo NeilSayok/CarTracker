@@ -1,15 +1,18 @@
 package com.example.neil.carlocatoruserside1m.Fragments
 
+import android.location.Geocoder
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
-import android.service.autofill.UserData
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.neil.carlocatoruserside1m.R
+import com.example.neil.carlocatoruserside1m.Room.UserData
 import com.example.neil.carlocatoruserside1m.ViewModels.SingleUSerDataVMFactory
 import com.example.neil.carlocatoruserside1m.ViewModels.SingleUserDataViewModel
 import com.example.neil.carlocatoruserside1m.ViewModels.UserDataViewModel
@@ -22,6 +25,11 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.lang.Exception
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MapsFragment : Fragment(),OnMapReadyCallback {
 
@@ -31,26 +39,20 @@ class MapsFragment : Fragment(),OnMapReadyCallback {
 
     private lateinit var userData: UserData
     private lateinit var viewModel : SingleUserDataViewModel
-    private lateinit var mMap : GoogleMap
+    private var mMap : GoogleMap? = null
     private var m: Marker? = null
 
     private lateinit var markerOptions: MarkerOptions
 
+    private lateinit var lastSeenDateTV: TextView
+    private lateinit var lastSeenTimeTV: TextView
+    private lateinit var cityTV: TextView
+    private lateinit var postalCodeTV: TextView
 
-    private val callback = OnMapReadyCallback { googleMap ->
-        /**
-         * Manipulates the map once available.
-         * This callback is triggered when the map is ready to be used.
-         * This is where we can add markers or lines, add listeners or move the camera.
-         * In this case, we just add a marker near Sydney, Australia.
-         * If Google Play services is not installed on the device, the user will be prompted to
-         * install it inside the SupportMapFragment. This method will only be triggered once the
-         * user has installed Google Play services and returned to the app.
-         */
-        val sydney = LatLng(-34.0, 151.0)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
-    }
+
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,13 +70,53 @@ class MapsFragment : Fragment(),OnMapReadyCallback {
         viewModel = ViewModelProvider(this,SingleUSerDataVMFactory(requireActivity().application,uid))[SingleUserDataViewModel::class.java]
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
 
+        lastSeenDateTV = v.findViewById(R.id.lastSeenDateTV)
+        lastSeenTimeTV = v.findViewById(R.id.lastSeenTimeTV)
+        cityTV = v.findViewById(R.id.cityTV)
+        postalCodeTV = v.findViewById(R.id.postalCodeTV)
+
+
+
 
         viewModel.userData.observe(viewLifecycleOwner, Observer {
-            mapFragment?.getMapAsync(this)
+            if (mMap==null)
+                mapFragment?.getMapAsync(this)
+            else{
+                    updateMap(it)
+
+
+            }
 
 
         })
 
+
+
+    }
+
+    val dt = SimpleDateFormat("dd/M/yyyy")
+    val tm = SimpleDateFormat("hh:mm:ss")
+
+    private fun updateMap(data: UserData){
+        try{
+            val currLoc = LatLng(data.latitude!!, data.longitude!!)
+            m?.position = currLoc
+            mMap?.moveCamera(CameraUpdateFactory.newLatLng(currLoc))
+            val geocoder = Geocoder(requireContext(), Locale.getDefault())
+            val addresses = geocoder.getFromLocation(data.latitude!!, data.longitude!!, 1)
+
+            cityTV.text = "City: ${addresses[0].locality}"
+
+            postalCodeTV.text = "Postal Code: " + addresses[0].postalCode
+
+            val now = Date(data.time!!)
+
+            lastSeenDateTV.text = "Last Seen Date: " + dt.format(now)
+
+            lastSeenTimeTV.text = "Last Seen Time: " + tm.format(now)
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
 
 
     }
@@ -84,9 +126,15 @@ class MapsFragment : Fragment(),OnMapReadyCallback {
         val startLocation = LatLng(viewModel.userData.value!!.latitude!!, viewModel.userData.value!!.longitude!!)
         markerOptions = MarkerOptions().position(startLocation).title("Here is your car")
             .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_action_name))
-        m = mMap.addMarker(markerOptions)
+        m = mMap!!.addMarker(markerOptions)
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(startLocation))
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(startLocation, 16f))
+        mMap!!.moveCamera(CameraUpdateFactory.newLatLng(startLocation))
+        mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(startLocation, 16f))
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        //TODO stop all pending workmanagers
+
     }
 }

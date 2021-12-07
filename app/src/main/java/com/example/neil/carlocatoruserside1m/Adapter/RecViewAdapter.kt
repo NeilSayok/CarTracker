@@ -1,10 +1,12 @@
 package com.example.neil.carlocatoruserside1m.Adapter
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -20,10 +22,11 @@ class RecViewAdapter(val userList: MutableList<UserData>,
 ): RecyclerView.Adapter<RecViewViewHolder>() {
 
 
-
+    private lateinit var mCTX: Context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecViewViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.listview_element_constraint,parent,false)
+        mCTX = parent.context
+        val v = LayoutInflater.from(mCTX).inflate(R.layout.listview_element_constraint,parent,false)
         return RecViewViewHolder(v)
     }
 
@@ -40,6 +43,15 @@ class RecViewAdapter(val userList: MutableList<UserData>,
                     viewModel.deleteUser(data)
                 }).show()
         }
+
+        if(data.logStat){
+            holder.statIV.setImageDrawable(ContextCompat.getDrawable(mCTX,R.drawable.circle_green))
+            holder.statTV.text = "Online"
+        }else{
+            holder.statIV.setImageDrawable(ContextCompat.getDrawable(mCTX,R.drawable.circle_red))
+            holder.statTV.text = "Offline"
+        }
+
         holder.itemView.setOnClickListener {
             val b = Bundle()
             b.putInt("id",data.id)

@@ -18,7 +18,7 @@ class RVDiffUtillCallback(var oldList: List<UserData>, var newList: List<UserDat
 
         val oldItem = oldList.get(oldItemPosition)
         val newItem = newList.get(newItemPosition)
-        return oldItem.id == newItem.id || oldItem.logStat == newItem.logStat
+        return oldItem.id == newItem.id && oldItem.logStat == newItem.logStat
     }
 
     override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any? {
