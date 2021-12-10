@@ -51,6 +51,10 @@ An app where a user can see all their vehicles in a list. They will be able to s
 ||
 
 ### **ScreenShots:**
+|||
+| ----------- | ----------- |
+|<img style="width:50%;height:auto;" src="https://i.imgur.com/HKc6abh.gif" /><br><p>Splash Screen</p>|<img style="width:50%;height:auto;" src="https://i.imgur.com/vh6ctsN.jpeg" /><br><p>Add User Screen</p>|
+|<img style="width:50%;height:auto;" src="https://i.imgur.com/iQdhNkc.jpeg" /><br><p>Car List Screen</p>|<img style="width:50%;height:auto;" src="https://i.imgur.com/JqktKdg.jpeg" /><br><p>View Car on Map Screen</p>|
 
 ## WebAPI
 
