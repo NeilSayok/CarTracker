@@ -120,6 +120,15 @@ class SplashFragment: Fragment() , EasyPermissions.PermissionCallbacks{
         if (easyPermHandler.hasLocationPermission() && easyPermHandler.hasForeGroundServicePermission()) {
             Log.d("Request", "Permissions present")
 
+            if(email.isNullOrBlank() && vhe_id.isNullOrEmpty()){
+                navController.navigate(R.id.action_splashFragment_to_signinFragment)
+            }else{
+                lifecycleScope.launch {
+                    checkinDB()
+                }
+
+            }
+
             return
         }
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q){
@@ -156,11 +165,9 @@ class SplashFragment: Fragment() , EasyPermissions.PermissionCallbacks{
     override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
         Log.d("Perms", perms.toString())
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q){
 
-        }else{
 
-        }
+        Log.d("Running Here","HEre")
 
         if(email.isNullOrBlank() && vhe_id.isNullOrEmpty()){
             navController.navigate(R.id.action_splashFragment_to_signinFragment)

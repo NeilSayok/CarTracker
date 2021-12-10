@@ -1,10 +1,13 @@
 package com.example.neil.carlocator4l
 
+import android.Manifest
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -13,10 +16,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.res.ResourcesCompat
+import com.example.neil.carlocator4l.PermissionHandler.EasyPermissionsHasPermissions
 import com.google.android.material.snackbar.Snackbar
 import neilsayok.github.carlocatorapi.API.Data.SimpleResponseData
 import neilsayok.github.carlocatorapi.API.Retrofit.RetrofitAPI
 import neilsayok.github.carlocatorapi.API.Retrofit.RetrofitBuilder
+import pub.devrel.easypermissions.EasyPermissions
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,12 +29,20 @@ import retrofit2.Response
 
 class DefaultActivity : AppCompatActivity() {
 
+    //Views
     private lateinit var toolbar: Toolbar
+    private lateinit var base: ViewGroup
+
+
+
+    //Intent To restart App
     private lateinit var i: Intent
 
+    //Sharedpref
     private lateinit var sp: SharedPreferences
 
-    private lateinit var base: ViewGroup
+
+
 
     //Static Objects
     companion object{
@@ -50,12 +63,17 @@ class DefaultActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.mainToolbar)
         base = findViewById(R.id.base)
 
+        //Initializing Toolbar to handle Login and logout
+
         toolbar.title = "Car Locator App"
         toolbar.setTitleTextColor(ResourcesCompat.getColor(resources,R.color.white,null));
 
-
         setSupportActionBar(toolbar)
+
+        //Hiding toolbar to clean UI
         supportActionBar?.hide()
+
+        Log.d("Package Name", applicationContext.packageName)
 
     }
 
@@ -117,8 +135,6 @@ class DefaultActivity : AppCompatActivity() {
         }
         return true
     }
-
-
 
     override fun onDestroy() {
         super.onDestroy()

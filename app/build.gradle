@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
 
-        applicationId "neilsayok.github.testnavdrawer"
+        applicationId "neilsayok.github.CarTracker"
         minSdk 22
         targetSdk 30
         versionCode 1
