@@ -59,6 +59,9 @@ class DefaultActivity: AppCompatActivity() {
 
         emails = ""
 
+        Log.d("Package Name", applicationContext.packageName)
+
+
     }
 
     override fun onResume() {
