@@ -17,17 +17,54 @@ Using this app user needs to Signup first if they donot have an account. Users a
 |Technologies Used|
 | ----------- |
 |Kotlin|
-|Room DB|
-|View Models|
 |Fragments|
 |Navigation Architecture|
 |RecyclerView|
-|ConstraintLayout and MotionLayout|
+|ConstraintLayout|
 |Retrofit|
-|Google Maps|
+|Sevices|
+|Notification|
+|Coroutines|
+||
+
 
 
 ### **ScreenShots:**
 
 
-## Car Tracker App:
+## Car Locator App:
+
+An app where a user can see all their vehicles in a list. They will be able to see which car is currently online/sending data to the server and on taping an item it will open in Maps view where they will be able to see the current location on google maps.
+
+|Technologies Used|
+| ----------- |
+|Kotlin|
+|Fragments|
+|Navigation Architecture|
+|RecyclerView|
+|ConstraintLayout & MotionLayout|
+|Retrofit|
+|Coroutines|
+|Google Maps|
+|Room DB|
+|ViewModels|
+||
+
+### **ScreenShots:**
+
+## WebAPI
+
+The web API is hosted on heroku written in PHP. It handles the REST API requests along with mailing users OTP via SendInBlue SMTP.
+
+|Technologies Used|
+| ----------- |
+|Heroku|
+|PHP 7|
+|SendInBlue SMTP(For Sending Mails)|
+|REST API|
+||
+
+
+
+
+
