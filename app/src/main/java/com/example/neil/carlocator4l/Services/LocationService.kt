@@ -163,6 +163,7 @@ class LocationService: Service() {
                 Log.d("updateLocation-Error",t.toString())
             }
 
+
         })
     }
 
