@@ -30,8 +30,7 @@ Using this app user needs to Signup first if they donot have an account. Users a
 
 
 
-### **ScreenShots:**
-|||
+|**ScreenShots:**||
 | ----------- | ----------- |
 |<img style="width:50%;height:auto;" src="https://i.imgur.com/HKc6abh.gif" /><br><p>Splash Screen</p>|<img style="width:50%;height:auto;" src="https://i.imgur.com/gu9J0SC.gif" /><br><p>Permission Request Dialog</p>|
 |<img style="width:50%;height:auto;" src="https://i.imgur.com/npqK4LJ.jpeg" /><br><p>Login Screen</p>|<img style="width:50%;height:auto;" src="https://i.imgur.com/prYQXTe.jpeg" /><br><p>Signup Screen</p>|
@@ -58,8 +57,8 @@ An app where a user can see all their vehicles in a list. They will be able to s
 |Lottie|
 ||
 
-### **ScreenShots:**
-|||
+
+|**ScreenShots:**||
 | ----------- | ----------- |
 |<img style="width:50%;height:auto;" src="https://i.imgur.com/HKc6abh.gif" /><br><p>Splash Screen</p>|<img style="width:50%;height:auto;" src="https://i.imgur.com/vh6ctsN.jpeg" /><br><p>Add User Screen</p>|
 |<img style="width:50%;height:auto;" src="https://i.imgur.com/iQdhNkc.jpeg" /><br><p>Car List Screen</p>|<img style="width:50%;height:auto;" src="https://i.imgur.com/JqktKdg.jpeg" /><br><p>View Car on Map Screen</p>|
@@ -74,7 +73,7 @@ The web API is hosted on heroku written in PHP. It handles the REST API requests
 |PHP 7|
 |SendInBlue SMTP(For Sending Mails)|
 |REST API|
-||
+
 
 |Heroku Addons|
 | ----------- |
