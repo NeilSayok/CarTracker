@@ -1,13 +1,11 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-# Vehicle Tracker 
+# Vehicle Tracker  [![GitHub license](https://img.shields.io/github/license/NeilSayok/CarTracker)](https://github.com/NeilSayok/CarTracker/blob/master/LICENSE)
 
 An android project to track the current location of a vehicle.
 
 The Project is divided into 3 Parts.
 
-- [Car Tracker App](https://github.com/NeilSayok/CarTracker/tree/CarApp)    <a href= "https://github.com/NeilSayok/CarTracker/releases/download/v0.0.1/Car.Tracker.apk"><button class="btn"><i class="fa fa-android"></i> Download Car Tracker App</button></a>
-- [User App](https://github.com/NeilSayok/CarTracker/tree/UserApp) <a href="https://github.com/NeilSayok/CarTracker/releases/download/v0.0.1/User.App.apk"><button class="btn"><i class="fa fa-android"></i> Download User App</button></a>
+- [Car Tracker App](https://github.com/NeilSayok/CarTracker/tree/CarApp)    
+- [User App](https://github.com/NeilSayok/CarTracker/tree/UserApp) 
 - [WebAPI](https://github.com/NeilSayok/CarTracker/tree/WebAPI)
 
 
@@ -15,7 +13,7 @@ The Project is divided into 3 Parts.
 
 
 
-## Car Tracker App:  <a href= "https://github.com/NeilSayok/CarTracker/releases/download/v0.0.1/Car.Tracker.apk"><button class="btn"><i class="fa fa-android"></i> Download Car Tracker App</button></a>
+## Car Tracker App:  
 
 This app tracks the current position of the device and send the location data to be stored in the Database.
 
@@ -46,7 +44,7 @@ Using this app user needs to Signup first if they donot have an account. Users a
 |<img style="width:50%;height:auto;" src="https://i.imgur.com/2dCmMU0.gif" /><br><p>Loading Screen Screen</p>|<img style="width:100%;height:auto;" src="https://i.imgur.com/IktzeDm.jpeg" /><br><p>Sticky Notification for Service</p>|
 
 
-## Car Locator App: ![Custom badge](https://img.shields.io/endpoint?color=blue&label=Download%20Car%20Locator%20APK&logo=android&url=https%3A%2F%2Fgithub.com%2FNeilSayok%2FCarTracker%2Freleases%2Fdownload%2Fv0.0.1%2FCar.Tracker.apk)
+## Car Locator App: 
 
 An app where a user can see all their vehicles in a list. They will be able to see which car is currently online/sending data to the server and on taping an item it will open in Maps view where they will be able to see the current location on google maps.
 
