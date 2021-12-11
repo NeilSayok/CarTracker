@@ -34,8 +34,9 @@ Using this app user needs to Signup first if they donot have an account. Users a
 | ----------- | ----------- |
 |<img style="width:50%;height:auto;" src="https://i.imgur.com/OtIDvef.gif" /><br><p>Splash Screen</p>|<img style="width:50%;height:auto;" src="https://i.imgur.com/gu9J0SC.gif" /><br><p>Permission Request Dialog</p>|
 |<img style="width:50%;height:auto;" src="https://i.imgur.com/npqK4LJ.jpeg" /><br><p>Login Screen</p>|<img style="width:50%;height:auto;" src="https://i.imgur.com/prYQXTe.jpeg" /><br><p>Signup Screen</p>|
+|<img style="width:50%;height:auto;" src="https://i.imgur.com/cpQPlLE.jpeg" /><br><p>OTP Not Filled Screen</p>|<img style="width:50%;height:auto;" src="https://i.imgur.com/gzC2PoH.jpeg" /><br><p>OTP Filled Screen</p>|
 |<img style="width:50%;height:auto;" src="https://i.imgur.com/vEJTx2b.jpeg" /><br><p>Tracking Not Active Screen</p>|<img style="width:50%;height:auto;" src="https://i.imgur.com/b5uZM8H.jpeg" /><br><p>Car Tracking Active Screen</p>|
-|<img style="width:100%;height:auto;" src="https://i.imgur.com/IktzeDm.jpeg" /><br><p>Sticky Notification for Service</p>|
+|<img style="width:50%;height:auto;" src="https://i.imgur.com/2dCmMU0.gif" /><br><p>Loading Screen Screen</p>|<img style="width:100%;height:auto;" src="https://i.imgur.com/IktzeDm.jpeg" /><br><p>Sticky Notification for Service</p>|
 
 
 ## Car Locator App:
