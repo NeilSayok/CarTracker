@@ -8,8 +8,7 @@
     android:background="@drawable/grad_bg"
     android:isScrollContainer="true"
     android:scrollbars="vertical"
-    app:layoutDescription="@xml/activity_adduser_motion_layout_scene"
-    tools:context=".AddUser" >
+    app:layoutDescription="@xml/activity_adduser_motion_layout_scene">
 
     <ImageView
         android:id="@+id/company_logo3"

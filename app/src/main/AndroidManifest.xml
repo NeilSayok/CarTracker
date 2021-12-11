@@ -19,7 +19,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddUser" />
 
         <meta-data
             android:name="preloaded_fonts"
@@ -30,20 +29,7 @@
             android:value="${MAPS_API_KEY}" />
 
 
-        <service android:name=".Services.statService" />
 
-<!--        <meta-data-->
-<!--            android:name="com.google.android.geo.API_KEY"-->
-<!--            android:value="@string/google_maps_key" />-->
-
-        <activity
-            android:name=".MapsActivity"
-            android:label="@string/title_activity_maps" />
-
-        <service
-            android:name=".Services.getLocationService"
-            android:enabled="true"
-            android:exported="true" />
     </application>
 
 </manifest>
