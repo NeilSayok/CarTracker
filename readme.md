@@ -46,7 +46,7 @@ Using this app user needs to Signup first if they donot have an account. Users a
 |<img style="width:50%;height:auto;" src="https://i.imgur.com/2dCmMU0.gif" /><br><p>Loading Screen Screen</p>|<img style="width:100%;height:auto;" src="https://i.imgur.com/IktzeDm.jpeg" /><br><p>Sticky Notification for Service</p>|
 
 
-## Car Locator App: <button class="btn"><i class="fa fa-android"></i> Download Car Tracker App</button>
+## Car Locator App: ![Custom badge](https://img.shields.io/endpoint?color=blue&label=Download%20Car%20Locator%20APK&logo=android&url=https%3A%2F%2Fgithub.com%2FNeilSayok%2FCarTracker%2Freleases%2Fdownload%2Fv0.0.1%2FCar.Tracker.apk)
 
 An app where a user can see all their vehicles in a list. They will be able to see which car is currently online/sending data to the server and on taping an item it will open in Maps view where they will be able to see the current location on google maps.
 
