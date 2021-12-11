@@ -76,6 +76,11 @@ The web API is hosted on heroku written in PHP. It handles the REST API requests
 |REST API|
 ||
 
+|Heroku Addons|
+| ----------- |
+|Clear DB|
+
+
 
 
 
