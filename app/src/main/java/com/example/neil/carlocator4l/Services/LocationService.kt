@@ -93,6 +93,8 @@ class LocationService: Service() {
             &&
             ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED
         ){
+            val i = Intent(applicationContext,DefaultActivity::class.java)
+            startActivity(i)
             onDestroy()
         }
 
@@ -102,7 +104,8 @@ class LocationService: Service() {
             &&
             ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
         ){
-
+            val i = Intent(applicationContext,DefaultActivity::class.java)
+            startActivity(i)
             onDestroy()
         }else{
             locationManager!!.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3000, 0f, locationListener)

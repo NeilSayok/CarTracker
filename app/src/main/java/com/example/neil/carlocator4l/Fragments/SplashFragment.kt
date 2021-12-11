@@ -117,57 +117,56 @@ class SplashFragment: Fragment() , EasyPermissions.PermissionCallbacks{
 
     fun requesrtPermissions(){
 
-        if (easyPermHandler.hasLocationPermission() && easyPermHandler.hasForeGroundServicePermission()) {
-            Log.d("Request", "Permissions present")
+        var allPermGranted = false
 
-            if(email.isNullOrBlank() && vhe_id.isNullOrEmpty()){
+        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.P){
+            allPermGranted = easyPermHandler.hasLocationPermission() && easyPermHandler.hasForeGroundServicePermission()
+        }else{
+            allPermGranted = easyPermHandler.hasLocationPermission()
+        }
+
+        if (allPermGranted){
+            if(email.isNullOrBlank() && vhe_id.isNullOrEmpty())
                 navController.navigate(R.id.action_splashFragment_to_signinFragment)
-            }else{
+            else
                 lifecycleScope.launch {
                     checkinDB()
                 }
+            return
+        }else {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+                Log.d("Request", "Permissions Q")
+
+                EasyPermissions.requestPermissions(
+                    this,
+                    "You need to accept permission to use this app",
+                    RC_LOC_PERM,
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.WAKE_LOCK
+
+                )
+            } else {
+                Log.d("Request", "Permissions")
+
+                EasyPermissions.requestPermissions(
+                    this,
+                    "You need to accept permission to use this app",
+                    RC_LOC_PERM,
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_BACKGROUND_LOCATION,
+                    Manifest.permission.FOREGROUND_SERVICE,
+                    Manifest.permission.WAKE_LOCK
+                )
 
             }
-
-            return
-        }
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q){
-            Log.d("Request", "Permissions Q")
-
-            EasyPermissions.requestPermissions(
-                this,
-                "You need to accept permission to use this app",
-                RC_LOC_PERM,
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.WAKE_LOCK
-
-            )
-        }else{
-            Log.d("Request", "Permissions")
-
-            EasyPermissions.requestPermissions(
-                this,
-                "You need to accept permission to use this app",
-                RC_LOC_PERM,
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_BACKGROUND_LOCATION ,
-                Manifest.permission.FOREGROUND_SERVICE,
-                Manifest.permission.WAKE_LOCK
-            )
-
-
-
         }
     }
 
     override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
         Log.d("Perms", perms.toString())
 
-
-
-        Log.d("Running Here","HEre")
 
         if(email.isNullOrBlank() && vhe_id.isNullOrEmpty()){
             navController.navigate(R.id.action_splashFragment_to_signinFragment)
