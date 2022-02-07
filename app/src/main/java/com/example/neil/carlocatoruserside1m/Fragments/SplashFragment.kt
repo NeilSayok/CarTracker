@@ -77,15 +77,15 @@ class SplashFragment: Fragment() {
 
                                         for(d in res.data!!)
                                             viewModel.updateUser(Converter().convertDataToUserData(d))
-                                        if(navController.currentDestination?.getId() == R.id.splashFragment){
+                                        if(navController.currentDestination?.id == R.id.splashFragment){
                                             navController.navigate(R.id.action_splashFragment_to_mainFragment)
                                         }
                                     }
 
                                     else->{
                                         viewModel.deleteAll()
-                                        Log.d("Current Destination" ,"${navController.currentDestination?.getId()}")
-                                        if(navController.currentDestination?.getId() == R.id.splashFragment){
+                                        Log.d("Current Destination" ,"${navController.currentDestination?.id}")
+                                        if(navController.currentDestination?.id == R.id.splashFragment){
                                             navController.navigate(R.id.action_splashFragment_to_mainFragment)
                                         }
                                     }
